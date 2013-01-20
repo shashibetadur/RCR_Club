@@ -1,0 +1,221 @@
+--Dish Type
+insert into dish_type(id,dish_type_name) values(1,'Pizza');
+insert into dish_type(id,dish_type_name) values(2,'Rice');
+insert into dish_type(id,dish_type_name) values(3,'Fryums');
+insert into dish_type(id,dish_type_name) values(4,'Curry');
+
+--Attributes
+insert into attribute(id,attribute_name, attribute_description) values(1,'pizza_size','Size of Pizza');
+insert into attribute(id,attribute_name, attribute_description) values(2,'food_grade','grade of food');
+insert into attribute(id,attribute_name, attribute_description) values(3,'rice_size','size of rice bowl');
+insert into attribute(id,attribute_name, attribute_description) values(4,'nuggets_Size','Hot wings size');
+insert into attribute(id,attribute_name, attribute_description) values(5,'pizza_bulge','baking bulge');
+
+--Attribute Values
+insert into attribute_value(id,attribute_id,Attribute_Value_name,Attribute_Value_Description) values (1,1,'Regular','Regular Size 10 inch');
+insert into attribute_value(id,attribute_id,Attribute_Value_name,Attribute_Value_Description) values (2,1,'Medium','Medium Size 15 inch');
+insert into attribute_value(id,attribute_id,Attribute_Value_name,Attribute_Value_Description) values (3,1,'Large','Large Size 20 inch');
+
+insert into attribute_value(id,attribute_id,Attribute_Value_name,Attribute_Value_Description) values (4,2,'Veg','vegetarian');
+insert into attribute_value(id,attribute_id,Attribute_Value_name,Attribute_Value_Description) values (5,2,'Non-Veg','non-vegetarian');
+insert into attribute_value(id,attribute_id,Attribute_Value_name,Attribute_Value_Description) values (6,2,'Egg','contains egg');
+insert into attribute_value(id,attribute_id,Attribute_Value_name,Attribute_Value_Description) values (7,2,'Jain','doesnt contain roots');
+
+insert into attribute_value(id,attribute_id,Attribute_Value_name,Attribute_Value_Description) values (8,3,'Medium','serves 1');
+insert into attribute_value(id,attribute_id,Attribute_Value_name,Attribute_Value_Description) values (9,3,'Large','serves 2');
+
+insert into attribute_value(id,attribute_id,Attribute_Value_name,Attribute_Value_Description) values (10,4,'3 pieces','3 pieces');
+insert into attribute_value(id,attribute_id,Attribute_Value_name,Attribute_Value_Description) values (11,4,'6 pieces','6 pieces');
+
+insert into attribute_value(id,attribute_id,Attribute_Value_name,Attribute_Value_Description) values (12,5,'Normal Crust','Crust');
+insert into attribute_value(id,attribute_id,Attribute_Value_name,Attribute_Value_Description) values (13,5,'Thin Crust','Crust');
+insert into attribute_value(id,attribute_id,Attribute_Value_name,Attribute_Value_Description) values (14,5,'Cheese Burst','Crust');
+insert into attribute_value(id,attribute_id,Attribute_Value_name,Attribute_Value_Description) values (15,5,'Deep Crust','Crust');
+
+--Attribute Dish Type Association
+insert into ATTRIBUTE_DISH_TYPE_ASSOCIATION (id,attribute_id,Dish_type_ID) values (1,1,1);
+insert into ATTRIBUTE_DISH_TYPE_ASSOCIATION (id,attribute_id,Dish_type_ID) values (2,2,1);
+insert into ATTRIBUTE_DISH_TYPE_ASSOCIATION (id,attribute_id,Dish_type_ID) values (3,5,1);
+insert into ATTRIBUTE_DISH_TYPE_ASSOCIATION (id,attribute_id,Dish_type_ID) values (4,3,2);
+insert into ATTRIBUTE_DISH_TYPE_ASSOCIATION (id,attribute_id,Dish_type_ID) values (5,2,2);
+insert into ATTRIBUTE_DISH_TYPE_ASSOCIATION (id,attribute_id,Dish_type_ID) values (6,4,3);
+insert into ATTRIBUTE_DISH_TYPE_ASSOCIATION (id,attribute_id,Dish_type_ID) values (7,2,3);
+insert into ATTRIBUTE_DISH_TYPE_ASSOCIATION (id,attribute_id,Dish_type_ID) values (8,2,4);
+insert into ATTRIBUTE_DISH_TYPE_ASSOCIATION (id,attribute_id,Dish_type_ID) values (9,3,4);
+
+--Dish
+insert into dish (id,Dish_type_ID,Dish_Name) values (1,1,'Margharita');
+insert into dish (id,Dish_type_ID,Dish_Name) values (2,1,'Exotica');
+insert into dish (id,Dish_type_ID,Dish_Name) values (3,1,'GreenWave');
+
+--Item and Attributes
+insert into Item (id,Dish_Id,Search_Code,Price) values(1,1,'Margharita Regular Normal Crust Veg',100);
+insert into Item_Property (Item_ID,Attribute_value_id) values(1,1);
+insert into Item_Property (Item_ID,Attribute_value_id) values(1,12);
+insert into Item_Property (Item_ID,Attribute_value_id) values(1,4);
+
+insert into Item (id,Dish_Id,Search_Code,Price) values(2,1,'Margharita Medium Normal Crust Veg',150);
+insert into Item_Property (Item_ID,Attribute_value_id) values(2,2);
+insert into Item_Property (Item_ID,Attribute_value_id) values(2,12);
+insert into Item_Property (Item_ID,Attribute_value_id) values(2,4);
+
+
+insert into Item (id,Dish_Id,Search_Code,Price) values(3,1,'Margharita Large Normal Crust Veg',200);
+insert into Item_Property (Item_ID,Attribute_value_id) values(3,3);
+insert into Item_Property (Item_ID,Attribute_value_id) values(3,12);
+insert into Item_Property (Item_ID,Attribute_value_id) values(3,4);
+
+insert into Item (id,Dish_Id,Search_Code,Price) values(4,1,'Margharita Medium Thin Crust Veg',175);
+insert into Item_Property (Item_ID,Attribute_value_id) values(4,2);
+insert into Item_Property (Item_ID,Attribute_value_id) values(4,13);
+insert into Item_Property (Item_ID,Attribute_value_id) values(4,4);
+
+
+insert into Item (id,Dish_Id,Search_Code,Price) values(5,1,'Margharita Large Thin Crust Veg',225);
+insert into Item_Property (Item_ID,Attribute_value_id) values(5,3);
+insert into Item_Property (Item_ID,Attribute_value_id) values(5,13);
+insert into Item_Property (Item_ID,Attribute_value_id) values(5,4);
+
+
+insert into Item (id,Dish_Id,Search_Code,Price) values(6,1,'Margharita Regular Normal Crust Non-Veg',125);
+insert into Item_Property (Item_ID,Attribute_value_id) values(6,1);
+insert into Item_Property (Item_ID,Attribute_value_id) values(6,12);
+insert into Item_Property (Item_ID,Attribute_value_id) values(6,5);
+
+
+insert into Item (id,Dish_Id,Search_Code,Price) values(7,1,'Margharita Medium Normal Crust Non-Veg',175);
+insert into Item_Property (Item_ID,Attribute_value_id) values(7,2);
+insert into Item_Property (Item_ID,Attribute_value_id) values(7,12);
+insert into Item_Property (Item_ID,Attribute_value_id) values(7,5);
+
+
+insert into Item (id,Dish_Id,Search_Code,Price) values(8,1,'Margharita Large Normal Crust Non-Veg',225);
+insert into Item_Property (Item_ID,Attribute_value_id) values(8,3);
+insert into Item_Property (Item_ID,Attribute_value_id) values(8,12);
+insert into Item_Property (Item_ID,Attribute_value_id) values(8,5);
+
+
+insert into Item (id,Dish_Id,Search_Code,Price) values(9,1,'Margharita Medium Thin Crust Non-Veg',200);
+insert into Item_Property (Item_ID,Attribute_value_id) values(9,2);
+insert into Item_Property (Item_ID,Attribute_value_id) values(9,13);
+insert into Item_Property (Item_ID,Attribute_value_id) values(9,5);
+
+
+insert into Item (id,Dish_Id,Search_Code,Price) values(10,1,'Margharita Large Thin Crust Non-Veg',250);
+insert into Item_Property (Item_ID,Attribute_value_id) values(10,3);
+insert into Item_Property (Item_ID,Attribute_value_id) values(10,13);
+insert into Item_Property (Item_ID,Attribute_value_id) values(10,5);
+
+insert into Item (id,Dish_Id,Search_Code,Price) values(11,2,'Exotica Regular Normal Crust Veg',100);
+insert into Item_Property (Item_ID,Attribute_value_id) values(11,1);
+insert into Item_Property (Item_ID,Attribute_value_id) values(11,12);
+insert into Item_Property (Item_ID,Attribute_value_id) values(11,4);
+
+insert into Item (id,Dish_Id,Search_Code,Price) values(12,2,'Exotica Medium Normal Crust Veg',150);
+insert into Item_Property (Item_ID,Attribute_value_id) values(12,2);
+insert into Item_Property (Item_ID,Attribute_value_id) values(12,12);
+insert into Item_Property (Item_ID,Attribute_value_id) values(12,4);
+
+
+insert into Item (id,Dish_Id,Search_Code,Price) values(13,2,'Exotica Large Normal Crust Veg',200);
+insert into Item_Property (Item_ID,Attribute_value_id) values(13,3);
+insert into Item_Property (Item_ID,Attribute_value_id) values(13,12);
+insert into Item_Property (Item_ID,Attribute_value_id) values(13,4);
+
+insert into Item (id,Dish_Id,Search_Code,Price) values(14,2,'Exotica Medium Thin Crust Veg',175);
+insert into Item_Property (Item_ID,Attribute_value_id) values(14,2);
+insert into Item_Property (Item_ID,Attribute_value_id) values(14,13);
+insert into Item_Property (Item_ID,Attribute_value_id) values(14,4);
+
+
+insert into Item (id,Dish_Id,Search_Code,Price) values(15,2,'Exotica Large Thin Crust Veg',225);
+insert into Item_Property (Item_ID,Attribute_value_id) values(15,3);
+insert into Item_Property (Item_ID,Attribute_value_id) values(15,13);
+insert into Item_Property (Item_ID,Attribute_value_id) values(15,4);
+
+
+insert into Item (id,Dish_Id,Search_Code,Price) values(16,2,'Exotica Regular Normal Crust Non-Veg',125);
+insert into Item_Property (Item_ID,Attribute_value_id) values(16,1);
+insert into Item_Property (Item_ID,Attribute_value_id) values(16,12);
+insert into Item_Property (Item_ID,Attribute_value_id) values(16,5);
+
+
+insert into Item (id,Dish_Id,Search_Code,Price) values(17,2,'Exotica Medium Normal Crust Non-Veg',175);
+insert into Item_Property (Item_ID,Attribute_value_id) values(17,2);
+insert into Item_Property (Item_ID,Attribute_value_id) values(17,12);
+insert into Item_Property (Item_ID,Attribute_value_id) values(17,5);
+
+
+insert into Item (id,Dish_Id,Search_Code,Price) values(18,2,'Exotica Large Normal Crust Non-Veg',225);
+insert into Item_Property (Item_ID,Attribute_value_id) values(18,3);
+insert into Item_Property (Item_ID,Attribute_value_id) values(18,12);
+insert into Item_Property (Item_ID,Attribute_value_id) values(18,5);
+
+
+insert into Item (id,Dish_Id,Search_Code,Price) values(19,2,'Exotica Medium Thin Crust Non-Veg',200);
+insert into Item_Property (Item_ID,Attribute_value_id) values(19,2);
+insert into Item_Property (Item_ID,Attribute_value_id) values(19,13);
+insert into Item_Property (Item_ID,Attribute_value_id) values(19,5);
+
+
+insert into Item (id,Dish_Id,Search_Code,Price) values(20,2,'Exotica Large Thin Crust Non-Veg',250);
+insert into Item_Property (Item_ID,Attribute_value_id) values(20,3);
+insert into Item_Property (Item_ID,Attribute_value_id) values(20,13);
+insert into Item_Property (Item_ID,Attribute_value_id) values(20,5);
+
+insert into Item (id,Dish_Id,Search_Code,Price) values(21,3,'GreenWave Regular Normal Crust Veg',100);
+insert into Item_Property (Item_ID,Attribute_value_id) values(21,1);
+insert into Item_Property (Item_ID,Attribute_value_id) values(21,12);
+insert into Item_Property (Item_ID,Attribute_value_id) values(21,4);
+
+insert into Item (id,Dish_Id,Search_Code,Price) values(22,3,'GreenWave Medium Normal Crust Veg',150);
+insert into Item_Property (Item_ID,Attribute_value_id) values(22,2);
+insert into Item_Property (Item_ID,Attribute_value_id) values(22,12);
+insert into Item_Property (Item_ID,Attribute_value_id) values(22,4);
+
+
+insert into Item (id,Dish_Id,Search_Code,Price) values(23,3,'GreenWave Large Normal Crust Veg',200);
+insert into Item_Property (Item_ID,Attribute_value_id) values(23,3);
+insert into Item_Property (Item_ID,Attribute_value_id) values(23,12);
+insert into Item_Property (Item_ID,Attribute_value_id) values(23,4);
+
+insert into Item (id,Dish_Id,Search_Code,Price) values(24,3,'GreenWave Medium Thin Crust Veg',175);
+insert into Item_Property (Item_ID,Attribute_value_id) values(24,2);
+insert into Item_Property (Item_ID,Attribute_value_id) values(24,13);
+insert into Item_Property (Item_ID,Attribute_value_id) values(24,4);
+
+
+insert into Item (id,Dish_Id,Search_Code,Price) values(25,3,'GreenWave Large Thin Crust Veg',225);
+insert into Item_Property (Item_ID,Attribute_value_id) values(25,3);
+insert into Item_Property (Item_ID,Attribute_value_id) values(25,13);
+insert into Item_Property (Item_ID,Attribute_value_id) values(25,4);
+
+
+insert into Item (id,Dish_Id,Search_Code,Price) values(26,3,'GreenWave Regular Normal Crust Non-Veg',125);
+insert into Item_Property (Item_ID,Attribute_value_id) values(26,1);
+insert into Item_Property (Item_ID,Attribute_value_id) values(26,12);
+insert into Item_Property (Item_ID,Attribute_value_id) values(26,5);
+
+
+insert into Item (id,Dish_Id,Search_Code,Price) values(27,3,'GreenWave Medium Normal Crust Non-Veg',175);
+insert into Item_Property (Item_ID,Attribute_value_id) values(27,2);
+insert into Item_Property (Item_ID,Attribute_value_id) values(27,12);
+insert into Item_Property (Item_ID,Attribute_value_id) values(27,5);
+
+
+insert into Item (id,Dish_Id,Search_Code,Price) values(28,3,'GreenWave Large Normal Crust Non-Veg',225);
+insert into Item_Property (Item_ID,Attribute_value_id) values(28,3);
+insert into Item_Property (Item_ID,Attribute_value_id) values(28,12);
+insert into Item_Property (Item_ID,Attribute_value_id) values(28,5);
+
+
+insert into Item (id,Dish_Id,Search_Code,Price) values(29,3,'GreenWave Medium Thin Crust Non-Veg',200);
+insert into Item_Property (Item_ID,Attribute_value_id) values(29,2);
+insert into Item_Property (Item_ID,Attribute_value_id) values(29,13);
+insert into Item_Property (Item_ID,Attribute_value_id) values(29,5);
+
+
+insert into Item (id,Dish_Id,Search_Code,Price) values(30,3,'GreenWave Large Thin Crust Non-Veg',250);
+insert into Item_Property (Item_ID,Attribute_value_id) values(30,3);
+insert into Item_Property (Item_ID,Attribute_value_id) values(30,13);
+insert into Item_Property (Item_ID,Attribute_value_id) values(30,5);

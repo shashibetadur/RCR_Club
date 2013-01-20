@@ -1,0 +1,57 @@
+.nk-body{
+    min-height:82%;
+    margin-top:40px
+}
+.nk-side-menu li{
+  background-color:whiteSmoke;
+}
+
+.nk-footer{
+    text-align:center
+}
+
+.nk-filed-label{
+    float:left;
+    margin-right:15px;
+    margin-left:40px;
+}
+
+.nk-form-section{
+    margin-top:10px;
+}
+.nk-row-template{
+    display: none;
+}
+.nk-table thead{
+    background-color: #a9a9a9;
+    font-size: 15px
+}
+.nk-search-form .condition{
+    margin-left: 15px;
+    margin-right: 15px
+}
+.order-search-form .order-type-selection{
+    float: left;
+    margin-right: 50px;
+    width: 25%
+}
+.order-search-form .order-status-selection{
+    float: left;
+    width: 70%
+}
+.order-search-form .order-type-selection .list{
+    width: 300px
+}
+.order-search-form .order-status-selection .list{
+    width: 300px
+}
+.order-search-form .order-type{
+    margin-top: 0px;
+    margin-right: 5px
+}
+.order-search-form .order-status{
+    margin-top: 0px;
+    margin-right: 5px
+}
+
+

@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.rcr.domain.Address" table="ADDRESS" catalog="rcr_raichur">
+        <id name="id" type="long">
+            <column name="ID"/>
+            <generator class="identity"/>
+        </id>
+        <property name="personId" type="long" insert="false" update="false">
+            <column name="PERSON_ID" not-null="true"/>
+        </property>
+        <property name="addressLineOne" type="string">
+            <column name="ADDRESS_LINE_ONE" length="255"/>
+        </property>
+        <property name="addressLineTwo" type="string">
+            <column name="ADDRESS_LINE_TWO" length="255"/>
+        </property>
+        <property name="locality" type="string">
+            <column name="LOCALITY" length="127"/>
+        </property>
+        <property name="city" type="string">
+            <column name="CITY" length="127"/>
+        </property>
+        <property name="pinCode" type="string">
+            <column name="PIN_CODE" length="10"/>
+        </property>
+        <property name="state" type="string">
+            <column name="STATE" length="255"/>
+        </property>
+        <property name="landmark" type="string">
+            <column name="LANDMARK" length="127"/>
+        </property>
+        <property name="addressType" type="string">
+            <column name="ADDRESS_TYPE" length="16"/>
+        </property>
+        <property name="notes" type="string">
+            <column name="NOTES" length="255"/>
+        </property>
+        <property name="deleteFlag" type="java.lang.Character">
+            <column name="DELETE_FLAG" length="1"/>
+        </property>
+    </class>
+</hibernate-mapping>

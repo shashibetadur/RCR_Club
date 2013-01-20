@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.rcr.domain.Phone" table="PHONE" catalog="rcr_raichur">
+        <id name="id" type="long">
+            <column name="ID" />
+            <generator class="identity" />
+        </id>
+        <property name="personId" type="long" insert="false" update="false">
+            <column name="PERSON_ID" not-null="true"/>
+        </property>
+        <property name="phoneType" type="string">
+            <column name="PHONE_Type" length="16" />
+        </property>
+        <property name="phoneNumber" type="string">
+            <column name="PHONE_NUMBER" length="16" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+        "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+    <definition name="member/createForm" extends="default">
+        <put-attribute name="main-content" value="/views/member/createForm.jsp"/>
+        <put-attribute name="context-menu" value="/views/member/contextMenu.jsp"/>
+    </definition>
+    <definition name="member/editForm" extends="default">
+        <put-attribute name="main-content" value="/views/member/createForm.jsp"/>
+        <put-attribute name="context-menu" value="/views/member/contextMenu.jsp"/>
+    </definition>
+    <definition name="member/viewForm" extends="default">
+        <put-attribute name="main-content" value="/views/member/viewForm.jsp"/>
+        <put-attribute name="context-menu" value="/views/member/contextMenu.jsp"/>
+    </definition>
+</tiles-definitions>
