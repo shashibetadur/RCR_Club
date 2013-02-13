@@ -10,7 +10,6 @@
         <many-to-one name="account" class="com.rcr.domain.Account" fetch="select" lazy="false">
             <column name="ACCOUNT_ID" not-null="true"/>
         </many-to-one>
-
         <property name="transactionDate" type="timestamp">
             <column name="TRANSACTION_DATE"/>
         </property>

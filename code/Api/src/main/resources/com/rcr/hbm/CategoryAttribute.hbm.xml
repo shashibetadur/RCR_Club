@@ -10,7 +10,6 @@
         <many-to-one name="category" class="com.rcr.domain.Category" fetch="select" lazy="false">
             <column name="CATEGORY_ID" not-null="true"/>
         </many-to-one>
-
         <property name="name" type="string">
             <column name="NAME"/>
         </property>

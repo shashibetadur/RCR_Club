@@ -25,7 +25,6 @@
         <property name="fees" type="double">
             <column name="ENROLLMENT_FEES"/>
         </property>
-
         <property name="deleteFlag" type="java.lang.Character">
             <column name="DELETE_FLAG"/>
         </property>
