@@ -1,57 +1,86 @@
-.nk-body{
-    min-height:82%;
-    margin-top:40px
-}
-.nk-side-menu li{
-  background-color:whiteSmoke;
+.nk-body {
+    min-height: 82%;
+    margin-top: 40px
 }
 
-.nk-footer{
-    text-align:center
+.nk-side-menu li {
+    background-color: whiteSmoke;
 }
 
-.nk-filed-label{
-    float:left;
-    margin-right:15px;
-    margin-left:40px;
+.nk-footer {
+    text-align: center
 }
 
-.nk-form-section{
-    margin-top:10px;
+.nk-filed-label {
+    float: left;
+    margin-right: 15px;
+    margin-left: 40px;
+    width: 15%
 }
-.nk-row-template{
+
+.nk-form-section {
+    margin-top: 10px;
+}
+
+.nk-row-template {
     display: none;
 }
-.nk-table thead{
+
+.nk-table thead {
     background-color: #a9a9a9;
     font-size: 15px
 }
-.nk-search-form .condition{
+
+.nk-search-form .condition {
     margin-left: 15px;
     margin-right: 15px
 }
-.order-search-form .order-type-selection{
+
+.order-search-form .order-type-selection {
     float: left;
     margin-right: 50px;
     width: 25%
 }
-.order-search-form .order-status-selection{
+
+.order-search-form .order-status-selection {
     float: left;
     width: 70%
 }
-.order-search-form .order-type-selection .list{
+
+.order-search-form .order-type-selection .list {
     width: 300px
 }
-.order-search-form .order-status-selection .list{
+
+.order-search-form .order-status-selection .list {
     width: 300px
 }
-.order-search-form .order-type{
-    margin-top: 0px;
-    margin-right: 5px
-}
-.order-search-form .order-status{
+
+.order-search-form .order-type {
     margin-top: 0px;
     margin-right: 5px
 }
 
+.order-search-form .order-status {
+    margin-top: 0px;
+    margin-right: 5px
+}
+
+.selected-background label{
+    background-color: yellow;
+}
+.nk-nav-right{
+    float: right;
+    margin-top: 10px;
+}
+.nk-nav-right .loggedin-username{
+    display: inline;
+    margin-right: 30px
+}
+
+.nk-nav-right .logout{
+    margin-right: 10px
+}
+.login .control-group{
+    margin-left: 35%
+}
 

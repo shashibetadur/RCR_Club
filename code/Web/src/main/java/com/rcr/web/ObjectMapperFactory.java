@@ -1,4 +1,4 @@
-package com.rcr.web;
+package com.albergopadrone.web;
 
 import org.codehaus.jackson.map.DeserializationConfig;
 import org.codehaus.jackson.map.ObjectMapper;

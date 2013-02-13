@@ -6,4 +6,5 @@
        <put-attribute name="main-content" value="/views/home.jsp"/>
        <put-attribute name="context-menu" value=""/>
     </definition>
+    <definition name="loginForm" template="/views/loginForm.jsp"/>
 </tiles-definitions>

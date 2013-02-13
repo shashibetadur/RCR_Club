@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Member extends Entity {
 
-    private Person personalDetails;
+    private Person personalDetails = new Person();
 
     private String membershipType;
 

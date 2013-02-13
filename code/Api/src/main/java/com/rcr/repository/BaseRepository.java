@@ -43,9 +43,5 @@ public abstract class BaseRepository<T extends Entity> extends HibernateDaoSuppo
         return object;
     }
 
-    //do not use this, use save instead
-    private void update(T object) {
-        getHibernateTemplate().merge(object);
-    }
 }
 

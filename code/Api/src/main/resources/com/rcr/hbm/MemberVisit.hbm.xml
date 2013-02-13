@@ -14,7 +14,7 @@
             <column name="GUEST_COUNT"/>
         </property>
         <property name="visitDate" type="timestamp">
-            <column name="START_DATE"/>
+            <column name="VISIT_DATE"/>
         </property>
         <property name="deleteFlag" type="java.lang.Character">
             <column name="DELETE_FLAG"/>

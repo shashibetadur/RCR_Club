@@ -40,5 +40,10 @@
             </list>
         </property>
     </bean>
+    <mvc:interceptors>
+        <bean class="com.rcr.web.AuthorizationInterceptor" autowire="constructor">
+            <constructor-arg ref="userRepository"/>
+        </bean>
+    </mvc:interceptors>
     <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
 </beans>

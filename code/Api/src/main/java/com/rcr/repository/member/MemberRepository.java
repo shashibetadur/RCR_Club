@@ -1,20 +1,15 @@
-package com.rcr.repository;
+package com.rcr.repository.member;
 
 import com.rcr.domain.Member;
+import com.rcr.domain.Person;
+import com.rcr.repository.BaseRepository;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
-import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map;
-
 @Repository
 public class MemberRepository extends BaseRepository<Member> {
-
-    private static Map<Long, Member> memberMap = new HashMap<Long, Member>();
-    private static long id = 1;
 
     @Autowired
     public MemberRepository(@Qualifier("sessionFactory") SessionFactory sessionFactory) {
@@ -24,13 +19,11 @@ public class MemberRepository extends BaseRepository<Member> {
 
     @Override
     public void save(Member member) {
-        member.setId(id);
-        memberMap.put(id, member);
-        id++;
-    }
-
-    @Override
-    public Member get(Serializable id) {
-        return memberMap.get(id);
+        Person person = member.getPersonalDetails();
+        if (person.isNew())
+            getHibernateTemplate().save(person);
+        else
+            getHibernateTemplate().merge(person);
+        super.save(member);
     }
 }

@@ -1,8 +1,8 @@
-package com.rcr.service;
+package com.rcr.service.member;
 
 
 import com.rcr.domain.Member;
-import com.rcr.repository.MemberRepository;
+import com.rcr.repository.member.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

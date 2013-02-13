@@ -1,4 +1,4 @@
-package com.rcr.service;
+package com.rcr.service.member;
 
 
 import com.rcr.domain.Member;

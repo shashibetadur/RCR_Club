@@ -1,3 +1,4 @@
+<%@ page import="com.rcr.web.model.User" %>
 <%@ page language="java" pageEncoding="UTF-8" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
@@ -22,7 +23,7 @@
         <div class="navbar  navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container-fluid">
-                    <a class="brand" href="#">Manage My Restaurants</a>
+                    <a class="brand" href="#">Manage My Club</a>
 
                     <div>
                         <!--p class="navbar-text pull-right">
@@ -33,8 +34,14 @@
                             <li class="divider-vertical"><a href="<%=request.getContextPath()%>/member/creationForm">Members</a></li>
                             <li class="divider-vertical"><a href="<%=request.getContextPath()%>/menu/">Bar</a></li>
                             <li class="divider-vertical"><a href="<%=request.getContextPath()%>/order">Accounts</a></li>
-                            <li class="divider-vertical"><a href="<%=request.getContextPath()%>/bill">Asserts</a></li>
+                            <li class="divider-vertical"><a href="<%=request.getContextPath()%>/bill">Assets</a></li>
                         </ul>
+                    </div>
+                    <div class="nk-nav-right">
+                        <label class="loggedin-username">Logged In As <%=((User) session.getAttribute("user")).getUsername()%>
+                        </label>
+                        <a class="logout" href="#">Settings</a>
+                        <a href="<%=request.getContextPath()%>/logout">Logout</a>
                     </div>
                 </div>
             </div>
@@ -46,6 +53,12 @@
         <div class="row-fluid">
             <div class="nk-left span2">
                 <tiles:insertAttribute name="context-menu"/>
+                <ul class="nk-side-menu nav nav-pills nav-tabs nav-stacked">
+                    <li class="nk-side-menu-sep"><a class="btn" href="#">Quick Links</a></li>
+                    <li class="nk-side-menu-sep"><a href="#">Member Dashboard</a></li>
+                    <li class="nk-side-menu-sep"><a href="#">Create Bill</a></li>
+                    <li><a href="#">Update Inventory</a></li>
+                </ul>
             </div>
             <div class="nk-middle span10">
                 <tiles:insertAttribute name="main-content"/>

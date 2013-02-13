@@ -3,7 +3,7 @@ package com.rcr.web.controller;
 import com.rcr.domain.Address;
 import com.rcr.domain.Member;
 import com.rcr.domain.Phone;
-import com.rcr.service.MemberService;
+import com.rcr.service.member.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
