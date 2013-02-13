@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.rcr.domain.AccountTransaction" table="ACCOUNT_TRANSACTION" catalog="rcr_raichur">
+        <id name="id" type="long">
+            <column name="ID"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one name="account" class="com.rcr.domain.Account" fetch="select" lazy="false">
+            <column name="ACCOUNT_ID" not-null="true"/>
+        </many-to-one>
+
+        <property name="transactionDate" type="timestamp">
+            <column name="TRANSACTION_DATE"/>
+        </property>
+        <property name="amount" type="double">
+            <column name="AMOUNT"/>
+        </property>
+        <property name="balance" type="double">
+            <column name="BALANCE"/>
+        </property>
+        <property name="notes" type="string">
+            <column name="NOTES"/>
+        </property>
+        <property name="creditDebit" type="java.lang.Character">
+            <column name="CREDIT_DEBIT"/>
+        </property>
+        <property name="deleteFlag" type="java.lang.Character">
+            <column name="DELETE_FLAG"/>
+        </property>
+        <bag name="transactionDetails" cascade="all,delete-orphan" lazy="false">
+            <key column="ACCOUNT_TRANSACTION_ID" not-null="true"/>
+            <one-to-many class="com.rcr.domain.AccountTransactionDetail"/>
+        </bag>
+    </class>
+</hibernate-mapping>

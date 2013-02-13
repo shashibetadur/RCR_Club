@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.rcr.domain.PurchaseOrder" table="PURCHASE_ORDER" catalog="rcr_raichur">
+        <id name="id" type="long">
+            <column name="ID"/>
+            <generator class="identity"/>
+        </id>
+        <property name="date" type="timestamp">
+            <column name="DATE"/>
+        </property>
+        <property name="amount" type="double">
+            <column name="AMOUNT"/>
+        </property>
+        <property name="status" type="string">
+            <column name="STATUS"/>
+        </property>
+        <property name="deleteFlag" type="java.lang.Character">
+            <column name="DELETE_FLAG"/>
+        </property>
+        <bag name="purchaseOrderDetails" cascade="all,delete-orphan" lazy="false">
+            <key column="PURCHASE_ORDER_ID" not-null="true"/>
+            <one-to-many class="com.rcr.domain.PurchaseOrderDetail"/>
+        </bag>
+    </class>
+</hibernate-mapping>
+

@@ -11,34 +11,34 @@
             <column name="PERSON_ID" not-null="true"/>
         </property>
         <property name="addressLineOne" type="string">
-            <column name="ADDRESS_LINE_ONE" length="255"/>
+            <column name="ADDRESS_LINE_ONE"/>
         </property>
         <property name="addressLineTwo" type="string">
-            <column name="ADDRESS_LINE_TWO" length="255"/>
+            <column name="ADDRESS_LINE_TWO"/>
         </property>
         <property name="locality" type="string">
-            <column name="LOCALITY" length="127"/>
+            <column name="LOCALITY"/>
         </property>
         <property name="city" type="string">
-            <column name="CITY" length="127"/>
+            <column name="CITY"/>
         </property>
         <property name="pinCode" type="string">
-            <column name="PIN_CODE" length="10"/>
+            <column name="PIN_CODE"/>
         </property>
         <property name="state" type="string">
-            <column name="STATE" length="255"/>
+            <column name="STATE"/>
         </property>
         <property name="landmark" type="string">
-            <column name="LANDMARK" length="127"/>
+            <column name="LANDMARK"/>
         </property>
         <property name="addressType" type="string">
-            <column name="ADDRESS_TYPE" length="16"/>
+            <column name="ADDRESS_TYPE"/>
         </property>
         <property name="notes" type="string">
-            <column name="NOTES" length="255"/>
+            <column name="NOTES"/>
         </property>
         <property name="deleteFlag" type="java.lang.Character">
-            <column name="DELETE_FLAG" length="1"/>
+            <column name="DELETE_FLAG"/>
         </property>
     </class>
 </hibernate-mapping>

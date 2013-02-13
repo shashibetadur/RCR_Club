@@ -2,19 +2,17 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="com.rcr.domain.Phone" table="PHONE" catalog="rcr_raichur">
+    <class name="com.rcr.domain.CategoryAttribute" table="CATEGORY_ATTRIBUTE" catalog="rcr_raichur">
         <id name="id" type="long">
             <column name="ID"/>
             <generator class="identity"/>
         </id>
-        <property name="personId" type="long" insert="false" update="false">
-            <column name="PERSON_ID" not-null="true"/>
-        </property>
-        <property name="phoneType" type="string">
-            <column name="PHONE_Type"/>
-        </property>
-        <property name="phoneNumber" type="string">
-            <column name="PHONE_NUMBER"/>
+        <many-to-one name="category" class="com.rcr.domain.Category" fetch="select" lazy="false">
+            <column name="CATEGORY_ID" not-null="true"/>
+        </many-to-one>
+
+        <property name="name" type="string">
+            <column name="NAME"/>
         </property>
         <property name="deleteFlag" type="java.lang.Character">
             <column name="DELETE_FLAG"/>

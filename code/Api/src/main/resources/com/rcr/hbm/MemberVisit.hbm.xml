@@ -2,19 +2,19 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="com.rcr.domain.Phone" table="PHONE" catalog="rcr_raichur">
+    <class name="com.rcr.domain.MemberVisit" table="MEMBER_VISIT" catalog="rcr_raichur">
         <id name="id" type="long">
             <column name="ID"/>
             <generator class="identity"/>
         </id>
-        <property name="personId" type="long" insert="false" update="false">
-            <column name="PERSON_ID" not-null="true"/>
+        <property name="memberId" type="long" insert="false" update="false">
+            <column name="MEMBER_ID" not-null="true"/>
         </property>
-        <property name="phoneType" type="string">
-            <column name="PHONE_Type"/>
+        <property name="guestCount" type="long">
+            <column name="GUEST_COUNT"/>
         </property>
-        <property name="phoneNumber" type="string">
-            <column name="PHONE_NUMBER"/>
+        <property name="visitDate" type="timestamp">
+            <column name="START_DATE"/>
         </property>
         <property name="deleteFlag" type="java.lang.Character">
             <column name="DELETE_FLAG"/>

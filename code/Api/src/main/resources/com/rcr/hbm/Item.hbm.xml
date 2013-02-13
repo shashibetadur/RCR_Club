@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.rcr.domain.Item" table="ITEM" catalog="rcr_raichur">
+        <id name="id" type="long">
+            <column name="ID"/>
+            <generator class="identity"/>
+        </id>
+        <property name="materialId" type="long">
+            <column name="MATERIAL_ID"/>
+        </property>
+        <property name="name" type="string">
+            <column name="NAME"/>
+        </property>
+        <property name="type" type="string">
+            <column name="ITEM_TYPE"/>
+        </property>
+        <property name="category" type="string">
+            <column name="CATEGORY_TYPE"/>
+        </property>
+        <property name="price" type="double">
+            <column name="price"/>
+        </property>
+        <property name="deleteFlag" type="java.lang.Character">
+            <column name="DELETE_FLAG"/>
+        </property>
+    </class>
+</hibernate-mapping>
+

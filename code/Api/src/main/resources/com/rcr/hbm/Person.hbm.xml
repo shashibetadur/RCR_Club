@@ -8,13 +8,16 @@
             <generator class="identity"/>
         </id>
         <property name="firstName" type="string">
-            <column name="FIRST_NAME" length="127"/>
+            <column name="FIRST_NAME"/>
         </property>
         <property name="lastName" type="string">
-            <column name="LAST_NAME" length="127"/>
+            <column name="LAST_NAME"/>
+        </property>
+        <property name="designation" type="string">
+            <column name="DESIGNATION"/>
         </property>
         <property name="deleteFlag" type="java.lang.Character">
-            <column name="DELETE_FLAG" length="1"/>
+            <column name="DELETE_FLAG"/>
         </property>
         <bag name="addressList" cascade="all,delete-orphan" lazy="false">
             <key column="PERSON_ID" not-null="true"/>

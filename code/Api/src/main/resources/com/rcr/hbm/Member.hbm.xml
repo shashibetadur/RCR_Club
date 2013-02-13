@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.rcr.domain.Member" table="MEMBER" catalog="rcr_raichur">
+        <id name="id" type="long">
+            <column name="ID"/>
+            <generator class="identity"/>
+        </id>
+        <property name="status" type="string">
+            <column name="STATUS"/>
+        </property>
+        <property name="deleteFlag" type="java.lang.Character">
+            <column name="DELETE_FLAG" length="1"/>
+        </property>
+        <many-to-one name="personalDetails" class="com.rcr.domain.Person" fetch="select" lazy="false">
+            <column name="PERSON_ID" not-null="true"/>
+        </many-to-one>
+        <bag name="membershipDetails" cascade="all,delete-orphan" lazy="false">
+            <key column="MEMBER_ID" not-null="true"/>
+            <one-to-many class="com.rcr.domain.MembershipDetail"/>
+        </bag>
+        <bag name="memberVisits" cascade="all,delete-orphan" lazy="false">
+            <key column="MEMBER_ID" not-null="true"/>
+            <one-to-many class="com.rcr.domain.MemberVisit"/>
+        </bag>
+    </class>
+</hibernate-mapping>

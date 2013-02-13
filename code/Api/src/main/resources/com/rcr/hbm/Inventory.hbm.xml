@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.rcr.domain.Inventory" table="INVENTORY" catalog="rcr_raichur">
+        <id name="id" type="long">
+            <column name="ID"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one name="material" class="com.rcr.domain.Material" fetch="select" lazy="false">
+            <column name="MATERIAL_ID" not-null="true"/>
+        </many-to-one>
+        <property name="date" type="timestamp">
+            <column name="DATE"/>
+        </property>
+        <property name="entryDate" type="timestamp">
+            <column name="ENTRY_DATE"/>
+        </property>
+        <property name="currentStock" type="long">
+            <column name="CURRENT_STOCK"/>
+        </property>
+        <property name="quantity" type="long">
+            <column name="QUANTITY"/>
+        </property>
+        <property name="creditDebit" type="java.lang.Character">
+            <column name="CREDIT_DEBIT_FLAG"/>
+        </property>
+        <property name="deleteFlag" type="java.lang.Character">
+            <column name="DELETE_FLAG"/>
+        </property>
+    </class>
+</hibernate-mapping>
+

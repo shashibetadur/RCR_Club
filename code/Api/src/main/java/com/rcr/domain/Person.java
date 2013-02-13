@@ -13,6 +13,8 @@ public class Person extends Entity {
 
     private List<Phone> phoneList = new ArrayList<Phone>();
 
+    private String designation;
+
     public String getFirstName() {
         return firstName;
     }
@@ -27,6 +29,14 @@ public class Person extends Entity {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getDesignation() {
+        return designation;
+    }
+
+    public void setDesignation(String designation) {
+        this.designation = designation;
     }
 
     public List<Address> getAddressList() {

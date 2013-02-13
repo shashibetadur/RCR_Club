@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.rcr.domain.AccountTransactionDetail" table="ACCOUNT_TRANSACTION_DETAIL" catalog="rcr_raichur">
+        <id name="id" type="long">
+            <column name="ID"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one name="categoryAttributeId" class="com.rcr.domain.CategoryAttribute" fetch="select" lazy="false">
+            <column name="CATEGORY_ATTRIBUTE_ID" not-null="true"/>
+        </many-to-one>
+        <property name="accountTransactionId" type="long" insert="false" update="false">
+            <column name="ACCOUNT_TRANSACTION_ID" not-null="true"/>
+        </property>
+
+        <property name="value" type="string">
+            <column name="VALUE"/>
+        </property>
+        <property name="deleteFlag" type="java.lang.Character">
+            <column name="DELETE_FLAG"/>
+        </property>
+    </class>
+</hibernate-mapping>

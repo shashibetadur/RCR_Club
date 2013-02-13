@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.rcr.domain.Bill" table="BILL" catalog="rcr_raichur">
+        <id name="id" type="long">
+            <column name="ID"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one name="member" class="com.rcr.domain.Member" fetch="select" lazy="false">
+            <column name="MEMBER_ID" not-null="true"/>
+        </many-to-one>
+
+        <property name="date" type="timestamp">
+            <column name="DATE"/>
+        </property>
+        <property name="amount" type="double">
+            <column name="AMOUNT"/>
+        </property>
+        <property name="status" type="string">
+            <column name="STATUS"/>
+        </property>
+        <property name="guestCount" type="long">
+            <column name="GUEST_COUNT"/>
+        </property>
+        <property name="deleteFlag" type="java.lang.Character">
+            <column name="DELETE_FLAG"/>
+        </property>
+        <bag name="billDetails" cascade="all,delete-orphan" lazy="false">
+            <key column="BILL_ID" not-null="true"/>
+            <one-to-many class="com.rcr.domain.BillDetail"/>
+        </bag>
+    </class>
+</hibernate-mapping>
+
