@@ -1,7 +1,7 @@
 package com.rcr.web.controller;
 
 
-import com.rcr.web.Operation;
+import com.rcr.domain.Operation;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

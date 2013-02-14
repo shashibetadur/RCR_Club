@@ -1,7 +1,6 @@
-package com.rcr.web.model;
+package com.rcr.domain;
 
 
-import com.rcr.web.model.Role;
 
 public class User {
 

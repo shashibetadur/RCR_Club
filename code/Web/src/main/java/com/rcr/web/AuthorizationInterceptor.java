@@ -1,8 +1,14 @@
 package com.rcr.web;
 
 
-import com.rcr.web.model.User;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.rcr.domain.Operation;
+import com.rcr.domain.User;
+import com.rcr.service.AuthenticationService;
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.BeanFactoryAware;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -13,14 +19,11 @@ import java.net.URLEncoder;
 
 import static org.apache.commons.lang.StringUtils.isEmpty;
 
-public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
+@Component
+@Qualifier("authorizationInterceptor")
+public class AuthorizationInterceptor extends HandlerInterceptorAdapter implements BeanFactoryAware {
 
-    private UserRepository userRepository;
-
-    @Autowired
-    public AuthorizationInterceptor(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+    private AuthenticationService authenticationService;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -38,12 +41,12 @@ public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
             return super.preHandle(request, response, handler);
         }
         String userToken = resolveToken(request);
-        if (userRepository.inValidToken(userToken)) {
+        if (authenticationService.inValidToken(userToken)) {
             String redirectUrl = isEmpty(request.getQueryString()) ? requestURI : requestURI + "?" + request.getQueryString();
             response.sendRedirect(loginUrl + "?redirectUrl=" + URLEncoder.encode(redirectUrl, "UTF-8"));
             return false;
         }
-        User user = userRepository.getUserByToken(userToken);
+        User user = authenticationService.getUserByToken(userToken);
         request.getSession().setAttribute("user", user);
         if (handler instanceof HandlerMethod && isUserAuthorized((HandlerMethod) handler, user)) {
             super.preHandle(request, response, handler);
@@ -73,5 +76,10 @@ public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
             }
         }
         return userToken;
+    }
+
+    @Override
+    public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
+        authenticationService = beanFactory.getBean(AuthenticationService.class);
     }
 }

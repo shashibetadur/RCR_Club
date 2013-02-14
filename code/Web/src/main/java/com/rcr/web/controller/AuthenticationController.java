@@ -1,8 +1,7 @@
 package com.rcr.web.controller;
 
-import com.rcr.web.UserRepository;
+import com.rcr.service.AuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,15 +19,15 @@ import static org.apache.commons.lang.StringUtils.isEmpty;
 @Controller
 public class AuthenticationController {
 
-    private UserRepository userRepository;
+    private AuthenticationService authenticationService;
 
     //requited for proxy creation
     protected AuthenticationController() {
     }
 
     @Autowired
-    public AuthenticationController(@Qualifier("userRepository") UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public AuthenticationController(AuthenticationService authenticationService) {
+        this.authenticationService = authenticationService;
     }
 
     @RequestMapping("/login/prompt")
@@ -40,7 +39,7 @@ public class AuthenticationController {
 
     @RequestMapping(value = "/login/check", method = RequestMethod.POST)
     public void login(@RequestParam("username") String username, @RequestParam("password") String password, @RequestParam("redirectUrl") String redirectUrl, HttpServletRequest request, HttpServletResponse response) throws IOException {
-        if (isEmpty(username) || isEmpty(password) || !userRepository.isValidUser(username, password)) {
+        if (isEmpty(username) || isEmpty(password) || !authenticationService.isValidUser(username, password)) {
             String loginUrl = request.getContextPath() + "/login/prompt?errorMessage=Invalid Credentials";
             if (!isEmpty(redirectUrl)) {
                 loginUrl += "&redirectUrl=" + redirectUrl;
@@ -51,7 +50,7 @@ public class AuthenticationController {
             Cookie cookie = new Cookie("nk-user-token", userCookie);
             cookie.setPath("/");
             response.addCookie(cookie);
-            userRepository.addCookieForUser(username, userCookie);
+            authenticationService.addCookieForUser(username, userCookie);
             if (isEmpty(redirectUrl)) {
                 response.sendRedirect(request.getContextPath() + "/home");
             } else {

@@ -1,6 +1,6 @@
 package com.rcr.web;
 
-import com.rcr.web.model.User;
+import com.rcr.domain.User;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 

@@ -1,7 +1,5 @@
-package com.rcr.web.model;
+package com.rcr.domain;
 
-
-import com.rcr.web.Operation;
 
 import java.util.ArrayList;
 import java.util.Arrays;
