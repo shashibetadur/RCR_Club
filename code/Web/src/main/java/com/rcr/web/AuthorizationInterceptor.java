@@ -1,6 +1,7 @@
 package com.rcr.web;
 
 
+import com.rcr.domain.Authorize;
 import com.rcr.domain.Operation;
 import com.rcr.domain.User;
 import com.rcr.service.AuthenticationService;
@@ -57,11 +58,11 @@ public class AuthorizationInterceptor extends HandlerInterceptorAdapter implemen
     }
 
     private boolean isUserAuthorized(HandlerMethod handler, User user) {
-        Operation operations = handler.getMethod().getAnnotation(Operation.class);
-        if (operations == null || operations.value() == null || operations.value().length < 1) return true;
-        String[] value = operations.value();
-        for (String operation : value) {
-            if (user.canPerform(operation)) return true;
+        Authorize authorize = handler.getMethod().getAnnotation(Authorize.class);
+        if (authorize == null || authorize.value() == null || authorize.value().length < 1) return true;
+        Operation[] operations = authorize.value();
+        for (Operation operation : operations) {
+            if (user.canPerform(operation.getOperationName())) return true;
         }
         return false;
     }

@@ -7,8 +7,8 @@ import java.util.List;
 
 public class Role {
 
-    public static Role ADMIN = new Role(Arrays.asList(Operation.ALL));
-    public static Role OPERATOR = new Role(Arrays.asList(Operation.ALL));
+    public static Role ADMIN = new Role(Arrays.asList(Operation.ALL.getOperationName()));
+    public static Role OPERATOR = new Role(Arrays.asList(Operation.ALL.getOperationName()));
 
     private List<String> operations = new ArrayList<String>();
 

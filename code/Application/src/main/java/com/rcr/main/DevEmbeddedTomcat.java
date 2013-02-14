@@ -12,7 +12,7 @@ public class DevEmbeddedTomcat {
 
     public static void main(String[] args) {
         Tomcat tomcat = new Tomcat();
-        tomcat.setPort(8080);
+        tomcat.setPort(8888);
         String rootDir = getProjectRootDir();
 
         tomcat.setBaseDir(rootDir+"Application\\target");

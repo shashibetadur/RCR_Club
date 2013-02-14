@@ -1,8 +1,6 @@
 package com.rcr.web.controller;
 
-import com.rcr.domain.Address;
-import com.rcr.domain.Member;
-import com.rcr.domain.Phone;
+import com.rcr.domain.*;
 import com.rcr.service.member.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,6 +30,7 @@ public class MemberController {
     }
 
     @RequestMapping(value = "/creationForm", method = RequestMethod.GET)
+    @Authorize(Operation.MEMBER_CREATE)
     public ModelAndView memberCreationForm() {
         Member member = new Member();
         ModelAndView modelAndView = new ModelAndView("member/createForm", "member", member);
@@ -40,6 +39,7 @@ public class MemberController {
     }
 
     @RequestMapping(value = "/editForm/{memberId}", method = RequestMethod.GET)
+    @Authorize(Operation.MEMBER_EDIT)
     public ModelAndView memberEditForm(@PathVariable("memberId") long memberId) {
         Member member = memberService.getMemberDetails(memberId);
         ModelAndView modelAndView = new ModelAndView("member/editForm", "member", member);
@@ -48,11 +48,13 @@ public class MemberController {
     }
 
     @RequestMapping(value = "/viewForm/{memberId}", method = RequestMethod.GET)
+    @Authorize(Operation.MEMBER_VIEW)
     public ModelAndView memberViewForm(@PathVariable("memberId") long memberId) {
         return new ModelAndView("member/viewForm", "member", memberService.getMemberDetails(memberId));
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
+    @Authorize({Operation.MEMBER_CREATE, Operation.MEMBER_EDIT})
     public String saveMember(Member member, Model model) {
         model.asMap().clear();
         memberService.saveMemberDetails(member);
