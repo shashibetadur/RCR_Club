@@ -8,6 +8,8 @@ public class Material extends Entity {
 
     private double price;
 
+    private String description;
+
     public String getName() {
         return name;
     }
@@ -30,5 +32,13 @@ public class Material extends Entity {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

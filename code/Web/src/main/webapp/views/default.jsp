@@ -32,7 +32,7 @@
                         <ul class="nav nav-tabs nav-pills">
                             <li class="divider-vertical"><a href="<%=request.getContextPath()%>/home">Home</a></li>
                             <li class="divider-vertical"><a href="<%=request.getContextPath()%>/member/creationForm">Members</a></li>
-                            <li class="divider-vertical"><a href="<%=request.getContextPath()%>/menu/">Bar</a></li>
+                            <li class="divider-vertical"><a href="<%=request.getContextPath()%>/bar/material/createForm">Bar</a></li>
                             <li class="divider-vertical"><a href="<%=request.getContextPath()%>/order">Accounts</a></li>
                             <li class="divider-vertical"><a href="<%=request.getContextPath()%>/bill">Assets</a></li>
                         </ul>
