@@ -6,6 +6,20 @@
     <form method="POST" action="<%=request.getContextPath()%>/bar/material/save">
         <legend>Material Form</legend>
         <form:hidden path="material.id"/>
+
+        <div class="nk-form-section">
+            <div class="span10">
+                <span class="nk-filed-label"><label for="material-materialType">Type</label></span>
+                <span class="nk-filed">
+                    <select class="material-materialType" path="material.materialType">
+                        <c:forEach var="materialType" items="${materialTypes}">
+                            <option value="${materialType}">${materialType}</option>
+                        </c:forEach>
+                    </select>
+                </span>
+            </div>
+        </div>
+
         <div class="nk-form-section">
             <div class="span10">
                 <span class="nk-filed-label"><label for="material-name">Name</label></span>

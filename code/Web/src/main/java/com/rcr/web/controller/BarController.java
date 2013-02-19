@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -53,6 +54,11 @@ public class BarController {
         return new ModelAndView("bar/material/list", "materials", materialService.getAllMaterials());
     }
 
+    @RequestMapping(value = "/material/convertMaterials", method = RequestMethod.GET)
+    public ModelAndView convertMaterials() {
+        return new ModelAndView("bar/material/convertMaterials", "materials", materialService.getAllMaterials());
+    }
+
     @RequestMapping(value = "/material/search", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public
     @ResponseBody
@@ -90,5 +96,24 @@ public class BarController {
     @RequestMapping(value = "/item/list", method = RequestMethod.GET)
     public ModelAndView listItems() {
         return new ModelAndView("bar/item/list", "items", materialService.getAllItems());
+    }
+
+    @RequestMapping(value = "/material/convertToItem/{id}", method = RequestMethod.GET)
+    public ModelAndView convertToItem(@PathVariable("id") long materialId) {
+        Material material = materialService.getMaterialDetails(materialId);
+        Item item = new Item();
+        item.setName(material.getName());
+        item.setDescription(material.getDescription());
+        item.setPrice(material.getPrice());
+        return new ModelAndView("bar/item/createForm", "item", item);
+    }
+
+    @ModelAttribute("materialTypes")
+    public List<String> materialTypes() {
+        List<String> materialTypes = new ArrayList<String>();
+        for (Material.Type materialType : Material.Type.values()) {
+            materialTypes.add(materialType.toString());
+        }
+        return materialTypes;
     }
 }

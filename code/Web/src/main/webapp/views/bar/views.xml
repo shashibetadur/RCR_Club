@@ -14,6 +14,10 @@
         <put-attribute name="main-content" value="/views/bar/viewMaterialList.jsp"/>
         <put-attribute name="context-menu" value="/views/bar/contextMenu.jsp"/>
     </definition>
+    <definition name="bar/material/convertMaterials" extends="default">
+        <put-attribute name="main-content" value="/views/bar/convertMaterialList.jsp"/>
+        <put-attribute name="context-menu" value="/views/bar/contextMenu.jsp"/>
+    </definition>
     <definition name="bar/item/createForm" extends="default">
         <put-attribute name="main-content" value="/views/bar/createItemForm.jsp"/>
         <put-attribute name="context-menu" value="/views/bar/contextMenu.jsp"/>
