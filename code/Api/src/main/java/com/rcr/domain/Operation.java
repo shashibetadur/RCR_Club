@@ -12,7 +12,8 @@ public enum Operation {
     MEMBER_SEARCH("member-search"),
     MEMBERSHIP_TYPE_LIST("membership-type-list"),
     MEMBERSHIP_TYPE_CREATE("membership-type-create"),
-    MEMBERSHIP_TYPE_EDIT("membership-type-edit");
+    MEMBERSHIP_TYPE_EDIT("membership-type-edit"),
+    MEMBERSHIP_TYPE_DELETE("membership-type-delete");
 
     Operation(String operationName) {
         this.operationName = operationName;

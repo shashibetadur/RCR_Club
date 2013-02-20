@@ -9,12 +9,24 @@
         <form:hidden path="member.personalDetails.id"/>
         <div class="nk-form-section">
             <div class="span5">
-                <span class="nk-filed-label"><label for="input01">First Name</label></span>
-                <span class="nk-filed"><form:input type="text" id="input01" path="member.personalDetails.firstName" maxlength="100"/></span>
+                <span class="nk-filed-label"><label for="firstname">First Name</label></span>
+                <span class="nk-filed"><form:input type="text" id="firstname" path="member.personalDetails.firstName" maxlength="100"/></span>
             </div>
             <div class="span5">
-                <span class="nk-filed-label"><label for="input01">Last Name</label></span>
-                <span class="nk-filed"><form:input type="text" id="input01" path="member.personalDetails.lastName" maxlength="100"/></span>
+                <span class="nk-filed-label"><label for="lastname">Last Name</label></span>
+                <span class="nk-filed"><form:input type="text" id="lastname" path="member.personalDetails.lastName" maxlength="100"/></span>
+            </div>
+        </div>
+        <br/>
+
+        <div class="nk-form-section">
+            <div class="span5">
+                <span class="nk-filed-label"><label for="designation">Designation</label></span>
+                <span class="nk-filed"><form:input type="text" id="designation" path="member.personalDetails.designation" maxlength="100"/></span>
+            </div>
+            <div class="span5">
+                <span class="nk-filed-label"><label for="status">Status</label></span>
+                <span class="nk-filed"><form:input type="text" id="status" path="member.status" maxlength="100"/></span>
             </div>
         </div>
         <br/>

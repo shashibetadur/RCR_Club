@@ -43,7 +43,7 @@ public class MembershipTypeController {
     }
 
     @RequestMapping("/deleteForm/{id}")
-    @Authorize(Operation.MEMBERSHIP_TYPE_EDIT)
+    @Authorize(Operation.MEMBERSHIP_TYPE_DELETE)
     public ModelAndView deleteForm(@PathVariable("id") long id) {
         return new ModelAndView("member/type/deleteForm", "memberType", memberService.getMembershipTypeDetails(id));
     }
@@ -59,7 +59,7 @@ public class MembershipTypeController {
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
-    @Authorize({Operation.MEMBERSHIP_TYPE_CREATE, Operation.MEMBERSHIP_TYPE_EDIT})
+    @Authorize(Operation.MEMBERSHIP_TYPE_DELETE)
     public
     @ResponseBody
     MembershipType delete(MembershipType membershipType, Model model) {
