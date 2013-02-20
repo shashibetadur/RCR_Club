@@ -21,6 +21,7 @@
                 <th>Name</th>
                 <th>Description</th>
                 <th>Unit</th>
+                <th>Type</th>
                 <th>Price</th>
                 <th>Action</th>
                 </thead>
@@ -30,6 +31,7 @@
                             <td><label>${material.name}</label></td>
                             <td><label>${material.description}</label></td>
                             <td><label>${material.unit}</label></td>
+                            <td><label>${material.materialTypeDescription}</label></td>
                             <td><label>${material.price}</label></td>
                             <td>
                                 <a target="_blank" href="<%=request.getContextPath()%>/bar/material/editForm/${material.id}">Edit</a>&nbsp;|

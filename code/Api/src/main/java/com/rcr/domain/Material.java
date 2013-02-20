@@ -2,13 +2,11 @@ package com.rcr.domain;
 
 public class Material extends Entity {
 
-    public enum Type {SALEABLE, CONSUMABLE, ASSET, OTHER}
-
     private String name;
 
     private String unit;
 
-    private String materialType;
+    private Character materialType;
 
     private double price;
 
@@ -46,11 +44,15 @@ public class Material extends Entity {
         this.description = description;
     }
 
-    public String getMaterialType() {
+    public Character getMaterialType() {
         return materialType;
     }
 
-    public void setMaterialType(String materialType) {
+    public void setMaterialType(Character materialType) {
         this.materialType = materialType;
+    }
+
+    public String getMaterialTypeDescription() {
+        return MaterialType.getNameByCode(this.materialType);
     }
 }

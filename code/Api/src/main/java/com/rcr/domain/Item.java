@@ -5,8 +5,7 @@ public class Item extends Entity {
 
     private long materialId;
     private String name;
-    private String type;
-    private String category;
+    private Character type;
     private double price;
     private String description;
 
@@ -18,19 +17,11 @@ public class Item extends Entity {
         this.price = price;
     }
 
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public String getType() {
+    public Character getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(Character type) {
         this.type = type;
     }
 
@@ -56,5 +47,9 @@ public class Item extends Entity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getItemTypeDescription() {
+        return ItemType.getNameByCode(this.type);
     }
 }

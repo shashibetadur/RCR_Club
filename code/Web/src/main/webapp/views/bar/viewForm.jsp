@@ -24,6 +24,12 @@
     </div>
     <div class="nk-form-section">
         <div class="span10">
+            <span class="nk-filed-label"><label>Type</label></span>
+            <span class="nk-filed"><label>${material.materialTypeDescription}</label></span>
+        </div>
+    </div>
+    <div class="nk-form-section">
+        <div class="span10">
             <span class="nk-filed-label"><label>Price</label></span>
             <span class="nk-filed"><label>${material.price}</label></span>
         </div>

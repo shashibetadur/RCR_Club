@@ -13,11 +13,8 @@
         <property name="name" type="string">
             <column name="NAME"/>
         </property>
-        <property name="type" type="string">
+        <property name="type" type="java.lang.Character">
             <column name="ITEM_TYPE"/>
-        </property>
-        <property name="category" type="string">
-            <column name="CATEGORY_TYPE"/>
         </property>
         <property name="price" type="double">
             <column name="price"/>

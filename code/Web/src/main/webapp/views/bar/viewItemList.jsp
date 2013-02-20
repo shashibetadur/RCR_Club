@@ -11,7 +11,6 @@
             <thead>
             <th>Name</th>
             <th>Description</th>
-            <th>Category</th>
             <th>Type</th>
             <th>Price</th>
             <th>Action</th>
@@ -21,8 +20,7 @@
                     <tr>
                         <td><label>${item.name}</label></td>
                         <td><label>${item.description}</label></td>
-                        <td><label>${item.category}</label></td>
-                        <td><label>${item.type}</label></td>
+                        <td><label>${item.itemTypeDescription}</label></td>
                         <td><label>${item.price}</label></td>
                         <td>
                             <a target="_blank" href="<%=request.getContextPath()%>/bar/item/editForm/${item.id}">Edit</a>&nbsp;|

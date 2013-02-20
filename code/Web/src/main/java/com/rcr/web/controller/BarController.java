@@ -10,9 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 import static org.apache.commons.collections.CollectionUtils.collect;
 
@@ -109,11 +107,20 @@ public class BarController {
     }
 
     @ModelAttribute("materialTypes")
-    public List<String> materialTypes() {
-        List<String> materialTypes = new ArrayList<String>();
-        for (Material.Type materialType : Material.Type.values()) {
-            materialTypes.add(materialType.toString());
+    public Map<Character, String> materialTypes() {
+        Map<Character, String> materialTypes = new HashMap<Character, String>();
+        for (MaterialType materialType : MaterialType.values()) {
+            materialTypes.put(materialType.getCode(), materialType.toString());
         }
         return materialTypes;
+    }
+
+    @ModelAttribute("itemTypes")
+    public Map<Character, String> itemTypes() {
+        Map<Character, String> itemTypes = new HashMap<Character, String>();
+        for (ItemType itemType : ItemType.values()) {
+            itemTypes.put(itemType.getCode(), itemType.toString());
+        }
+        return itemTypes;
     }
 }

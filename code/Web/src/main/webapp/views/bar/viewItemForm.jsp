@@ -19,13 +19,7 @@
     <div class="nk-form-section">
         <div class="span10">
             <span class="nk-filed-label"><label>Item Type</label></span>
-            <span class="nk-filed"><label>${item.type}</label></span>
-        </div>
-    </div>
-    <div class="nk-form-section">
-        <div class="span10">
-            <span class="nk-filed-label"><label>Category Type</label></span>
-            <span class="nk-filed"><label>${item.category}</label></span>
+            <span class="nk-filed"><label>${item.itemTypeDescription}</label></span>
         </div>
     </div>
     <div class="nk-form-section">

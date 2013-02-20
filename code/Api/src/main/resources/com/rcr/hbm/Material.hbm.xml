@@ -19,6 +19,9 @@
         <property name="description" type="string">
             <column name="DESCRIPTION"/>
         </property>
+        <property name="materialType" type="java.lang.Character">
+            <column name="TYPE"/>
+        </property>
         <property name="deleteFlag" type="java.lang.Character">
             <column name="DELETE_FLAG"/>
         </property>
