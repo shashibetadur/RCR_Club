@@ -25,6 +25,18 @@ public abstract class Entity implements java.io.Serializable {
         this.deleteFlag = deleteFlag;
     }
 
+    public boolean isDeleted() {
+        return deleteFlag == null || deleteFlag != 'Y' ? false : true;
+    }
+
+    public void setDeleted(boolean deleted) {
+        if (deleted) {
+            deleteFlag = DELETE;
+        } else {
+            deleteFlag = null;
+        }
+    }
+
     public boolean isNew() {
         return id < 1;
     }

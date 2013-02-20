@@ -14,4 +14,17 @@
         <put-attribute name="main-content" value="/views/member/viewForm.jsp"/>
         <put-attribute name="context-menu" value="/views/member/contextMenu.jsp"/>
     </definition>
+    <definition name="member/type/createForm" extends="ajaxSection">
+        <put-attribute name="content" value="/views/member/membershipTypeCreateForm.jsp"/>
+    </definition>
+    <definition name="member/type/editForm" extends="ajaxSection">
+        <put-attribute name="content" value="/views/member/membershipTypeCreateForm.jsp"/>
+    </definition>
+    <definition name="member/type/deleteForm" extends="ajaxSection">
+        <put-attribute name="content" value="/views/member/membershipTypeDeleteForm.jsp"/>
+    </definition>
+    <definition name="member/type/list" extends="default">
+        <put-attribute name="main-content" value="/views/member/membershipTypeList.jsp"/>
+        <put-attribute name="context-menu" value="/views/member/contextMenu.jsp"/>
+    </definition>
 </tiles-definitions>

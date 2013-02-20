@@ -10,7 +10,7 @@
         <property name="name" type="string">
             <column name="NAME"/>
         </property>
-        <property name="validity" type="java.lang.Character">
+        <property name="validity" type="long">
             <column name="VALIDITY"/>
         </property>
         <property name="enrollmentFees" type="double">

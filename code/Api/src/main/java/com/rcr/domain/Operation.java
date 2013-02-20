@@ -9,7 +9,10 @@ public enum Operation {
     MEMBER_CREATE("member-create"),
     MEMBER_EDIT("member-edit"),
     MEMBER_VIEW("member-view"),
-    MEMBER_SEARCH("member-search");
+    MEMBER_SEARCH("member-search"),
+    MEMBERSHIP_TYPE_LIST("membership-type-list"),
+    MEMBERSHIP_TYPE_CREATE("membership-type-create"),
+    MEMBERSHIP_TYPE_EDIT("membership-type-edit");
 
     Operation(String operationName) {
         this.operationName = operationName;

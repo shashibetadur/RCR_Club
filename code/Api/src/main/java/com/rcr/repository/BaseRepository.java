@@ -1,10 +1,13 @@
 package com.rcr.repository;
 
 import com.rcr.domain.Entity;
+import org.hibernate.Criteria;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import java.io.Serializable;
 import java.util.List;
+
+import static org.hibernate.criterion.Restrictions.*;
 
 public abstract class BaseRepository<T extends Entity> extends HibernateDaoSupport {
 
@@ -33,8 +36,11 @@ public abstract class BaseRepository<T extends Entity> extends HibernateDaoSuppo
     public List<T> getAll() {
         return getHibernateTemplate().loadAll(type);
     }
+
     public List<T> getAllActive() {
-        return getHibernateTemplate().loadAll(type);
+        Criteria criteria = getSession().createCriteria(type);
+        criteria.add(or(isNull("deleteFlag"), not(eq("deleteFlag", Entity.DELETE))));
+        return criteria.list();
     }
 
     private T getDetached(Serializable id) {

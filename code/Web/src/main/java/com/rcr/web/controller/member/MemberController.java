@@ -1,4 +1,4 @@
-package com.rcr.web.controller;
+package com.rcr.web.controller.member;
 
 import com.rcr.domain.*;
 import com.rcr.service.member.MemberService;

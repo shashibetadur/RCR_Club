@@ -4,7 +4,7 @@ package com.rcr.domain;
 public class MembershipType extends Entity {
     private String name;
 
-    private Character validity;
+    private long validity;
 
     private double enrollmentFees;
 
@@ -18,11 +18,11 @@ public class MembershipType extends Entity {
         this.name = name;
     }
 
-    public Character getValidity() {
+    public long getValidity() {
         return validity;
     }
 
-    public void setValidity(Character validity) {
+    public void setValidity(long validity) {
         this.validity = validity;
     }
 
