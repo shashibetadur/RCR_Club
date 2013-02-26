@@ -49,7 +49,11 @@ public class BarController {
 
     @RequestMapping(value = "/material/list", method = RequestMethod.GET)
     public ModelAndView listMaterials() {
-        return new ModelAndView("bar/material/list", "materials", materialService.getAllMaterials());
+        List<Material> materialList = materialService.getAllMaterials();
+        for (Material material : materialList) {
+            material.setValue(material.getName());
+        }
+        return new ModelAndView("bar/material/list", "materials", materialList);
     }
 
     @RequestMapping(value = "/material/convertMaterials", method = RequestMethod.GET)

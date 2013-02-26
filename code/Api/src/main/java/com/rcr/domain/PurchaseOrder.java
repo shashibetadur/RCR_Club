@@ -1,9 +1,6 @@
 package com.rcr.domain;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 public class PurchaseOrder extends Entity {
 
@@ -14,6 +11,11 @@ public class PurchaseOrder extends Entity {
     private String status;
 
     private List<PurchaseOrderDetail> purchaseOrderDetails = new ArrayList<PurchaseOrderDetail>();
+
+    public PurchaseOrder() {
+        date = Calendar.getInstance().getTime();
+        status = "NEW";
+    }
 
     public Date getDate() {
         return date;

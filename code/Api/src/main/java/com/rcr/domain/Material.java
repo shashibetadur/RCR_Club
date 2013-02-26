@@ -2,6 +2,8 @@ package com.rcr.domain;
 
 public class Material extends Entity {
 
+    private long id;
+
     private String name;
 
     private String unit;
@@ -11,6 +13,12 @@ public class Material extends Entity {
     private double price;
 
     private String description;
+
+    private String value;
+
+    public Material() {
+        value = name;
+    }
 
     public String getName() {
         return name;
@@ -54,5 +62,21 @@ public class Material extends Entity {
 
     public String getMaterialTypeDescription() {
         return MaterialType.getNameByCode(this.materialType);
+    }
+
+    public String getValue() {
+        return name;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }
