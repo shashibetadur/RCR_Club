@@ -15,9 +15,9 @@ public class DevEmbeddedTomcat {
         tomcat.setPort(8888);
         String rootDir = getProjectRootDir();
 
-        tomcat.setBaseDir(rootDir+"Application\\target");
+        tomcat.setBaseDir(rootDir+"Application/target");
         try {
-            tomcat.addWebapp(null, "/rcr", rootDir+"\\Web\\target\\web-1.0");
+            tomcat.addWebapp(null, "/rcr", rootDir+"/Web/target/web-1.0");
             tomcat.start();
             tomcat.getServer().await();
         } catch (LifecycleException e) {

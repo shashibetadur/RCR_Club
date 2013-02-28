@@ -6,6 +6,5 @@
     <li class="nk-side-menu-sep"><a class="btn" href="#">Context Menu</a></li>
     <li class="nk-side-menu-sep"><a href="<%=request.getContextPath()%>/member/type/list">Membership Types</a></li>
     <li class="nk-side-menu-sep"><a href="<%=request.getContextPath()%>/member/creationForm">Create Member</a></li>
-    <li class="nk-side-menu-sep"><a href="<%=request.getContextPath()%>/member/editForm">Edit Member</a></li>
-    <li class="nk-side-menu-sep"><a href="<%=request.getContextPath()%>/member/viewForm">View Customer</a></li>
+    <li class="nk-side-menu-sep"><a href="<%=request.getContextPath()%>/member/editForm">Members</a></li>
 </ul>

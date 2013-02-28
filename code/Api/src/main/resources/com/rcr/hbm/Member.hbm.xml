@@ -16,13 +16,5 @@
         <many-to-one name="personalDetails" class="com.rcr.domain.Person" fetch="select" lazy="false">
             <column name="PERSON_ID" not-null="true"/>
         </many-to-one>
-        <bag name="membershipDetails" cascade="all,delete-orphan" lazy="false">
-            <key column="MEMBER_ID" not-null="true"/>
-            <one-to-many class="com.rcr.domain.MembershipDetail"/>
-        </bag>
-        <bag name="memberVisits" cascade="all,delete-orphan" lazy="false">
-            <key column="MEMBER_ID" not-null="true"/>
-            <one-to-many class="com.rcr.domain.MemberVisit"/>
-        </bag>
     </class>
 </hibernate-mapping>

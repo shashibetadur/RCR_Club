@@ -1,8 +1,7 @@
 package com.rcr.service.member;
 
 
-import com.rcr.domain.Member;
-import com.rcr.domain.MembershipType;
+import com.rcr.domain.*;
 
 import java.util.List;
 
@@ -19,4 +18,12 @@ public interface MemberService {
     void saveMembershipTypeDetails(MembershipType membershipType);
 
     void deleteMembershipTypeDetails(MembershipType membershipType);
+
+    MembershipDetails getMembershipDetails(long memberId);
+
+    MemberSummary getMemberSummary(long memberId);
+
+    void renewMembership(MembershipDetail membershipDetail);
+
+    MembershipDetail getMembershipDetail(long id);
 }

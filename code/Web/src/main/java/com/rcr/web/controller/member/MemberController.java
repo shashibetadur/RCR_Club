@@ -47,18 +47,45 @@ public class MemberController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/viewForm/{memberId}", method = RequestMethod.GET)
-    @Authorize(Operation.MEMBER_VIEW)
-    public ModelAndView memberViewForm(@PathVariable("memberId") long memberId) {
-        return new ModelAndView("member/viewForm", "member", memberService.getMemberDetails(memberId));
-    }
-
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @Authorize({Operation.MEMBER_CREATE, Operation.MEMBER_EDIT})
     public String saveMember(Member member, Model model) {
         model.asMap().clear();
         memberService.saveMemberDetails(member);
         return "redirect:/member/viewForm/" + member.getId();
+    }
+
+    @RequestMapping(value = "/viewForm/{memberId}", method = RequestMethod.GET)
+    @Authorize(Operation.MEMBER_VIEW)
+    public ModelAndView memberViewForm(@PathVariable("memberId") long memberId) {
+        ModelAndView modelAndView = new ModelAndView("member/viewForm", "member", memberService.getMemberDetails(memberId));
+        modelAndView.getModelMap().put("membershipDetails", memberService.getMembershipDetails(memberId));
+        modelAndView.getModelMap().put("memberSummary", memberService.getMemberSummary(memberId));
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/membership/renew/{memberId}", method = RequestMethod.GET)
+    @Authorize(Operation.MEMBERSHIP_RENEW)
+    public ModelAndView renewMembershipGet(@PathVariable("memberId") long memberId) {
+        MembershipDetail membershipDetail = new MembershipDetail();
+        membershipDetail.setMemberId(memberId);
+        ModelAndView modelAndView = new ModelAndView("member/membership/renew", "membershipDetail", membershipDetail);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/membership/edit/{id}", method = RequestMethod.GET)
+    @Authorize(Operation.MEMBERSHIP_RENEW)
+    public ModelAndView editMembershipGet(@PathVariable("id") long id) {
+        ModelAndView modelAndView = new ModelAndView("member/membership/edit", "membershipDetail", memberService.getMembershipDetail(id));
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/membership/renew", method = RequestMethod.POST)
+    @Authorize(Operation.MEMBERSHIP_RENEW)
+    public String renewMembershipPost(MembershipDetail membershipDetail, Model model) {
+        model.asMap().clear();
+        memberService.renewMembership(membershipDetail);
+        return "redirect:/member/viewForm/" + membershipDetail.getMemberId();
     }
 
     @ModelAttribute("addressTypes")
@@ -77,5 +104,10 @@ public class MemberController {
             phoneTypes.add(addressType.toString());
         }
         return phoneTypes;
+    }
+
+    @ModelAttribute("membershipTypes")
+    public List<MembershipType> membershipTypes() {
+        return memberService.lisMembershipTypes();
     }
 }

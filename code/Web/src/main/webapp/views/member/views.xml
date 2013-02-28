@@ -27,4 +27,12 @@
         <put-attribute name="main-content" value="/views/member/membershipTypeList.jsp"/>
         <put-attribute name="context-menu" value="/views/member/contextMenu.jsp"/>
     </definition>
+    <definition name="member/membership/renew" extends="default">
+        <put-attribute name="main-content" value="/views/member/createFormMembership.jsp"/>
+        <put-attribute name="context-menu" value="/views/member/contextMenu.jsp"/>
+    </definition>
+    <definition name="member/membership/edit" extends="default">
+        <put-attribute name="main-content" value="/views/member/createFormMembership.jsp"/>
+        <put-attribute name="context-menu" value="/views/member/contextMenu.jsp"/>
+    </definition>
 </tiles-definitions>
