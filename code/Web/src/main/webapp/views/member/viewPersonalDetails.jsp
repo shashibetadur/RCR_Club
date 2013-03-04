@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="nk" uri="/WEB-INF/custom-tags.tld" %>
 <div class="nk-form-section">
     <div class="span10">
         <span class="nk-filed-label"><label>Name:</label></span>
@@ -46,7 +47,9 @@
 <div class="nk-form-section">
     <div class="span10">
         <span class="nk-filed-label">
-            <a href="<%=request.getContextPath()%>/member/editForm/${member.id}" class="btn">Edit</a><br/><br/>
+            <nk:security operations="member-edit">
+                <a href="<%=request.getContextPath()%>/member/editForm/${member.id}" class="btn">Edit</a><br/><br/>
+            </nk:security>
         </span>
     </div>
 </div>

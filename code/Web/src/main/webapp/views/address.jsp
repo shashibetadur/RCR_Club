@@ -100,6 +100,7 @@
         });
         //on click of save
         $('#addressModal .save-address').click(function(){
+            if (!validAddressDetails()) return;
             var index= $('#addressModal .selected-index').val();
             if(index){
                 addressList[index].index=$('#addressModal .selected-index').val();
@@ -134,6 +135,35 @@
 
     });
 
+    function validAddressDetails() {
+        var errors = "";
+        var errorMessageTemplate = "<label class='label label-important'>:message</label>"
+        $(".address-edit-errors").html("");
+        if (isEmpty(jqVal(".address-line-one")) && isEmpty(jqVal(".address-line-two"))) {
+            errors += errorMessageTemplate.replace(/:message/g, "Address cannot be empty")
+        }
+        if (isEmpty(jqVal(".locality"))) {
+            errors += errorMessageTemplate.replace(/:message/g, "Locality cannot be empty")
+        }
+        if (!isEmpty(jqVal(".locality")) && !canParseOnlyAlphaNumericWithSpace(jqVal(".locality"))) {
+            errors += errorMessageTemplate.replace(/:message/g, "Locality can only have alphabets and digits with space")
+        }
+        if (!isEmpty(jqVal(".city")) && !canParseOnlyAlphabetsWithSpace(jqVal(".city"))) {
+            errors += errorMessageTemplate.replace(/:message/g, "City can only have alphabets with space")
+        }
+        if (!isEmpty(jqVal(".pin-code")) && !canParseOnlyAlphaNumeric(jqVal(".pin-code"))) {
+            errors += errorMessageTemplate.replace(/:message/g, "Pin code can only have alphabets digits")
+        }
+        if (!isEmpty(jqVal(".state")) && !canParseOnlyAlphabetsWithSpace(jqVal(".state"))) {
+            errors += errorMessageTemplate.replace(/:message/g, "State can only have alphabets with space")
+        }
+        if (errors) {
+            $(".address-edit-errors").html(errors + "<br/");
+            return false;
+        }
+        return true;
+    }
+
     function renderAddressTable(){
         var rows="";
         $.each(addressList,function(index,value){
@@ -166,6 +196,7 @@
     </div>
     <div class="modal-body">
         <input type="hidden" class="selected-index" value="">
+        <div class="address-edit-errors"></div>
         <label>Type</label><select class="address-type"><c:forEach var="addressType" items="${addressTypes}"><option value="${addressType}">${addressType}</option></c:forEach></select>
         <label>Address Line One</label> <input type="text" class="address-line-one" maxlength="200"/>
         <label>Address Line Two</label> <input type="text" class="address-line-two" maxlength="200"/>

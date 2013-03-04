@@ -56,6 +56,7 @@
         })
         //on click of save
         $('#phoneModal .save-phone').click(function(){
+            if (!validPhoneDetails()) return;
             var index= $('#phoneModal .selected-index').val();
             if(index){
                 phoneList[index].index=$('#phoneModal .selected-index').val();
@@ -76,6 +77,23 @@
 
 ;
     });
+
+    function validPhoneDetails() {
+        var errors = "";
+        var errorMessageTemplate = "<label class='label label-important'>:message</label>"
+        $(".phone-edit-errors").html("");
+        if (isEmpty(jqVal("#phone-number"))) {
+            errors += errorMessageTemplate.replace(/:message/g, "Phone number cannot be empty");
+        }
+        if (!isEmpty(jqVal("#phone-number")) && !canParseNumber(jqVal("#phone-number"))) {
+            errors += errorMessageTemplate.replace(/:message/g, "Phone number can only have digits");
+        }
+        if (errors) {
+            $(".phone-edit-errors").html(errors + "<br/");
+            return false;
+        }
+        return true;
+    }
 
     function renderPhoneTable(){
         var rows="";
@@ -100,8 +118,9 @@
     </div>
     <div class="modal-body">
         <input type="hidden" class="selected-index" value="">
+        <div class="phone-edit-errors"></div>
         <label>Type</label><select class="phone-type"><c:forEach var="phoneType" items="${phoneTypes}"><option value="${phoneType}">${phoneType}</option></c:forEach></select>
-        <label>Number</label> <input type="text" class="phone-number" maxlength="15"/>
+        <label>Number</label> <input type="text" id="phone-number" class="phone-number" maxlength="15"/>
     </div>
     <div class="modal-footer">
         <a class="save-phone btn btn-primary">Ok</a>

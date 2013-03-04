@@ -58,7 +58,9 @@
                 </tbody>
             </table>
             <div class="btn-group">
-                <a href="<%=request.getContextPath()%>/member/viewForm" class="btn  view-member">View Member Details</a>
+                <nk:security operations="member-view">
+                    <a href="<%=request.getContextPath()%>/member/viewForm" class="btn  view-member">View Member Details</a>
+                </nk:security>
             </div>
             <br/><br/>
         </c:when>

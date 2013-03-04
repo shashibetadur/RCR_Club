@@ -3,6 +3,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="nk" uri="/WEB-INF/custom-tags.tld" %>
 <html>
 <head>
     <link rel="stylesheet" href="<%=request.getContextPath()%>/css/google-web-fonts.css" type="text/css"/>
@@ -55,7 +56,9 @@
                 <tiles:insertAttribute name="context-menu"/>
                 <ul class="nk-side-menu nav nav-pills nav-tabs nav-stacked">
                     <li class="nk-side-menu-sep"><a class="btn" href="#">Quick Links</a></li>
-                    <li class="nk-side-menu-sep"><a href="<%=request.getContextPath()%>/member/searchForm">Member Dashboard</a></li>
+                    <nk:security operations="member-search">
+                        <li class="nk-side-menu-sep"><a href="<%=request.getContextPath()%>/member/searchForm">Member Dashboard</a></li>
+                    </nk:security>
                     <li class="nk-side-menu-sep"><a href="#">Create Bill</a></li>
                     <li><a href="#">Update Inventory</a></li>
                 </ul>

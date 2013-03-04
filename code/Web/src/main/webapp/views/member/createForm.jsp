@@ -3,10 +3,11 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <div class="row well">
-    <form method="POST" action="<%=request.getContextPath()%>/member/save">
+    <form id="member-creation" method="POST" action="<%=request.getContextPath()%>/member/save">
         <legend>New Member Form</legend>
         <form:hidden path="member.id"/>
         <form:hidden path="member.personalDetails.id"/>
+        <div class="span10 member-creation-errors"></div>
         <div class="nk-form-section">
             <div class="span5">
                 <span class="nk-filed-label"><label for="firstname">First Name</label></span>
@@ -91,5 +92,32 @@
 <jsp:include page="../phone.jsp"/>
 <jsp:include page="../address.jsp"/>
 
+<script type="text/javascript">
+    $("#member-creation").submit(function() {
+        var errors = "";
+        var errorMessageTemplate = "<label class='label label-important'>:message</label>"
+        $(".member-creation-errors").html("");
+        if (isEmpty(jqVal("#firstname"))) {
+            errors += errorMessageTemplate.replace(/:message/g,"First name cannot be empty")
+        }
+        if (!isEmpty(jqVal("#firstname")) && !canParseOnlyAlphabetsWithSpace(jqVal("#firstname"))) {
+            errors += errorMessageTemplate.replace(/:message/g,"First name can have only have alphabets and space ")
+        }
+        if (isEmpty(jqVal("#lastname"))) {
+            errors += errorMessageTemplate.replace(/:message/g,"Last name cannot be empty")
+        }
+        if (!isEmpty(jqVal("#lastname")) && !canParseOnlyAlphabetsWithSpace(jqVal("#lastname"))) {
+            errors += errorMessageTemplate.replace(/:message/g,"Last name can have only have alphabets and space ")
+        }
+        if(errors){
+            $(".member-creation-errors").html(errors+"<br/><br/>");
+            return false;
+        }
+        return true;
+    });
+    $("input[type='text']").blur(function () {
+        $(this).val(specialTrim($(this).val()));
+    });
+</script>
 
 
