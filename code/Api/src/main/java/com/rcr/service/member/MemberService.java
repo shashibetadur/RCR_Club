@@ -29,4 +29,6 @@ public interface MemberService {
     MembershipDetail getMembershipDetail(long id);
 
     Date getRenewalDate(long memberId);
+
+    List<Member> search(MemberSearchCriteria memberSearchCriteria);
 }

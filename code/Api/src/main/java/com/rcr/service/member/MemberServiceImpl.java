@@ -98,4 +98,9 @@ public class MemberServiceImpl implements MemberService {
         instance.add(Calendar.DATE, 1);
         return instance.getTime();
     }
+
+    @Override
+    public List<Member> search(MemberSearchCriteria memberSearchCriteria) {
+        return memberRepository.findBy(memberSearchCriteria);
+    }
 }

@@ -91,6 +91,20 @@ public class MemberController {
         return "redirect:/member/viewForm/" + membershipDetail.getMemberId();
     }
 
+    @RequestMapping(value = "/searchForm", method = RequestMethod.GET)
+    @Authorize(value = {Operation.MEMBER_SEARCH})
+    public ModelAndView memberSearchForm() {
+        return new ModelAndView("member/searchForm");
+    }
+
+    @RequestMapping(value = "/searchForm", method = RequestMethod.POST)
+    @Authorize(value = {Operation.MEMBER_SEARCH})
+    public ModelAndView memberSearchQuery(MemberSearchCriteria memberSearchCriteria) {
+        List<Member> memberList = memberService.search(memberSearchCriteria);
+        return new ModelAndView("member/searchResults", "memberList", memberList);
+    }
+
+
     @ModelAttribute("addressTypes")
     public List<String> addressTypes() {
         List<String> addressTypes = new ArrayList<String>();

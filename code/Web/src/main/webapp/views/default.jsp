@@ -55,7 +55,7 @@
                 <tiles:insertAttribute name="context-menu"/>
                 <ul class="nk-side-menu nav nav-pills nav-tabs nav-stacked">
                     <li class="nk-side-menu-sep"><a class="btn" href="#">Quick Links</a></li>
-                    <li class="nk-side-menu-sep"><a href="#">Member Dashboard</a></li>
+                    <li class="nk-side-menu-sep"><a href="<%=request.getContextPath()%>/member/searchForm">Member Dashboard</a></li>
                     <li class="nk-side-menu-sep"><a href="#">Create Bill</a></li>
                     <li><a href="#">Update Inventory</a></li>
                 </ul>

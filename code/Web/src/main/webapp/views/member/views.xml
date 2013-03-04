@@ -35,4 +35,11 @@
         <put-attribute name="main-content" value="/views/member/createFormMembership.jsp"/>
         <put-attribute name="context-menu" value="/views/member/contextMenu.jsp"/>
     </definition>
+    <definition name="member/searchForm" extends="default">
+        <put-attribute name="main-content" value="/views/member/searchForm.jsp"/>
+        <put-attribute name="context-menu" value="/views/member/contextMenu.jsp"/>
+    </definition>
+    <definition name="member/searchResults" extends="ajaxSection">
+        <put-attribute name="content" value="/views/member/searchResults.jsp"/>
+    </definition>
 </tiles-definitions>
