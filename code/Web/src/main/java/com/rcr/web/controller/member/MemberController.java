@@ -3,6 +3,7 @@ package com.rcr.web.controller.member;
 import com.rcr.domain.*;
 import com.rcr.service.member.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -69,6 +71,7 @@ public class MemberController {
     public ModelAndView renewMembershipGet(@PathVariable("memberId") long memberId) {
         MembershipDetail membershipDetail = new MembershipDetail();
         membershipDetail.setMemberId(memberId);
+        membershipDetail.setStartDate(memberService.getRenewalDate(memberId));
         ModelAndView modelAndView = new ModelAndView("member/membership/renew", "membershipDetail", membershipDetail);
         return modelAndView;
     }

@@ -24,25 +24,37 @@
         <br/>
 
         <div class="nk-form-section">
-            <div class="span5">
+            <div class="span10">
                 <span class="nk-filed-label"><label for="start-date">Start Date</label></span>
-                <span class="nk-filed"><form:input type="text" id="start-date" path="membershipDetail.startDate" maxlength="100"/></span>
-            </div>
-            <div class="span5">
-                <span class="nk-filed-label"><label for="end-date">End Date</label></span>
-                <span class="nk-filed"><form:input type="text" id="end-date" path="membershipDetail.endDate" maxlength="100"/></span>
+                <span class="nk-filed"><form:input type="text" readonly="true" id="start-date" path="membershipDetail.startDate"
+                                                   maxlength="100"/></span>
             </div>
         </div>
         <br/>
 
         <div class="nk-form-section">
-            <div class="span5">
-                <span class="nk-filed-label"><label for="enrollment-fees">Enrollment Fees</label></span>
-                <span class="nk-filed"><form:input type="text" id="enrollment-fees" path="membershipDetail.enrollmentFees" maxlength="100"/></span>
+            <div class="span10">
+                <span class="nk-filed-label"><label for="end-date">End Date</label></span>
+                <span class="nk-filed"><form:input type="text" readonly="true" id="end-date" path="membershipDetail.endDate"
+                                                   maxlength="100"/></span>
             </div>
-            <div class="span5">
+        </div>
+        <br/>
+
+        <div class="nk-form-section">
+            <div class="span10">
+                <span class="nk-filed-label"><label for="enrollment-fees">Enrollment Fees</label></span>
+                <span class="nk-filed"><form:input type="text" readonly="true" id="enrollment-fees"
+                                                   path="membershipDetail.enrollmentFees" maxlength="100"/></span>
+            </div>
+        </div>
+        <br/>
+
+        <div class="nk-form-section">
+            <div class="span10">
                 <span class="nk-filed-label"><label for="fees">Fees</label></span>
-                <span class="nk-filed"><form:input type="text" id="fees" path="membershipDetail.fees" maxlength="100"/></span>
+                <span class="nk-filed"><form:input type="text" readonly="true" id="fees" path="membershipDetail.fees"
+                                                   maxlength="100"/></span>
             </div>
         </div>
         <br/>
@@ -54,11 +66,19 @@
     </form>
 </div>
 <script type="text/javascript">
-    $("#start-date").datepicker({
-        format:"dd-mm-yyyy"
-    });
-    $("#end-date").datepicker({
-        format:"dd-mm-yyyy"
+    $("#membership-type").change(function () {
+        var selectedType = $(this).val();
+        if (selectedType > 0) {
+            $.getJSON("<%=request.getContextPath()%>/member/type/" + selectedType, {}, function (data) {
+                var membershipType = eval(data);
+                $('#enrollment-fees').val(membershipType.enrollmentFees);
+                $('#fees').val(membershipType.fees);
+                var startDateTokens = $("#start-date").val().split("-");
+                var startDate = new Date(startDateTokens[2],startDateTokens[1]-1,startDateTokens[0]);
+                startDate.setDate(startDate.getDate()+membershipType.validity);
+                $("#end-date").val(startDate.getDate()+"-"+(startDate.getMonth()+1)+"-"+startDate.getYear());
+            });
+        }
     });
 
 </script>

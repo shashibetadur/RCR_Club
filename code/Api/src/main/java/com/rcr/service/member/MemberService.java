@@ -3,6 +3,7 @@ package com.rcr.service.member;
 
 import com.rcr.domain.*;
 
+import java.util.Date;
 import java.util.List;
 
 public interface MemberService {
@@ -26,4 +27,6 @@ public interface MemberService {
     void renewMembership(MembershipDetail membershipDetail);
 
     MembershipDetail getMembershipDetail(long id);
+
+    Date getRenewalDate(long memberId);
 }

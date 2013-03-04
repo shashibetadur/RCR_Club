@@ -8,7 +8,8 @@ import com.rcr.repository.member.MembershipTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -80,5 +81,21 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public MembershipDetail getMembershipDetail(long id) {
         return membershipDetailRepository.get(id);
+    }
+
+    @Override
+    public Date getRenewalDate(long memberId) {
+        Date renewalDate = null;
+        MembershipDetails membershipDetails = getMembershipDetails(memberId);
+        for (MembershipDetail membershipDetail : membershipDetails.getMembershipDetailList()) {
+            if (renewalDate == null) renewalDate = membershipDetail.getEndDate();
+            else if (renewalDate.compareTo(membershipDetail.getEndDate()) < 0)
+                renewalDate = membershipDetail.getEndDate();
+
+        }
+        Calendar instance = Calendar.getInstance();
+        instance.setTime(renewalDate);
+        instance.add(Calendar.DATE, 1);
+        return instance.getTime();
     }
 }

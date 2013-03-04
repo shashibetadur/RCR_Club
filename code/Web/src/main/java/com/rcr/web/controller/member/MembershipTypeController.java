@@ -5,6 +5,7 @@ import com.rcr.domain.MembershipType;
 import com.rcr.domain.Operation;
 import com.rcr.service.member.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,6 +36,14 @@ public class MembershipTypeController {
     public ModelAndView createForm() {
         return new ModelAndView("member/type/createForm", "memberType", new MembershipType());
     }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public
+    @ResponseBody
+    MembershipType getMembershipType(@PathVariable("id") long id) {
+        return memberService.getMembershipTypeDetails(id);
+    }
+
 
     @RequestMapping("/editForm/{id}")
     @Authorize(Operation.MEMBERSHIP_TYPE_EDIT)
