@@ -7,7 +7,7 @@
             <column name="ID"/>
             <generator class="identity"/>
         </id>
-        <property name="memberId" type="long" insert="false" update="false">
+        <property name="memberId" type="long">
             <column name="MEMBER_ID" not-null="true"/>
         </property>
         <property name="guestCount" type="long">

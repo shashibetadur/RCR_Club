@@ -2,7 +2,7 @@ package com.rcr.web.controller;
 
 
 import com.rcr.domain.OrderStatus;
-import com.rcr.web.controller.model.ProcessOrderForm;
+import com.rcr.web.model.ProcessOrderForm;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;

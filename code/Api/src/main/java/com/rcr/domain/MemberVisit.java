@@ -10,6 +10,8 @@ public class MemberVisit extends Entity {
 
     private Date visitDate;
 
+    private Member memberDetails;
+
     public long getMemberId() {
         return memberId;
     }
@@ -32,5 +34,13 @@ public class MemberVisit extends Entity {
 
     public void setVisitDate(Date visitDate) {
         this.visitDate = visitDate;
+    }
+
+    public Member getMemberDetails() {
+        return memberDetails;
+    }
+
+    public void setMemberDetails(Member memberDetails) {
+        this.memberDetails = memberDetails;
     }
 }

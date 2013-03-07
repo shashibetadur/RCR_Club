@@ -2,19 +2,22 @@ package com.rcr.web.controller.member;
 
 import com.rcr.domain.*;
 import com.rcr.service.member.MemberService;
+import com.rcr.web.model.MemberAutoComplete;
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections.Transformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Collection;
 import java.util.List;
+
+import static org.apache.commons.collections.CollectionUtils.collect;
+import static org.springframework.util.StringUtils.isEmpty;
 
 @Controller
 @RequestMapping("/member")
@@ -66,31 +69,6 @@ public class MemberController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/membership/renew/{memberId}", method = RequestMethod.GET)
-    @Authorize(Operation.MEMBERSHIP_RENEW)
-    public ModelAndView renewMembershipGet(@PathVariable("memberId") long memberId) {
-        MembershipDetail membershipDetail = new MembershipDetail();
-        membershipDetail.setMemberId(memberId);
-        membershipDetail.setStartDate(memberService.getRenewalDate(memberId));
-        ModelAndView modelAndView = new ModelAndView("member/membership/renew", "membershipDetail", membershipDetail);
-        return modelAndView;
-    }
-
-    @RequestMapping(value = "/membership/edit/{id}", method = RequestMethod.GET)
-    @Authorize(Operation.MEMBERSHIP_RENEW)
-    public ModelAndView editMembershipGet(@PathVariable("id") long id) {
-        ModelAndView modelAndView = new ModelAndView("member/membership/edit", "membershipDetail", memberService.getMembershipDetail(id));
-        return modelAndView;
-    }
-
-    @RequestMapping(value = "/membership/renew", method = RequestMethod.POST)
-    @Authorize(Operation.MEMBERSHIP_RENEW)
-    public String renewMembershipPost(MembershipDetail membershipDetail, Model model) {
-        model.asMap().clear();
-        memberService.renewMembership(membershipDetail);
-        return "redirect:/member/viewForm/" + membershipDetail.getMemberId();
-    }
-
     @RequestMapping(value = "/searchForm", method = RequestMethod.GET)
     @Authorize(value = {Operation.MEMBER_SEARCH})
     public ModelAndView memberSearchForm() {
@@ -104,6 +82,29 @@ public class MemberController {
         return new ModelAndView("member/searchResults", "memberList", memberList);
     }
 
+    @RequestMapping(value = "/search/name", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public
+    @ResponseBody
+    List<MemberAutoComplete> searchItems(@RequestParam("searchToken") String searchToken) {
+        if (isEmpty(searchToken) || isEmpty(searchToken.trim())) return new ArrayList<MemberAutoComplete>();
+        List<Member> result = new ArrayList<Member>();
+        String[] tokens = searchToken.split(" ");
+        for (String token : tokens) {
+            token = token.trim();
+            List<Member> searchByFirstName = memberService.search(new MemberSearchCriteria(null, token, null));
+            List<Member> searchByLastName = memberService.search(new MemberSearchCriteria(null, null, token));
+            Collection union = CollectionUtils.union(searchByFirstName, searchByLastName);
+            result = (List<Member>) (result.isEmpty() ? union : CollectionUtils.intersection(result, union));
+
+        }
+
+        return (List<MemberAutoComplete>) collect(result, new Transformer() {
+            @Override
+            public Object transform(Object input) {
+                return new MemberAutoComplete((Member) input);
+            }
+        });
+    }
 
     @ModelAttribute("addressTypes")
     public List<String> addressTypes() {
@@ -123,8 +124,4 @@ public class MemberController {
         return phoneTypes;
     }
 
-    @ModelAttribute("membershipTypes")
-    public List<MembershipType> membershipTypes() {
-        return memberService.lisMembershipTypes();
-    }
 }

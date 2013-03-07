@@ -1,4 +1,4 @@
-package com.rcr.web.controller.model;
+package com.rcr.web.model;
 
 import com.rcr.domain.Material;
 

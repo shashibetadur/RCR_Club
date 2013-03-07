@@ -14,4 +14,5 @@
     <nk:security operations="member-search">
         <li class="nk-side-menu-sep"><a href="<%=request.getContextPath()%>/member/searchForm">Members</a></li>
     </nk:security>
+    <li class="nk-side-menu-sep"><a href="<%=request.getContextPath()%>/member/visit">Members Visit</a></li>
 </ul>

@@ -2,6 +2,7 @@
 <!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
         "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
 <tiles-definitions>
+    <!--member related-->
     <definition name="member/createForm" extends="default">
         <put-attribute name="main-content" value="/views/member/createForm.jsp"/>
         <put-attribute name="context-menu" value="/views/member/contextMenu.jsp"/>
@@ -14,6 +15,9 @@
         <put-attribute name="main-content" value="/views/member/viewForm.jsp"/>
         <put-attribute name="context-menu" value="/views/member/contextMenu.jsp"/>
     </definition>
+
+
+    <!--membership type related-->
     <definition name="member/type/createForm" extends="ajaxSection">
         <put-attribute name="content" value="/views/member/membershipTypeCreateForm.jsp"/>
     </definition>
@@ -27,6 +31,8 @@
         <put-attribute name="main-content" value="/views/member/membershipTypeList.jsp"/>
         <put-attribute name="context-menu" value="/views/member/contextMenu.jsp"/>
     </definition>
+
+    <!--membership related-->
     <definition name="member/membership/renew" extends="default">
         <put-attribute name="main-content" value="/views/member/createFormMembership.jsp"/>
         <put-attribute name="context-menu" value="/views/member/contextMenu.jsp"/>
@@ -42,4 +48,13 @@
     <definition name="member/searchResults" extends="ajaxSection">
         <put-attribute name="content" value="/views/member/searchResults.jsp"/>
     </definition>
+
+
+
+    <!--membership related-->
+    <definition name="member/visit" extends="default">
+        <put-attribute name="main-content" value="/views/member/memberVisitForm.jsp"/>
+        <put-attribute name="context-menu" value="/views/member/contextMenu.jsp"/>
+    </definition>
+
 </tiles-definitions>

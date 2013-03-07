@@ -62,7 +62,7 @@ public class MemberRepository extends BaseRepository<Member> {
         if (!isEmpty(memberSearchCriteria.getLastName()) && nameCriterion != null)
             nameCriterion = Restrictions.and(nameCriterion, Restrictions.ilike("personalDetails.lastName", memberSearchCriteria.getLastName(), MatchMode.ANYWHERE));
         else if (!isEmpty(memberSearchCriteria.getLastName()))
-            nameCriterion = Restrictions.like("personalDetails.lastName", memberSearchCriteria.getLastName());
+            nameCriterion = Restrictions.ilike("personalDetails.lastName", memberSearchCriteria.getLastName(),MatchMode.ANYWHERE);
         return nameCriterion;
     }
 }
