@@ -5,6 +5,7 @@ import com.rcr.domain.MembershipDetail;
 import com.rcr.domain.MembershipType;
 import com.rcr.domain.Operation;
 import com.rcr.service.member.MemberService;
+import com.rcr.service.member.MembershipService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,10 +22,12 @@ import java.util.List;
 public class MembershipController {
 
     private MemberService memberService;
+    private MembershipService membershipService;
 
     @Autowired
-    public MembershipController(MemberService memberService) {
+    public MembershipController(MemberService memberService, MembershipService membershipService) {
         this.memberService = memberService;
+        this.membershipService = membershipService;
     }
 
     @RequestMapping(value = "/renew/{memberId}", method = RequestMethod.GET)
@@ -32,7 +35,7 @@ public class MembershipController {
     public ModelAndView renewMembershipGet(@PathVariable("memberId") long memberId) {
         MembershipDetail membershipDetail = new MembershipDetail();
         membershipDetail.setMemberId(memberId);
-        membershipDetail.setStartDate(memberService.getRenewalDate(memberId));
+        membershipDetail.setStartDate(membershipService.getRenewalDate(memberId));
         ModelAndView modelAndView = new ModelAndView("member/membership/renew", "membershipDetail", membershipDetail);
         return modelAndView;
     }
@@ -40,7 +43,7 @@ public class MembershipController {
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     @Authorize(Operation.MEMBERSHIP_RENEW)
     public ModelAndView editMembershipGet(@PathVariable("id") long id) {
-        ModelAndView modelAndView = new ModelAndView("member/membership/edit", "membershipDetail", memberService.getMembershipDetail(id));
+        ModelAndView modelAndView = new ModelAndView("member/membership/edit", "membershipDetail", membershipService.getMembershipDetail(id));
         return modelAndView;
     }
 
@@ -48,12 +51,12 @@ public class MembershipController {
     @Authorize(Operation.MEMBERSHIP_RENEW)
     public String renewMembershipPost(MembershipDetail membershipDetail, Model model) {
         model.asMap().clear();
-        memberService.renewMembership(membershipDetail);
+        membershipService.renewMembership(membershipDetail);
         return "redirect:/member/viewForm/" + membershipDetail.getMemberId();
     }
 
     @ModelAttribute("membershipTypes")
     public List<MembershipType> membershipTypes() {
-        return memberService.lisMembershipTypes();
+        return membershipService.lisMembershipTypes();
     }
 }

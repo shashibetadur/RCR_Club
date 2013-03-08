@@ -2,6 +2,7 @@ package com.rcr.web.controller.member;
 
 import com.rcr.domain.*;
 import com.rcr.service.member.MemberService;
+import com.rcr.service.member.MembershipService;
 import com.rcr.web.model.MemberAutoComplete;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.Transformer;
@@ -24,14 +25,16 @@ import static org.springframework.util.StringUtils.isEmpty;
 public class MemberController {
 
     private MemberService memberService;
+    private MembershipService membershipService;
 
     //requited for proxy creation
     protected MemberController() {
     }
 
     @Autowired
-    public MemberController(MemberService memberService) {
+    public MemberController(MemberService memberService,MembershipService membershipService) {
         this.memberService = memberService;
+        this.membershipService = membershipService;
     }
 
     @RequestMapping(value = "/creationForm", method = RequestMethod.GET)
@@ -64,7 +67,7 @@ public class MemberController {
     @Authorize(Operation.MEMBER_VIEW)
     public ModelAndView memberViewForm(@PathVariable("memberId") long memberId) {
         ModelAndView modelAndView = new ModelAndView("member/viewForm", "member", memberService.getMemberDetails(memberId));
-        modelAndView.getModelMap().put("membershipDetails", memberService.getMembershipDetails(memberId));
+        modelAndView.getModelMap().put("membershipDetails", membershipService.getMembershipDetails(memberId));
         modelAndView.getModelMap().put("memberSummary", memberService.getMemberSummary(memberId));
         return modelAndView;
     }
@@ -83,6 +86,7 @@ public class MemberController {
     }
 
     @RequestMapping(value = "/search/name", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @Authorize(value = {Operation.MEMBER_SEARCH})
     public
     @ResponseBody
     List<MemberAutoComplete> searchItems(@RequestParam("searchToken") String searchToken) {

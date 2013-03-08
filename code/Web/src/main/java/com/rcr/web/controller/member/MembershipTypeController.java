@@ -4,6 +4,7 @@ import com.rcr.domain.Authorize;
 import com.rcr.domain.MembershipType;
 import com.rcr.domain.Operation;
 import com.rcr.service.member.MemberService;
+import com.rcr.service.member.MembershipService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -19,16 +20,18 @@ import org.springframework.web.servlet.ModelAndView;
 public class MembershipTypeController {
 
     private MemberService memberService;
+    private MembershipService membershipService;
 
     @Autowired
-    public MembershipTypeController(MemberService memberService) {
+    public MembershipTypeController(MemberService memberService, MembershipService membershipService) {
         this.memberService = memberService;
+        this.membershipService = membershipService;
     }
 
     @RequestMapping("/list")
     @Authorize(Operation.MEMBERSHIP_TYPE_LIST)
     public ModelAndView list() {
-        return new ModelAndView("member/type/list", "memberTypeList", memberService.lisMembershipTypes());
+        return new ModelAndView("member/type/list", "memberTypeList", membershipService.lisMembershipTypes());
     }
 
     @RequestMapping("/createForm")
@@ -38,23 +41,24 @@ public class MembershipTypeController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @Authorize(Operation.MEMBERSHIP_TYPE_LIST)
     public
     @ResponseBody
     MembershipType getMembershipType(@PathVariable("id") long id) {
-        return memberService.getMembershipTypeDetails(id);
+        return membershipService.getMembershipTypeDetails(id);
     }
 
 
     @RequestMapping("/editForm/{id}")
     @Authorize(Operation.MEMBERSHIP_TYPE_EDIT)
     public ModelAndView editForm(@PathVariable("id") long id) {
-        return new ModelAndView("member/type/editForm", "memberType", memberService.getMembershipTypeDetails(id));
+        return new ModelAndView("member/type/editForm", "memberType", membershipService.getMembershipTypeDetails(id));
     }
 
     @RequestMapping("/deleteForm/{id}")
     @Authorize(Operation.MEMBERSHIP_TYPE_DELETE)
     public ModelAndView deleteForm(@PathVariable("id") long id) {
-        return new ModelAndView("member/type/deleteForm", "memberType", memberService.getMembershipTypeDetails(id));
+        return new ModelAndView("member/type/deleteForm", "memberType", membershipService.getMembershipTypeDetails(id));
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
@@ -63,7 +67,7 @@ public class MembershipTypeController {
     @ResponseBody
     MembershipType save(MembershipType membershipType, Model model) {
         model.asMap().clear();
-        memberService.saveMembershipTypeDetails(membershipType);
+        membershipService.saveMembershipTypeDetails(membershipType);
         return membershipType;
     }
 
@@ -73,7 +77,7 @@ public class MembershipTypeController {
     @ResponseBody
     MembershipType delete(MembershipType membershipType, Model model) {
         model.asMap().clear();
-        memberService.deleteMembershipTypeDetails(membershipType);
+        membershipService.deleteMembershipTypeDetails(membershipType);
         return membershipType;
     }
 }

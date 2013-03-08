@@ -14,7 +14,9 @@ public enum Operation {
     MEMBERSHIP_TYPE_CREATE("membership-type-create"),
     MEMBERSHIP_TYPE_EDIT("membership-type-edit"),
     MEMBERSHIP_TYPE_DELETE("membership-type-delete"),
-    MEMBERSHIP_RENEW("membership-renew");
+    MEMBERSHIP_RENEW("membership-renew"),
+    MEMBER_VISIT_VIEW("member-visit-view"),
+    MEMBER_VISIT_EDIT("member-visit-edit");
 
     Operation(String operationName) {
         this.operationName = operationName;

@@ -1,6 +1,8 @@
 package com.rcr.web.controller.member;
 
+import com.rcr.domain.Authorize;
 import com.rcr.domain.MemberVisit;
+import com.rcr.domain.Operation;
 import com.rcr.service.member.MemberVisitService;
 import com.rcr.web.model.MemberVisitsPageView;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,11 +32,13 @@ public class MemberVisitController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
+    @Authorize(Operation.MEMBER_VISIT_VIEW)
     public String membersVisitForm() {
         return "member/visit";
     }
 
     @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @Authorize(Operation.MEMBER_VISIT_EDIT)
     public
     @ResponseBody
     String saveMembersVisitForm(MemberVisitsPageView memberVisitsPageView, Model model) {
@@ -47,6 +51,7 @@ public class MemberVisitController {
     }
 
     @RequestMapping(value = "/{date}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @Authorize(Operation.MEMBER_VISIT_VIEW)
     public
     @ResponseBody
     List<MemberVisit> getMembersVisits(@PathVariable("date") Date date) {

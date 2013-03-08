@@ -1,9 +1,10 @@
 package com.rcr.service.member;
 
 
-import com.rcr.domain.*;
+import com.rcr.domain.Member;
+import com.rcr.domain.MemberSearchCriteria;
+import com.rcr.domain.MemberSummary;
 
-import java.util.Date;
 import java.util.List;
 
 public interface MemberService {
@@ -12,23 +13,7 @@ public interface MemberService {
 
     Member getMemberDetails(long memberId);
 
-    List<MembershipType> lisMembershipTypes();
-
-    MembershipType getMembershipTypeDetails(long id);
-
-    void saveMembershipTypeDetails(MembershipType membershipType);
-
-    void deleteMembershipTypeDetails(MembershipType membershipType);
-
-    MembershipDetails getMembershipDetails(long memberId);
-
     MemberSummary getMemberSummary(long memberId);
-
-    void renewMembership(MembershipDetail membershipDetail);
-
-    MembershipDetail getMembershipDetail(long id);
-
-    Date getRenewalDate(long memberId);
 
     List<Member> search(MemberSearchCriteria memberSearchCriteria);
 }

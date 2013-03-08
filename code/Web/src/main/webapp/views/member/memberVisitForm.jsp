@@ -2,6 +2,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="nk" uri="/WEB-INF/custom-tags.tld" %>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/datepicker.css" type="text/css"/>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/bootstrap-datepicker.js"></script>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/jquery-ui-1.9.0.custom.css" type="text/css"/>
@@ -26,8 +27,10 @@
                         <th>Number Of Guests</th>
                         <tbody></tbody>
                     </table>
-                    <a class="btn btn-primary save-visits">Save</a>
-                    <a class="btn delete-member-visit">Delete</a>
+                    <nk:security operations="member-visit-edit">
+                        <a class="btn btn-primary save-visits">Save</a>
+                        <a class="btn delete-member-visit">Delete</a>
+                    </nk:security>
                 </div>
             </form>
             <div class="list-location"></div>
@@ -63,6 +66,7 @@
         }
     });
     $('.save-visits').click(function(){
+        if(!validateMemberVisitForm()) return false;
         var formData = $('form').serialize();
         $.ajax({
             type:'POST',
@@ -74,6 +78,24 @@
         });
         $(".save-status").html('<label class="label label-success">Saved!!!</label>');
     });
+
+    function validateMemberVisitForm(){
+        var errors = "";
+        var errorMessageTemplate = "<label class='label label-important'>:message</label>"
+        $(".save-status").html("");
+        if(isEmpty(jqVal(".visit-date"))){
+            errors += errorMessageTemplate.replace(/:message/g,"Visit date cannot be empty");
+        }
+        if(!isEmpty(jqVal(".visit-date")) && !canParseDate(jqVal(".visit-date"))){
+            errors += errorMessageTemplate.replace(/:message/g,"Visit date is in incorrect format");
+        }
+        if(errors){
+            $(".save-status").html(errors+"<br/><br/>");
+            return false;
+        }
+        return true;
+    }
+
     $(".delete-member-visit").click(function(){
         var selectedIndex =$('input:radio[name=row]:checked').val();
         selectedMembers.splice(selectedIndex,1);
