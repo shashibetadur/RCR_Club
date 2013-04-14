@@ -4,6 +4,8 @@ public class Material extends Entity {
 
     private long id;
 
+    private long inventoryId;
+
     private String name;
 
     private String unit;
@@ -11,6 +13,10 @@ public class Material extends Entity {
     private Character materialType;
 
     private double price;
+
+    private int qty;
+
+    private int total;
 
     private String description;
 
@@ -20,6 +26,9 @@ public class Material extends Entity {
         value = name;
     }
 
+    public Material(long id){
+        this.id = id;
+    }
     public String getName() {
         return name;
     }
@@ -78,5 +87,28 @@ public class Material extends Entity {
 
     public void setId(long id) {
         this.id = id;
+    }
+    public int getQty() {
+        return qty;
+    }
+
+    public void setQty(int qty) {
+        this.qty = qty;
+    }
+
+    public int getTotal() {
+        return total;
+    }
+
+    public void setTotal(int total) {
+        this.total = total;
+    }
+
+    public long getInventoryId() {
+        return inventoryId;
+    }
+
+    public void setInventoryId(long inventoryId) {
+        this.inventoryId = inventoryId;
     }
 }

@@ -58,9 +58,8 @@
                 </tbody>
             </table>
             <div class="btn-group">
-                <nk:security operations="member-view">
+                    <a href="<%=request.getContextPath()%>/bill/createBill" class="btn  create-bill">Create Bill</a>
                     <a href="<%=request.getContextPath()%>/member/viewForm" class="btn  view-member">View Member Details</a>
-                </nk:security>
             </div>
             <br/><br/>
         </c:when>
@@ -71,6 +70,12 @@
 </div>
 <script type="text/javascript">
     $(function () {
+        $('.create-bill').click(function (event) {
+            event.preventDefault();
+            var selectedMember = $('input:radio[name=row]:checked').val();
+            if (selectedMember) document.location.href = ($(this).attr('href') + "?memberId=" + selectedMember);
+            else return false;
+        });
         $('.view-member').click(function (event) {
             event.preventDefault();
             var selectedMember = $('input:radio[name=row]:checked').val();

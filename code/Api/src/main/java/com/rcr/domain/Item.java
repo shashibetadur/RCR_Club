@@ -2,12 +2,21 @@ package com.rcr.domain;
 
 public class Item extends Entity {
 
-
     private long materialId;
     private String name;
     private Character type;
     private double price;
     private String description;
+    private String value;
+    private int qty;
+    private int total;
+
+    public Item() {
+    }
+
+    public Item(long id) {
+        this.id = id;
+    }
 
     public double getPrice() {
         return price;
@@ -51,5 +60,29 @@ public class Item extends Entity {
 
     public String getItemTypeDescription() {
         return ItemType.getNameByCode(this.type);
+    }
+
+    public String getValue() {
+        return name;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+    }
+
+    public int getQty() {
+        return qty;
+    }
+
+    public void setQty(int qty) {
+        this.qty = qty;
+    }
+
+    public int getTotal() {
+        return total;
+    }
+
+    public void setTotal(int total) {
+        this.total = total;
     }
 }

@@ -36,15 +36,16 @@
         var materialBasket = [];
         var materialTemplateRow =
                                 "<td>"
-                                        + "<input type='hidden' name='materialList[:index].id' value=':materialId'/>"
+                                        + "<input type='hidden' name='displayMaterialList[:index].id' value=':materialId'/>"
+                                        + "<input type='hidden' name='displayMaterialList[:index].inventoryId' value=':inventoryId'/>"
                                         + "<label>:itemName</label>"
                                         + "</td>"
                                         + "<td>"
-                                        + "<input type='hidden' name='materialList[:index].price' value=':itemPrice'/>"
+                                        + "<input type='hidden' name='displayMaterialList[:index].price' value=':itemPrice'/>"
                                         + "<label>:itemPrice</label>"
                                         + "</td>"
                                         + "<td>"
-                                        + "<input class='itemQty:index' type='text' name='materialList[:index].qty' value=':itemQty'/>"
+                                        + "<input class='itemQty:index' onchange='javascript:updateQty(:index)' type='text' name='displayMaterialList[:index].qty' value=':itemQty'/>"
                                         + "</td>"
                                         + "<td>"
                                         + "<label class='itemTotal:index'>:itemTotal</label>"
@@ -67,7 +68,7 @@
                 },
                 appendTo:".menu-location",
                 select:function (event, ui) {
-                    addItem(ui.material);
+                    addItem(ui.item);
                     return false;
                 }
             });
@@ -78,20 +79,31 @@
             renderTable();
         }
 
-        function addItem(material) {
-            materialBasket.push(material);
+        function updateQty(selectedIndex) {
+            var itemQtySelector = '.itemQty' + selectedIndex;
+            var itemTotalSelector = '.itemTotal' + selectedIndex;
+            var qty = $(itemQtySelector).val();
+            var total = (materialBasket[selectedIndex].price) * qty;
+            materialBasket[selectedIndex].qty = $(itemQtySelector).val();
+            materialBasket[selectedIndex].total = total;
+            $(itemTotalSelector).html(total);
+            renderTable();
+        }
+
+        function addItem(item) {
+            materialBasket.push(item);
             renderTable();
         }
         function renderTable() {
             var rows = "";
             var total = 0;
             $.each(materialBasket, function (index, value) {
-                  alert(index);
 
                     var row = "<tr  class='item-row'>" +
                     materialTemplateRow
                             .replace(/:index/g, index)
                             .replace(/:materialId/g, value.id)
+                            .replace(/:inventoryId/g, value.inventoryId)
                             .replace(/:itemName/g, value.value)
                             .replace(/:itemPrice/g, value.price)
                             .replace(/:itemQty/g, value.qty)
@@ -99,12 +111,10 @@
                              "</tr>";
 
                     rows += row;
-                    alert(rows);
-
                     total += value.total;
             });
             if (materialBasket.length > 0) {
-                rows += "<tr><td colspan='3'>Grand Total</td><td colspan='2'>" + (total + taxTotal) + "</td></tr>";
+                rows += "<tr><td colspan='3'>Grand Total</td><td colspan='2'>" + (total) + "</td></tr>";
             }
             $(".item-list-location table tbody").html(rows);
             $("input[type='text']").blur(function () {

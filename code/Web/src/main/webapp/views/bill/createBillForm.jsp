@@ -3,19 +3,20 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <div class="row well">
-    <form id="order-creation-form" method="POST" action="<%=request.getContextPath()%>/order/saveOrder">
-        <legend>Create Purchase Order</legend>
-        <form:hidden path="processOrderForm.id"/>
+    <form id="order-creation-form" method="POST" action="<%=request.getContextPath()%>/bill/saveBill">
+        <legend>Create Bill</legend>
+        <form:hidden path="memberBillForm.member.personalDetails.id"/>
         <div class="span10 order-creation-errors"></div>
         <div class="nk-form-section">
             <div class="span10">
-                <span class="nk-filed-label"><label for="order-status"><b>Order Status</b></label></span>
+                <span class="nk-filed-label"><label for="order-status"><b>Member Name</b></label></span>
                 <span class="nk-filed" id="order-status">
-                      <form:select path="processOrderForm.orderStatus" items="${orderStates}"/>
+                   <label for="order-status"><b>${memberBillForm.member.personalDetails.firstName}</b>
+                   <b>${memberBillForm.member.personalDetails.lastName}</b></label>
                 </span>
             </div>
         </div>
-        <jsp:include page="materialSelection.jsp"/>
+        <jsp:include page="itemSelection.jsp"/>
         <div class="span8 nk-form-section">
             <button type="submit" class="btn btn-primary">Save changes</button>
         </div>
@@ -23,7 +24,7 @@
 </div>
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#order-status').val("${processOrderForm.orderStatus}");
+
     });
     $("#order-creation-form").submit(function () {
         var errors = "";

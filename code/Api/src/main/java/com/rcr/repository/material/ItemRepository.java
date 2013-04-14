@@ -3,10 +3,15 @@ package com.rcr.repository.material;
 import com.rcr.domain.Item;
 import com.rcr.domain.Material;
 import com.rcr.repository.BaseRepository;
+import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public class ItemRepository extends BaseRepository<Item> {
@@ -23,5 +28,13 @@ public class ItemRepository extends BaseRepository<Item> {
         else
             getHibernateTemplate().update(item);
         super.save(item);
+    }
+
+    public List<Item> searchItems(List<String> searchTokens) {
+        Criteria criteria = getSession().createCriteria(Item.class);
+        for (String searchToken : searchTokens) {
+            criteria.add(Restrictions.ilike("name", searchToken, MatchMode.ANYWHERE));
+        }
+        return criteria.list();
     }
 }

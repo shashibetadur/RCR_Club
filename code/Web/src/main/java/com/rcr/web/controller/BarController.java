@@ -73,6 +73,17 @@ public class BarController {
         return materials;
     }
 
+    @RequestMapping(value = "/item/search", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public
+    @ResponseBody
+    List<Item> searchItems(@RequestParam("searchToken") String searchToken) {
+
+        List<Item> items = materialService.searchItems(searchToken);
+
+        if (items.isEmpty()) return Collections.EMPTY_LIST;
+
+        return items;
+    }
     @RequestMapping(value = "/item/createForm", method = RequestMethod.GET)
     public ModelAndView itemCreationForm() {
         return new ModelAndView("bar/item/createForm", "item", new Item());

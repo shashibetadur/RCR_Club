@@ -19,6 +19,9 @@
         <property name="deleteFlag" type="java.lang.Character">
             <column name="DELETE_FLAG"/>
         </property>
+        <many-to-one name="inventory" class="com.rcr.domain.Inventory" fetch="select" lazy="false">
+            <column name="INVENTORY_ID" not-null="true"/>
+        </many-to-one>
     </class>
 </hibernate-mapping>
 

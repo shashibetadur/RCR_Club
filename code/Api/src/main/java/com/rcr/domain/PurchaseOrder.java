@@ -37,6 +37,10 @@ public class PurchaseOrder extends Entity {
         return status;
     }
 
+    public String getStatusText(char code){
+        return OrderStatus.getNameByCode(code);
+    }
+
     public void setStatus(String status) {
         this.status = status;
     }

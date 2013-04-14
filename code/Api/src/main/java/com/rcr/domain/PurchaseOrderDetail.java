@@ -8,6 +8,10 @@ public class PurchaseOrderDetail extends Entity {
 
     private long quantity;
 
+    private long inventoryId;
+
+    private Inventory inventory;
+
     public long getPurchaseOrderId() {
         return purchaseOrderId;
     }
@@ -30,5 +34,21 @@ public class PurchaseOrderDetail extends Entity {
 
     public void setQuantity(long quantity) {
         this.quantity = quantity;
+    }
+
+    public long getInventoryId() {
+        return inventoryId;
+    }
+
+    public void setInventoryId(long inventoryId) {
+        this.inventoryId = inventoryId;
+    }
+
+    public Inventory getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(Inventory inventory) {
+        this.inventory = inventory;
     }
 }

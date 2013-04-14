@@ -20,4 +20,6 @@ public interface MaterialService {
     List<Item> getAllItems();
 
     List<Material> searchMaterials(String searchToken);
+
+    List<Item> searchItems(String searchToken);
 }

@@ -61,4 +61,11 @@ public class MaterialServiceImpl implements MaterialService {
         String[] searchTokens = searchToken.split("\\s+");
         return materialRepository.searchMaterials(Arrays.asList(searchTokens));
     }
+
+    @Override
+    public List<Item> searchItems(String searchToken) {
+        if (isEmpty(searchToken) || isEmpty(searchToken.trim())) return new ArrayList<Item>();
+        String[] searchTokens = searchToken.split("\\s+");
+        return itemRepository.searchItems(Arrays.asList(searchTokens));
+    }
 }

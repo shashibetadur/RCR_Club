@@ -1,6 +1,7 @@
 package com.rcr.repository;
 
 import com.rcr.domain.Entity;
+import com.rcr.domain.Item;
 import org.hibernate.Criteria;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
@@ -48,6 +49,5 @@ public abstract class BaseRepository<T extends Entity> extends HibernateDaoSuppo
         getHibernateTemplate().evict(object);
         return object;
     }
-
 }
 

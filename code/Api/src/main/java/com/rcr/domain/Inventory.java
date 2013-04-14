@@ -16,6 +16,13 @@ public class Inventory extends Entity {
 
     private Character creditDebit;
 
+    public Inventory(long inventoryId) {
+        this.id = inventoryId;
+    }
+
+    public Inventory() {
+    }
+
     public Material getMaterial() {
         return material;
     }
