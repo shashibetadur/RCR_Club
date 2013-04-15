@@ -14,7 +14,7 @@
     <div class="nk-form-section">
         <div class="span10">
             <span class="nk-filed-label"><label>Order Status:</label></span>
-            <span class="nk-filed"><label>${order.orderStatus}</label></span>
+            <span class="nk-filed"><label>${order.orderStatusDescription}</label></span>
         </div>
     </div>
     <div class="nk-form-section span8">

@@ -13,7 +13,9 @@ public class ProcessOrderForm {
 
     private long id;
 
-    private String orderStatus;
+    private Character orderStatus;
+
+    private String orderStatusDescription;
 
     private List<Material> materialList = new ArrayList<Material>();
 
@@ -58,11 +60,11 @@ public class ProcessOrderForm {
         this.materialList = materialList;
     }
 
-    public String getOrderStatus() {
+    public Character getOrderStatus() {
         return orderStatus;
     }
 
-    public void setOrderStatus(String orderStatus) {
+    public void setOrderStatus(Character orderStatus) {
         this.orderStatus = orderStatus;
     }
 
@@ -87,7 +89,7 @@ public class ProcessOrderForm {
 
         double totalAmount = 0;
         this.setId(purchaseOrder.getId());
-        this.setOrderStatus(OrderStatus.getNameByCode(purchaseOrder.getStatus().charAt(0)));
+        this.setOrderStatus(purchaseOrder.getStatus());
         for (PurchaseOrderDetail purchaseOrderDetail : purchaseOrder.getPurchaseOrderDetails()) {
             DisplayMaterial displayMaterial = new DisplayMaterial();
             displayMaterial.setId(purchaseOrderDetail.getMaterial().getId());
@@ -110,5 +112,13 @@ public class ProcessOrderForm {
 
     public double getTotalAmount() {
         return totalAmount;
+    }
+
+    public String getOrderStatusDescription() {
+        return OrderStatus.getNameByCode(orderStatus);
+    }
+
+    public void setOrderStatusDescription(String orderStatusDescription) {
+        this.orderStatusDescription = orderStatusDescription;
     }
 }

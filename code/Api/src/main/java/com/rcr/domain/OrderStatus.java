@@ -1,7 +1,7 @@
 package com.rcr.domain;
 
 public enum OrderStatus {
-    IN_PROCESS('P'), REJECTED('R'), FOR_APPROVAL('F'), APPROVED('A');
+    IN_PROCESS('P'), REJECTED('R'), FOR_APPROVAL('F'), APPROVED('A'), RECEIVED('D');
 
     private char code;
 

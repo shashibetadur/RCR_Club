@@ -10,8 +10,8 @@
         <div class="nk-form-section">
             <div class="span10">
                 <span class="nk-filed-label"><label for="order-status"><b>Order Status</b></label></span>
-                <span class="nk-filed" id="order-status">
-                      <form:select path="processOrderForm.orderStatus" items="${orderStates}"/>
+                <span class="nk-filed">
+                    <form:select path="processOrderForm.orderStatus" items="${orderStates}"/>
                 </span>
             </div>
         </div>
@@ -23,7 +23,7 @@
 </div>
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#order-status').val("${processOrderForm.orderStatus}");
+
     });
     $("#order-creation-form").submit(function () {
         var errors = "";

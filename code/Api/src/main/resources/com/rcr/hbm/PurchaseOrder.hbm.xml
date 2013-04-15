@@ -13,7 +13,7 @@
         <property name="amount" type="double">
             <column name="AMOUNT"/>
         </property>
-        <property name="status" type="string">
+        <property name="status" type="java.lang.Character">
             <column name="STATUS"/>
         </property>
         <property name="deleteFlag" type="java.lang.Character">

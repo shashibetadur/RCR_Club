@@ -8,13 +8,12 @@ public class PurchaseOrder extends Entity {
 
     private double amount;
 
-    private String status;
+    private Character status;
 
     private List<PurchaseOrderDetail> purchaseOrderDetails = new ArrayList<PurchaseOrderDetail>();
 
     public PurchaseOrder() {
         date = Calendar.getInstance().getTime();
-        status = "NEW";
     }
 
     public Date getDate() {
@@ -33,7 +32,7 @@ public class PurchaseOrder extends Entity {
         this.amount = amount;
     }
 
-    public String getStatus() {
+    public Character getStatus() {
         return status;
     }
 
@@ -41,7 +40,7 @@ public class PurchaseOrder extends Entity {
         return OrderStatus.getNameByCode(code);
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Character status) {
         this.status = status;
     }
 

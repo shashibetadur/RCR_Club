@@ -54,16 +54,19 @@ public class OrderController {
     public String saveOrder(ProcessOrderForm processOrderForm, Model model) {
         model.asMap().clear();
         PurchaseOrder purchaseOrder = processOrderForm.buildOrder();
-        for (PurchaseOrderDetail purchaseOrderDetail : purchaseOrder.getPurchaseOrderDetails()) {
-            Inventory inventory = new Inventory();
-            inventory.setMaterial(purchaseOrderDetail.getMaterial());
-            inventory.setDate(DateUtils.currentDate());
-            inventory.setEntryDate(DateUtils.currentDate());
-            inventory.setCurrentStock(inventoryService.getMaterialQty(purchaseOrderDetail.getMaterial().getId())
-                    + purchaseOrderDetail.getQuantity());
-            inventory.setQuantity(purchaseOrderDetail.getQuantity());
-            inventory.setCreditDebit('C');
-            inventoryService.saveInventory(inventory);
+        if (purchaseOrder.getStatus() == OrderStatus.RECEIVED.getCode()) {
+            for (PurchaseOrderDetail purchaseOrderDetail : purchaseOrder.getPurchaseOrderDetails()) {
+                Inventory inventory = new Inventory();
+                inventory.setMaterial(purchaseOrderDetail.getMaterial());
+                inventory.setDate(DateUtils.currentDate());
+                inventory.setEntryDate(DateUtils.currentDate());
+                inventory.setCurrentStock(inventoryService.getMaterialQty(purchaseOrderDetail.getMaterial().getId())
+                        + purchaseOrderDetail.getQuantity());
+                inventory.setQuantity(purchaseOrderDetail.getQuantity());
+                inventory.setCreditDebit('C');
+                inventoryService.saveInventory(inventory);
+                purchaseOrderDetail.setInventoryId(inventory.getId());
+            }
         }
 
         purchaseOrderService.saveOrder(purchaseOrder);
