@@ -6,6 +6,10 @@
         <put-attribute name="main-content" value="/views/order/createOrderForm.jsp"/>
         <put-attribute name="context-menu" value="/views/order/contextMenu.jsp"/>
     </definition>
+    <definition name="order/searchOrder" extends="default">
+        <put-attribute name="main-content" value="/views/order/searchOrder.jsp"/>
+        <put-attribute name="context-menu" value="/views/order/contextMenu.jsp"/>
+    </definition>
     <definition name="order/editOrder" extends="default">
         <put-attribute name="main-content" value="/views/order/createOrderForm.jsp"/>
         <put-attribute name="context-menu" value="/views/order/contextMenu.jsp"/>
@@ -13,5 +17,8 @@
     <definition name="order/viewOrder" extends="default">
         <put-attribute name="main-content" value="/views/order/viewOrder.jsp"/>
         <put-attribute name="context-menu" value="/views/order/contextMenu.jsp"/>
+    </definition>
+    <definition name="order/searchResults" extends="ajaxSection">
+        <put-attribute name="content" value="/views/order/searchResults.jsp"/>
     </definition>
 </tiles-definitions>
