@@ -35,7 +35,7 @@ public class PurchaseOrderRepository extends BaseRepository {
             criteria.add(Restrictions.between("date", orderSearchCriteria.getFromDate(), orderSearchCriteria.getToDate()));
         }
         if (!orderSearchCriteria.getOrderStatusList().isEmpty()) {
-            criteria.add(Restrictions.in("orderStatus", orderSearchCriteria.getOrderStatusList()));
+            criteria.add(Restrictions.in("status", orderSearchCriteria.getOrderStatusList()));
         }
         return criteria.list();
     }

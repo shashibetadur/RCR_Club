@@ -22,8 +22,6 @@ public class DisplayMaterial {
 
     private String value;
 
-    private long inventoryId;
-
     private Inventory inventory;
 
     public long getId() {
@@ -96,14 +94,6 @@ public class DisplayMaterial {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public long getInventoryId() {
-        return inventoryId;
-    }
-
-    public void setInventoryId(long inventoryId) {
-        this.inventoryId = inventoryId;
     }
 
     public Inventory getInventory() {

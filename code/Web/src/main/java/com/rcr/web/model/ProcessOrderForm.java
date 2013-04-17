@@ -97,7 +97,6 @@ public class ProcessOrderForm {
             displayMaterial.setDescription(purchaseOrderDetail.getMaterial().getDescription());
             displayMaterial.setPrice(purchaseOrderDetail.getMaterial().getPrice());
             displayMaterial.setQty(purchaseOrderDetail.getQuantity());
-            displayMaterial.setInventoryId(purchaseOrderDetail.getInventoryId());
             displayMaterial.setTotal(purchaseOrderDetail.getMaterial().getPrice() * purchaseOrderDetail.getQuantity());
             this.getDisplayMaterialList().add(displayMaterial);
             totalAmount += displayMaterial.getTotal();

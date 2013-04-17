@@ -13,7 +13,7 @@ public class OrderSearchCriteria {
     private String lastName;
     private Date fromDate;
     private Date toDate;
-    private List<String> orderStatusList = new ArrayList<String>();
+    private List<Character> orderStatusList = new ArrayList<Character>();
 
     public OrderSearchCriteria() {
     }
@@ -66,11 +66,11 @@ public class OrderSearchCriteria {
         this.lastName = lastName;
     }
 
-    public List<String> getOrderStatusList() {
+    public List<Character> getOrderStatusList() {
         return orderStatusList;
     }
 
-    public void setOrderStatusList(List<String> orderStatusList) {
+    public void setOrderStatusList(List<Character> orderStatusList) {
         this.orderStatusList = orderStatusList;
     }
 

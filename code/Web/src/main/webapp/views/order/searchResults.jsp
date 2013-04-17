@@ -26,12 +26,8 @@
                 </tbody>
             </table>
             <div class="btn-group">
-                <nk:security operations="order-edit">
-                    <a href="<%=request.getContextPath()%>/order/editOrder/" class="btn  edit-order">Edit Order</a>
-                </nk:security>
-                <nk:security operations="order-view">
+                    <a href="<%=request.getContextPath()%>/order/orderEditForm/" class="btn  edit-order">Edit Order</a>
                     <a href="<%=request.getContextPath()%>/order/viewOrder" class="btn  view-order">View Order Details</a>
-                </nk:security>
             </div>
             <br/><br/>
         </c:when>

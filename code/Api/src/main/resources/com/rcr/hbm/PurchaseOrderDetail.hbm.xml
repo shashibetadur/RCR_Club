@@ -19,7 +19,7 @@
         <property name="deleteFlag" type="java.lang.Character">
             <column name="DELETE_FLAG"/>
         </property>
-        <property name="inventoryId" type="long">
+        <property name="inventoryId" type="java.lang.Long">
             <column name="INVENTORY_ID" not-null="false"/>
         </property>
     </class>
