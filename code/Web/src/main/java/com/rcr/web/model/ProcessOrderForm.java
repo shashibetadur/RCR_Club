@@ -7,6 +7,7 @@ import com.rcr.domain.PurchaseOrderDetail;
 import com.rcr.web.JsonSerializer;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class ProcessOrderForm {
@@ -24,6 +25,8 @@ public class ProcessOrderForm {
     private String materialListJason="[]";
 
     private double totalAmount;
+
+    private Date orderDate;
 
     public ProcessOrderForm() {
     }
@@ -74,6 +77,7 @@ public class ProcessOrderForm {
         PurchaseOrder purchaseOrder = new PurchaseOrder();
         purchaseOrder.setId(id);
         purchaseOrder.setStatus(orderStatus);
+        purchaseOrder.setDate(orderDate);
         for(DisplayMaterial displayMaterial: displayMaterialList ){
             PurchaseOrderDetail purchaseOrderDetail = new PurchaseOrderDetail();
             purchaseOrderDetail.setMaterial(new com.rcr.domain.Material(displayMaterial.getId()));
@@ -90,6 +94,7 @@ public class ProcessOrderForm {
         double totalAmount = 0;
         this.setId(purchaseOrder.getId());
         this.setOrderStatus(purchaseOrder.getStatus());
+        this.setOrderDate(purchaseOrder.getDate());
         for (PurchaseOrderDetail purchaseOrderDetail : purchaseOrder.getPurchaseOrderDetails()) {
             DisplayMaterial displayMaterial = new DisplayMaterial();
             displayMaterial.setId(purchaseOrderDetail.getMaterial().getId());
@@ -119,5 +124,13 @@ public class ProcessOrderForm {
 
     public void setOrderStatusDescription(String orderStatusDescription) {
         this.orderStatusDescription = orderStatusDescription;
+    }
+
+    public Date getOrderDate() {
+        return orderDate;
+    }
+
+    public void setOrderDate(Date orderDate) {
+        this.orderDate = orderDate;
     }
 }

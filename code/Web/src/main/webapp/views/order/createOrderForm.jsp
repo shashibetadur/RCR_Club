@@ -2,6 +2,8 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/datepicker.css" type="text/css"/>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/bootstrap-datepicker.js"></script>
 <div class="row well">
     <form id="order-creation-form" method="POST" action="<%=request.getContextPath()%>/order/saveOrder">
         <legend>Create Purchase Order</legend>
@@ -15,6 +17,13 @@
                 </span>
             </div>
         </div>
+        <div class="nk-form-section">
+            <div class="span10">
+                <span class="nk-filed-label"><label for="order-date"><b>Order Date</b></label></span>
+                <form:input type="text" class="order-date" path="processOrderForm.orderDate" maxlength="100"/>
+            </div>
+        </div>
+
         <jsp:include page="materialSelection.jsp"/>
         <div class="span8 nk-form-section">
             <button type="submit" class="btn btn-primary">Save changes</button>
@@ -23,7 +32,9 @@
 </div>
 <script type="text/javascript">
     $(document).ready(function () {
-
+            $(".order-date").datepicker({
+                format:"dd-mm-yyyy"
+            });
     });
     $("#order-creation-form").submit(function () {
         var errors = "";

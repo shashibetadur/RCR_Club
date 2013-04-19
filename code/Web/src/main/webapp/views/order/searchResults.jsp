@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt"%>
 <%@ taglib prefix="nk" uri="/WEB-INF/custom-tags.tld" %>
 <div class="row well">
     <c:choose>
@@ -13,6 +14,7 @@
                 <th>Order Id</th>
                 <th>Amount</th>
                 <th>Order Status</th>
+                <th>Order Date</th>
                 </thead>
                 <tbody>
                 <c:forEach var="order" items="${orderFormList}">
@@ -21,6 +23,7 @@
                         <td><label>${order.id}</label></td>
                         <td><label>${order.totalAmount}</label></td>
                         <td><label>${order.orderStatusDescription}</label></td>
+                        <td><label><fmt:formatDate pattern="dd-MM-yyyy" value="${order.orderDate}"/></label></td>
                     </tr>
                 </c:forEach>
                 </tbody>

@@ -2,6 +2,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt"%>
 <%@ taglib prefix="nk" uri="/WEB-INF/custom-tags.tld" %>
 <div class="row well">
     <legend>Order Details</legend>
@@ -15,6 +16,12 @@
         <div class="span10">
             <span class="nk-filed-label"><label>Order Status:</label></span>
             <span class="nk-filed"><label>${order.orderStatusDescription}</label></span>
+        </div>
+    </div>
+    <div class="nk-form-section">
+        <div class="span10">
+            <span class="nk-filed-label"><label>Order Date:</label></span>
+            <span class="nk-filed"><fmt:formatDate pattern="dd-MM-yyyy" value="${order.orderDate}"/></span>
         </div>
     </div>
     <div class="nk-form-section span8">
