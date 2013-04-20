@@ -14,4 +14,11 @@
         <put-attribute name="main-content" value="/views/bill/viewBill.jsp"/>
         <put-attribute name="context-menu" value="/views/bill/contextMenu.jsp"/>
     </definition>
+    <definition name="bill/searchBill" extends="default">
+        <put-attribute name="main-content" value="/views/bill/searchBills.jsp"/>
+        <put-attribute name="context-menu" value="/views/bill/contextMenu.jsp"/>
+    </definition>
+    <definition name="bill/searchResults" extends="ajaxSection">
+        <put-attribute name="content" value="/views/bill/searchResults.jsp"/>
+    </definition>
 </tiles-definitions>

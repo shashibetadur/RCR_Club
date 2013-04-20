@@ -1,6 +1,5 @@
 package com.rcr.web.model;
 
-import com.rcr.common.DateUtils;
 import com.rcr.domain.Bill;
 import com.rcr.domain.BillDetail;
 import com.rcr.domain.Item;
@@ -8,6 +7,7 @@ import com.rcr.domain.Member;
 import com.rcr.web.JsonSerializer;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class MemberBillForm {
@@ -16,7 +16,7 @@ public class MemberBillForm {
 
     private long id;
 
-    private String orderStatus;
+    private String billStatus;
 
     private List<Item> itemList = new ArrayList<Item>();
 
@@ -25,6 +25,8 @@ public class MemberBillForm {
     private String itemListJason = "[]";
 
     private double totalAmount;
+
+    private Date billDate;
 
     public MemberBillForm() {
     }
@@ -53,12 +55,12 @@ public class MemberBillForm {
         this.itemList = itemList;
     }
 
-    public String getOrderStatus() {
-        return orderStatus;
+    public String getBillStatus() {
+        return billStatus;
     }
 
-    public void setOrderStatus(String orderStatus) {
-        this.orderStatus = orderStatus;
+    public void setBillStatus(String billStatus) {
+        this.billStatus = billStatus;
     }
 
     public void setTotalAmount(double totalAmount) {
@@ -82,8 +84,8 @@ public class MemberBillForm {
         double totalAmount = 0;
         Bill bill = new Bill();
         bill.setId(id);
-        bill.setDate(DateUtils.currentDate());
-        bill.setStatus("NEW");
+        bill.setDate(this.getBillDate());
+        bill.setStatus(this.getBillStatus());
         for (DisplayItem displayItem : displayItemList) {
             BillDetail billDetail = new BillDetail();
             billDetail.setItem(new com.rcr.domain.Item(displayItem.getId()));
@@ -98,6 +100,8 @@ public class MemberBillForm {
     public void buildDisplayBill(Bill bill) {
         double totalAmount = 0;
         this.setId(bill.getId());
+        this.setBillStatus(bill.getStatus());
+        this.setBillDate(bill.getDate());
         for (BillDetail billDetail : bill.getBillDetails()) {
             DisplayItem displayItem = new DisplayItem();
             displayItem.setId(billDetail.getItem().getId());
@@ -119,5 +123,13 @@ public class MemberBillForm {
 
     public void setMember(Member member) {
         this.member = member;
+    }
+
+    public Date getBillDate() {
+        return billDate;
+    }
+
+    public void setBillDate(Date billDate) {
+        this.billDate = billDate;
     }
 }

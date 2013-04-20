@@ -1,17 +1,19 @@
 package com.rcr.web.controller;
 
 import com.rcr.domain.Bill;
+import com.rcr.domain.BillSearchCriteria;
 import com.rcr.service.bill.MemberBillService;
 import com.rcr.service.member.MemberService;
 import com.rcr.web.model.MemberBillForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @Controller
 @RequestMapping("/bill")
@@ -60,5 +62,27 @@ public class BillController {
         memberBillForm.buildDisplayBill(bill);
         memberBillForm.setMember(memberService.getMemberDetails(bill.getMember().getPersonalDetails().getId()));
         return new ModelAndView("bill/editBill", "memberBillForm", memberBillForm);
+    }
+
+    @RequestMapping(value = "/searchBill", method = RequestMethod.GET)
+    public ModelAndView billSearchForm() {
+        return new ModelAndView("bill/searchBill");
+    }
+
+    @RequestMapping(value = "/searchBill", method = RequestMethod.POST)
+    public ModelAndView billSearchQuery(BillSearchCriteria billSearchCriteria) {
+        List<Bill> billList = memberBillService.search(billSearchCriteria);
+        List<MemberBillForm> memberBillList = new ArrayList<MemberBillForm>();
+        for (Bill bill : billList) {
+            MemberBillForm memberBillForm = new MemberBillForm();
+            memberBillForm.buildDisplayBill(bill);
+            memberBillList.add(memberBillForm);
+        }
+        return new ModelAndView("bill/searchResults", "memberBillList", memberBillList);
+    }
+
+    @ModelAttribute("billStates")
+    public List<String> billStates() {
+        return Arrays.asList("NEW", "CLOSED");
     }
 }

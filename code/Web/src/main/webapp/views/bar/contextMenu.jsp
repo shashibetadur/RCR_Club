@@ -12,4 +12,5 @@
     <li class="nk-side-menu-sep"><a href="<%=request.getContextPath()%>/order/createOrder">Create Order</a></li>
     <li class="nk-side-menu-sep"><a href="<%=request.getContextPath()%>/member/searchForm">Create Bill</a></li>
     <li class="nk-side-menu-sep"><a href="<%=request.getContextPath()%>/order/searchOrder">Search Order</a></li>
+    <li class="nk-side-menu-sep"><a href="<%=request.getContextPath()%>/bill/searchBill">Search Bill</a></li>
 </ul>

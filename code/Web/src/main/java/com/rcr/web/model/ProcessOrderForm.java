@@ -29,6 +29,7 @@ public class ProcessOrderForm {
     private Date orderDate;
 
     public ProcessOrderForm() {
+        orderStatus = 'P';
     }
 
     public List<DisplayMaterial> getDisplayMaterialList() {
