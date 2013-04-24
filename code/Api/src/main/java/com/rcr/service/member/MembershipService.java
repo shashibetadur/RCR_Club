@@ -1,8 +1,8 @@
 package com.rcr.service.member;
 
-import com.rcr.domain.MembershipDetail;
-import com.rcr.domain.MembershipDetails;
-import com.rcr.domain.MembershipType;
+import com.rcr.domain.member.MembershipDetail;
+import com.rcr.domain.member.MembershipDetails;
+import com.rcr.domain.member.MembershipType;
 
 import java.util.Date;
 import java.util.List;

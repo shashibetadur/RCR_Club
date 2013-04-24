@@ -1,8 +1,8 @@
 package com.rcr.service.member;
 
-import com.rcr.domain.MembershipDetail;
-import com.rcr.domain.MembershipDetails;
-import com.rcr.domain.MembershipType;
+import com.rcr.domain.member.MembershipDetail;
+import com.rcr.domain.member.MembershipDetails;
+import com.rcr.domain.member.MembershipType;
 import com.rcr.repository.member.MembershipDetailRepository;
 import com.rcr.repository.member.MembershipTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;

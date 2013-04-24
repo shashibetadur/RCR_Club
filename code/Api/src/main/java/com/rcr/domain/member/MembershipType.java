@@ -1,5 +1,7 @@
-package com.rcr.domain;
+package com.rcr.domain.member;
 
+
+import com.rcr.domain.Entity;
 
 public class MembershipType extends Entity {
     private String name;

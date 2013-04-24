@@ -4,6 +4,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <form class="membership-type-delete-form">
     <form:hidden path="memberType.id"/>
+    <div class="membership-type-delete-errors"></div>
     <div>
         <label>Are you sure you want delete [${memberType.name}] membership type</label>
     </div>
@@ -25,7 +26,7 @@
                 $(".close").click();
             },
             error:function (data) {
-                $('membership-type-save-errors').html("<label class='label error'>Delete Failed!!!</label>")
+                $('.membership-type-delete-errors').html("<label class='label error'>Delete Failed!!!</label>")
             }
         });
     });

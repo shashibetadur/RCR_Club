@@ -1,4 +1,4 @@
-package com.rcr.domain;
+package com.rcr.domain.member;
 
 import java.util.ArrayList;
 import java.util.List;

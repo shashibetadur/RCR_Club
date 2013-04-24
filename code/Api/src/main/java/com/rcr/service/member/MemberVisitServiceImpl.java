@@ -1,6 +1,6 @@
 package com.rcr.service.member;
 
-import com.rcr.domain.MemberVisit;
+import com.rcr.domain.member.MemberVisit;
 import com.rcr.repository.member.MemberRepository;
 import com.rcr.repository.member.MemberVisitRepository;
 import org.springframework.beans.factory.annotation.Autowired;

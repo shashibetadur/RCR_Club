@@ -7,7 +7,7 @@
             <column name="ID"/>
             <generator class="identity"/>
         </id>
-        <many-to-one name="member" class="com.rcr.domain.Member" fetch="select" lazy="false">
+        <many-to-one name="member" class="com.rcr.domain.member.Member" fetch="select" lazy="false">
             <column name="MEMBER_ID" not-null="true"/>
         </many-to-one>
         <property name="date" type="timestamp">

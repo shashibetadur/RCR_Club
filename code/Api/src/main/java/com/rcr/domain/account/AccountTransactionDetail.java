@@ -1,11 +1,20 @@
-package com.rcr.domain;
+package com.rcr.domain.account;
+
+import com.rcr.domain.CategoryAttribute;
+import com.rcr.domain.Entity;
 
 public class AccountTransactionDetail extends Entity {
-
 
     private CategoryAttribute categoryAttributeId;
     private long accountTransactionId;
     private String value;
+
+    public AccountTransactionDetail(long categoryAttributeId, String value) {
+        CategoryAttribute categoryAttribute = new CategoryAttribute();
+        categoryAttribute.setId(categoryAttributeId);
+        this.categoryAttributeId = categoryAttribute;
+        this.value = value;
+    }
 
     public String getValue() {
         return value;

@@ -3,7 +3,7 @@ package com.rcr.web.model;
 import com.rcr.domain.Bill;
 import com.rcr.domain.BillDetail;
 import com.rcr.domain.Item;
-import com.rcr.domain.Member;
+import com.rcr.domain.member.Member;
 import com.rcr.web.JsonSerializer;
 
 import java.util.ArrayList;

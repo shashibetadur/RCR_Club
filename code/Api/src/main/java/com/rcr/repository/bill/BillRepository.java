@@ -2,7 +2,7 @@ package com.rcr.repository.bill;
 
 import com.rcr.domain.Bill;
 import com.rcr.domain.BillSearchCriteria;
-import com.rcr.domain.Member;
+import com.rcr.domain.member.Member;
 import com.rcr.repository.BaseRepository;
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;

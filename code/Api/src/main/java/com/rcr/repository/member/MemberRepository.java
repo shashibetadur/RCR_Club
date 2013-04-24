@@ -1,7 +1,7 @@
 package com.rcr.repository.member;
 
-import com.rcr.domain.Member;
-import com.rcr.domain.MemberSearchCriteria;
+import com.rcr.domain.member.Member;
+import com.rcr.domain.member.MemberSearchCriteria;
 import com.rcr.domain.Person;
 import com.rcr.repository.BaseRepository;
 import org.hibernate.Criteria;

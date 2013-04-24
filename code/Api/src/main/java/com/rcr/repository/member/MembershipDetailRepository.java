@@ -1,6 +1,6 @@
 package com.rcr.repository.member;
 
-import com.rcr.domain.MembershipDetail;
+import com.rcr.domain.member.MembershipDetail;
 import com.rcr.repository.BaseRepository;
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;

@@ -1,7 +1,7 @@
 package com.rcr.repository.material;
 
 import com.rcr.domain.Material;
-import com.rcr.domain.Member;
+import com.rcr.domain.member.Member;
 import com.rcr.repository.BaseRepository;
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;

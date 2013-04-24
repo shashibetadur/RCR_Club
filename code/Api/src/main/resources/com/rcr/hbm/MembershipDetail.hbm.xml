@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="com.rcr.domain.MembershipDetail" table="MEMBERSHIP_DETAIL" catalog="rcr_raichur">
+    <class name="com.rcr.domain.member.MembershipDetail" table="MEMBERSHIP_DETAIL" catalog="rcr_raichur">
         <id name="id" type="long">
             <column name="ID"/>
             <generator class="identity"/>
@@ -10,7 +10,7 @@
         <property name="memberId" type="long">
             <column name="MEMBER_ID" not-null="true"/>
         </property>
-        <many-to-one name="membershipType" class="com.rcr.domain.MembershipType" fetch="select" lazy="false">
+        <many-to-one name="membershipType" class="com.rcr.domain.member.MembershipType" fetch="select" lazy="false">
             <column name="MEMBERSHIP_TYPE_ID" not-null="true"/>
         </many-to-one>
         <property name="startDate" type="timestamp">

@@ -1,4 +1,4 @@
-package com.rcr.domain;
+package com.rcr.domain.member;
 
 import static org.apache.commons.lang.StringUtils.isEmpty;
 

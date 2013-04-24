@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+        "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+    <!--membership type related-->
+    <definition name="account/createForm" extends="ajaxSection">
+        <put-attribute name="content" value="/views/account/accountCreateForm.jsp"/>
+    </definition>
+    <definition name="account/editForm" extends="ajaxSection">
+        <put-attribute name="content" value="/views/account/accountCreateForm.jsp"/>
+    </definition>
+    <definition name="account/deleteForm" extends="ajaxSection">
+        <put-attribute name="content" value="/views/account/accountDeleteForm.jsp"/>
+    </definition>
+    <definition name="account/list" extends="default">
+        <put-attribute name="main-content" value="/views/account/accountList.jsp"/>
+        <put-attribute name="context-menu" value="/views/account/contextMenu.jsp"/>
+    </definition>
+</tiles-definitions>

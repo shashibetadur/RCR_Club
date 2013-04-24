@@ -1,6 +1,6 @@
 package com.rcr.repository.member;
 
-import com.rcr.domain.MembershipType;
+import com.rcr.domain.member.MembershipType;
 import com.rcr.repository.BaseRepository;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;

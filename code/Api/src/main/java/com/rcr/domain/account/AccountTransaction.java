@@ -1,11 +1,18 @@
-package com.rcr.domain;
+package com.rcr.domain.account;
 
+import com.rcr.domain.Entity;
+
+import java.lang.reflect.Constructor;
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 public class AccountTransaction extends Entity {
+
+    public static final Character CREDIT = 'C';
+
+    public static final Character DEBIT = 'D';
 
     private Account account;
 
@@ -13,13 +20,16 @@ public class AccountTransaction extends Entity {
 
     private double amount;
 
-    private double balance;
-
     private String notes;
 
     private Character creditDebit;
 
     private List<AccountTransactionDetail> transactionDetails = new ArrayList<AccountTransactionDetail>();
+
+
+    public AccountTransaction() {
+        transactionDate = Calendar.getInstance().getTime();
+    }
 
     public Account getAccount() {
         return account;
@@ -45,14 +55,6 @@ public class AccountTransaction extends Entity {
         this.amount = amount;
     }
 
-    public double getBalance() {
-        return balance;
-    }
-
-    public void setBalance(double balance) {
-        this.balance = balance;
-    }
-
     public String getNotes() {
         return notes;
     }
@@ -75,5 +77,17 @@ public class AccountTransaction extends Entity {
 
     public void setTransactionDetails(List<AccountTransactionDetail> transactionDetails) {
         this.transactionDetails = transactionDetails;
+    }
+
+
+    public Payment buildPayment() {
+        try {
+            if (transactionDetails.isEmpty()) return null;
+            Class<? extends Payment> paymentType = CategoryTypes.getPaymentType(transactionDetails.get(0));
+            Constructor<? extends Payment> constructor = paymentType.getConstructor(AccountTransaction.class);
+            return constructor.newInstance(new Object[]{this});
+        } catch (Exception e) {
+            throw new RuntimeException("could not build payment out transaction" + id);
+        }
     }
 }

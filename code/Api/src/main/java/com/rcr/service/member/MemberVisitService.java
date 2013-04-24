@@ -1,6 +1,6 @@
 package com.rcr.service.member;
 
-import com.rcr.domain.MemberVisit;
+import com.rcr.domain.member.MemberVisit;
 
 import java.util.Date;
 import java.util.List;

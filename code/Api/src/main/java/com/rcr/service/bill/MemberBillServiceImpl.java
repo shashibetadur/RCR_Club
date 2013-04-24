@@ -2,8 +2,8 @@ package com.rcr.service.bill;
 
 import com.rcr.domain.Bill;
 import com.rcr.domain.BillSearchCriteria;
-import com.rcr.domain.Member;
-import com.rcr.domain.MemberSearchCriteria;
+import com.rcr.domain.member.Member;
+import com.rcr.domain.member.MemberSearchCriteria;
 import com.rcr.repository.bill.BillRepository;
 import com.rcr.repository.member.MemberRepository;
 import org.apache.commons.collections.CollectionUtils;

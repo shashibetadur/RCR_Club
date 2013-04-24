@@ -1,5 +1,7 @@
 package com.rcr.domain;
 
+import com.rcr.domain.member.Member;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;

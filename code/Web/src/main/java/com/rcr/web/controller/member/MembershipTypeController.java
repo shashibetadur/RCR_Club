@@ -1,7 +1,7 @@
 package com.rcr.web.controller.member;
 
 import com.rcr.domain.Authorize;
-import com.rcr.domain.MembershipType;
+import com.rcr.domain.member.MembershipType;
 import com.rcr.domain.Operation;
 import com.rcr.service.member.MemberService;
 import com.rcr.service.member.MembershipService;

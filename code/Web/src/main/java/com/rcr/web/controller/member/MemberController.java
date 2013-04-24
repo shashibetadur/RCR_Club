@@ -1,6 +1,8 @@
 package com.rcr.web.controller.member;
 
 import com.rcr.domain.*;
+import com.rcr.domain.member.Member;
+import com.rcr.domain.member.MemberSearchCriteria;
 import com.rcr.service.member.MemberService;
 import com.rcr.service.member.MembershipService;
 import com.rcr.web.model.MemberAutoComplete;

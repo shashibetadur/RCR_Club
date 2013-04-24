@@ -1,7 +1,7 @@
 package com.rcr.web.controller.member;
 
 import com.rcr.domain.Authorize;
-import com.rcr.domain.MemberVisit;
+import com.rcr.domain.member.MemberVisit;
 import com.rcr.domain.Operation;
 import com.rcr.service.member.MemberVisitService;
 import com.rcr.web.model.MemberVisitsPageView;

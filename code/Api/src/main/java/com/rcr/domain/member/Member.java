@@ -1,4 +1,7 @@
-package com.rcr.domain;
+package com.rcr.domain.member;
+
+import com.rcr.domain.Entity;
+import com.rcr.domain.Person;
 
 import java.util.ArrayList;
 import java.util.List;

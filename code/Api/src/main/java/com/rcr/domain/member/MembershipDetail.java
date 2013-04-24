@@ -1,4 +1,6 @@
-package com.rcr.domain;
+package com.rcr.domain.member;
+
+import com.rcr.domain.Entity;
 
 import java.util.Date;
 

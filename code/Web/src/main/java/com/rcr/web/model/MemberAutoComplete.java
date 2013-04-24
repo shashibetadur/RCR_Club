@@ -1,6 +1,6 @@
 package com.rcr.web.model;
 
-import com.rcr.domain.Member;
+import com.rcr.domain.member.Member;
 
 public class MemberAutoComplete {
 

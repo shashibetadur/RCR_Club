@@ -6,6 +6,10 @@ public class Category extends Entity {
 
     private String description;
 
+    public Category(long id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }
@@ -21,4 +25,9 @@ public class Category extends Entity {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    class PurchaseOrder {
+        public static final long PURCHASE_ORDER = 1L;
+    }
+
 }

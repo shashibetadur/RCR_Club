@@ -1,9 +1,9 @@
 package com.rcr.service.member;
 
 
-import com.rcr.domain.Member;
-import com.rcr.domain.MemberSearchCriteria;
-import com.rcr.domain.MemberSummary;
+import com.rcr.domain.member.Member;
+import com.rcr.domain.member.MemberSearchCriteria;
+import com.rcr.domain.member.MemberSummary;
 import com.rcr.repository.member.MemberRepository;
 import com.rcr.repository.member.MembershipDetailRepository;
 import com.rcr.repository.member.MembershipTypeRepository;

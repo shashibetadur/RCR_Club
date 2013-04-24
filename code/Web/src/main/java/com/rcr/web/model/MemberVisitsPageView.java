@@ -1,6 +1,6 @@
 package com.rcr.web.model;
 
-import com.rcr.domain.MemberVisit;
+import com.rcr.domain.member.MemberVisit;
 
 import java.util.ArrayList;
 import java.util.Date;
