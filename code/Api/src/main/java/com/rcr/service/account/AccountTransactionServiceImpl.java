@@ -16,6 +16,9 @@ public class AccountTransactionServiceImpl implements AccountTransactionService 
     private AccountRepository accountRepository;
     private AccountTransactionRepository accountTransactionRepository;
 
+    AccountTransactionServiceImpl() {
+    }
+
     @Autowired
     public AccountTransactionServiceImpl(AccountRepository accountRepository, AccountTransactionRepository accountTransactionRepository) {
         this.accountRepository = accountRepository;
