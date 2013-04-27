@@ -13,7 +13,7 @@ public class ExpensePayment extends Payment {
     }
 
     public ExpensePayment(AccountTransaction accountTransaction) {
-        super(accountTransaction.getId(), accountTransaction.getAccount().getId(), accountTransaction.getAmount(), accountTransaction.getNotes());
+        super(accountTransaction);
         this.expenseId = Long.parseLong(accountTransaction.getTransactionDetails().get(0).getValue());
     }
 

@@ -16,7 +16,7 @@ public class MembershipPayment extends Payment {
     }
 
     public MembershipPayment(AccountTransaction accountTransaction) {
-        super(accountTransaction.getId(), accountTransaction.getAccount().getId(), accountTransaction.getAmount(), accountTransaction.getNotes());
+        super(accountTransaction);
         this.memberId = Long.parseLong(accountTransaction.getTransactionDetails().get(0).getValue());
     }
 

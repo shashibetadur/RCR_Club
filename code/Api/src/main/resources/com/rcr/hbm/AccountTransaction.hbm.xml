@@ -30,4 +30,7 @@
             <one-to-many class="com.rcr.domain.account.AccountTransactionDetail"/>
         </bag>
     </class>
+    <query name="findMembershipPaymentDetails">
+        <![CDATA[select  at from AccountTransaction at, AccountTransactionDetail atd where at.id = atd.accountTransactionId and atd.categoryAttributeId=2 and atd.value = :memberId]]>
+    </query>
 </hibernate-mapping>

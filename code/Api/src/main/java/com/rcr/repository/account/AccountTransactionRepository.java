@@ -17,4 +17,8 @@ public class AccountTransactionRepository extends BaseRepository<AccountTransact
         super(AccountTransaction.class);
         setSessionFactory(sessionFactory);
     }
+
+    public List<AccountTransaction> getMemberPaymentTransactionDetails(long memberId) {
+        return getSession().getNamedQuery("findMembershipPaymentDetails").setLong("memberId", memberId).list();
+    }
 }

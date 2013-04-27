@@ -49,6 +49,17 @@
         <put-attribute name="content" value="/views/member/searchResults.jsp"/>
     </definition>
 
+    <!--membership payment related-->
+    <definition name="member/membership/payment/create" extends="default">
+        <put-attribute name="main-content" value="/views/member/createFormMembershipPayment.jsp"/>
+        <put-attribute name="context-menu" value="/views/member/contextMenu.jsp"/>
+    </definition>
+
+    <definition name="member/membership/payment/edit" extends="default">
+        <put-attribute name="main-content" value="/views/member/createFormMembershipPayment.jsp"/>
+        <put-attribute name="context-menu" value="/views/member/contextMenu.jsp"/>
+    </definition>
+
 
 
     <!--membership related-->

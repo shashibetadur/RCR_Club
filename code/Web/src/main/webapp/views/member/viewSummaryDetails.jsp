@@ -11,7 +11,7 @@
                 <nk:security operations="membership-renew">
                     <a class="btn" href="<%=request.getContextPath()%>/member/membership/renew/${member.id}">Renew</a>
                 </nk:security>
-                <a class="btn" href="<%=request.getContextPath()%>/member/membership/payment/${member.id}">Make Payment</a>
+                <a class="btn" href="<%=request.getContextPath()%>/member/membership/payment/createForm/${member.id}">Make Payment</a>
             </div>
             <br/>
         </span>

@@ -76,11 +76,10 @@
                 var startDateTokens = $("#start-date").val().split("-");
                 var startDate = new Date(startDateTokens[2],startDateTokens[1]-1,startDateTokens[0]);
                 startDate.setDate(startDate.getDate()+membershipType.validity);
-                $("#end-date").val(startDate.getDate()+"-"+(startDate.getMonth()+1)+"-"+startDate.getYear());
+                $("#end-date").val(startDate.getDate()+"-"+(startDate.getMonth()+1)+"-"+startDate.getFullYear());
             });
         }
     });
-
 </script>
 
 

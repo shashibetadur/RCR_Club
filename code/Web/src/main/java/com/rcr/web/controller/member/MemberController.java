@@ -70,6 +70,7 @@ public class MemberController {
     public ModelAndView memberViewForm(@PathVariable("memberId") long memberId) {
         ModelAndView modelAndView = new ModelAndView("member/viewForm", "member", memberService.getMemberDetails(memberId));
         modelAndView.getModelMap().put("membershipDetails", membershipService.getMembershipDetails(memberId));
+        modelAndView.getModelMap().put("membershipPayments", membershipService.getMembershipPaymentDetails(memberId));
         modelAndView.getModelMap().put("memberSummary", memberService.getMemberSummary(memberId));
         return modelAndView;
     }

@@ -21,7 +21,7 @@ public class AccountTransactionTest {
         accountTransaction.getTransactionDetails().add(new AccountTransactionDetail(CategoryTypes.MembershipFees.MEMBER_ID, "1"));
         Payment payment = accountTransaction.buildPayment();
         assertThat(payment instanceof MembershipPayment, is(true));
-        assertThat(payment.getCreditedAccountId(), is(1L));
+        assertThat(payment.getAccountId(), is(1L));
         assertThat(payment.getAmount(), is(100D));
         assertThat(payment.creditDebitFlag(), is(AccountTransaction.CREDIT));
         assertThat(payment.getNotes(), is("NA"));
@@ -39,7 +39,7 @@ public class AccountTransactionTest {
         accountTransaction.getTransactionDetails().add(new AccountTransactionDetail(CategoryTypes.MemberBill.MEMBER_ID, "1"));
         Payment payment = accountTransaction.buildPayment();
         assertThat(payment instanceof MemberBillPayment, is(true));
-        assertThat(payment.getCreditedAccountId(), is(1L));
+        assertThat(payment.getAccountId(), is(1L));
         assertThat(payment.getAmount(), is(100D));
         assertThat(payment.creditDebitFlag(), is(AccountTransaction.CREDIT));
         assertThat(payment.getNotes(), is("NA"));
@@ -57,7 +57,7 @@ public class AccountTransactionTest {
         accountTransaction.getTransactionDetails().add(new AccountTransactionDetail(CategoryTypes.Expense.EXPENSE_ID, "1"));
         Payment payment = accountTransaction.buildPayment();
         assertThat(payment instanceof ExpensePayment, is(true));
-        assertThat(payment.getCreditedAccountId(), is(1L));
+        assertThat(payment.getAccountId(), is(1L));
         assertThat(payment.getAmount(), is(100D));
         assertThat(payment.creditDebitFlag(), is(AccountTransaction.DEBIT));
         assertThat(payment.getNotes(), is("NA"));
@@ -75,7 +75,7 @@ public class AccountTransactionTest {
         accountTransaction.getTransactionDetails().add(new AccountTransactionDetail(CategoryTypes.PurchaseOrder.PURCHASE_ORDER_ID, "1"));
         Payment payment = accountTransaction.buildPayment();
         assertThat(payment instanceof PurchaseOrderPayment, is(true));
-        assertThat(payment.getCreditedAccountId(), is(1L));
+        assertThat(payment.getAccountId(), is(1L));
         assertThat(payment.getAmount(), is(100D));
         assertThat(payment.creditDebitFlag(), is(AccountTransaction.DEBIT));
         assertThat(payment.getNotes(), is("NA"));

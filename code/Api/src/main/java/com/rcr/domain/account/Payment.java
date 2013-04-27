@@ -1,24 +1,31 @@
 package com.rcr.domain.account;
 
+import java.util.Date;
 import java.util.List;
 
 public abstract class Payment {
     private long transactionId;
 
-    private long creditedAccountId;
+    private long accountId;
+
+    private String accountName;
 
     private double amount;
+
+    private Date date;
 
     private String notes;
 
     protected Payment() {
     }
 
-    public Payment(long transactionId, long creditedAccountId, double amount, String notes) {
-        this.transactionId = transactionId;
-        this.creditedAccountId =creditedAccountId;
-        this.amount = amount;
-        this.notes = notes;
+    public Payment(AccountTransaction accountTransaction) {
+        this.transactionId = accountTransaction.getId();
+        this.accountId = accountTransaction.getAccount().getId();
+        this.amount = accountTransaction.getAmount();
+        this.notes = accountTransaction.getNotes();
+        this.date = accountTransaction.getTransactionDate();
+        this.accountName = accountTransaction.getAccount().getName();
     }
 
     public long getTransactionId() {
@@ -29,12 +36,12 @@ public abstract class Payment {
         this.transactionId = transactionId;
     }
 
-    public long getCreditedAccountId() {
-        return creditedAccountId;
+    public long getAccountId() {
+        return accountId;
     }
 
-    public void setCreditedAccountId(long creditedAccountId) {
-        this.creditedAccountId = creditedAccountId;
+    public void setAccountId(long accountId) {
+        this.accountId = accountId;
     }
 
     public double getAmount() {
@@ -53,10 +60,18 @@ public abstract class Payment {
         this.notes = notes;
     }
 
+    public Date getDate() {
+        return date;
+    }
+
+    public String getAccountName() {
+        return accountName;
+    }
+
     public AccountTransaction buildAccountTransaction() {
         AccountTransaction accountTransaction = new AccountTransaction();
         accountTransaction.setId(getTransactionId());
-        accountTransaction.setAccount(new Account(getCreditedAccountId()));
+        accountTransaction.setAccount(new Account(getAccountId()));
         accountTransaction.setAmount(getAmount());
         accountTransaction.setCreditDebit(creditDebitFlag());
         accountTransaction.setNotes(getNotes());

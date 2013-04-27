@@ -18,7 +18,7 @@ public class AccountTransactionServiceIntTest extends BaseIntTest {
     @Test
     public void shouldSaveMembershipTransaction() throws Exception {
         MembershipPayment membershipPayment = new MembershipPayment();
-        membershipPayment.setCreditedAccountId(1);
+        membershipPayment.setAccountId(1);
         membershipPayment.setAmount(1000D);
         membershipPayment.setMemberId(1L);
         membershipPayment.setNotes("late");

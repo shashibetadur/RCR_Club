@@ -9,6 +9,9 @@ public class AccountTransactionDetail extends Entity {
     private long accountTransactionId;
     private String value;
 
+    public AccountTransactionDetail() {
+    }
+
     public AccountTransactionDetail(long categoryAttributeId, String value) {
         CategoryAttribute categoryAttribute = new CategoryAttribute();
         categoryAttribute.setId(categoryAttributeId);

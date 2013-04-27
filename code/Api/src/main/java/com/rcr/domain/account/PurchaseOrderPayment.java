@@ -15,7 +15,7 @@ public class PurchaseOrderPayment extends Payment {
     }
 
     public PurchaseOrderPayment(AccountTransaction accountTransaction) {
-        super(accountTransaction.getId(), accountTransaction.getAccount().getId(), accountTransaction.getAmount(), accountTransaction.getNotes());
+        super(accountTransaction);
         this.purchaseOrderId = Long.parseLong(accountTransaction.getTransactionDetails().get(0).getValue());
     }
 

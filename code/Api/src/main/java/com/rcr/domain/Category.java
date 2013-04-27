@@ -6,6 +6,9 @@ public class Category extends Entity {
 
     private String description;
 
+    public Category() {
+    }
+
     public Category(long id) {
         this.id = id;
     }

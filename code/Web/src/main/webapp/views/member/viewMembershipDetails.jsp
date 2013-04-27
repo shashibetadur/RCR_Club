@@ -39,7 +39,7 @@
                         <a class="btn edit-membership"
                            href="<%=request.getContextPath()%>/member/membership/edit">Edit</a>
                         <a class="btn delete-membership"
-                           href="<%=request.getContextPath()%>/member/membership/payment/${member.id}">Delete</a>
+                           href="#">Delete</a>
                     </div>
                     <br/>
                 </span>
@@ -52,7 +52,6 @@
                 if (selectedIndex) document.location.href = ($(this).attr('href') + "/" + selectedIndex);
                 else return false;
             });
-
         </script>
     </c:when>
     <c:otherwise>
