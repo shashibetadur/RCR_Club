@@ -36,16 +36,6 @@ public class MemberServiceImpl implements MemberService {
         return memberRepository.get(memberId);
     }
 
-
-    @Override
-    public MemberSummary getMemberSummary(long memberId) {
-        MemberSummary memberSummary = new MemberSummary();
-        memberSummary.setMembershipType("Gold");
-        memberSummary.setStatus("Active");
-        memberSummary.setStatus("Active");
-        return memberSummary;
-    }
-
     @Override
     public List<Member> search(MemberSearchCriteria memberSearchCriteria) {
         return memberRepository.findBy(memberSearchCriteria);

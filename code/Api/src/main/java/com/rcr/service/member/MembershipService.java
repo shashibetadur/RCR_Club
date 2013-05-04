@@ -27,5 +27,5 @@ public interface MembershipService {
 
     Date getRenewalDate(long memberId);
 
-    List<Payment> getMembershipPaymentDetails(long memberId);
+    List<MembershipPayment> getMembershipPaymentDetails(long memberId);
 }

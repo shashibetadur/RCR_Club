@@ -6,12 +6,37 @@
 <%@ taglib prefix="nk" uri="/WEB-INF/custom-tags.tld" %>
 <div class="nk-form-section">
     <div class="span10">
+        <span class="nk-filed-label"><label>Current Membership:</label></span>
+        <span class="nk-filed"><label>${memberSummary.membershipType}</label></span>
+    </div>
+</div>
+<div class="nk-form-section">
+    <div class="span10">
+        <span class="nk-filed-label"><label>Membership Status:</label></span>
+        <span class="nk-filed"><label>${memberSummary.status}</label></span>
+    </div>
+</div>
+<div class="nk-form-section">
+    <div class="span10">
+        <span class="nk-filed-label"><label>Membership Expiry Date:</label></span>
+        <span class="nk-filed"><label>${memberSummary.expiryDate}</label></span>
+    </div>
+</div>
+<div class="nk-form-section">
+    <div class="span10">
+        <span class="nk-filed-label"><label>Membership Pending Amount:</label></span>
+        <span class="nk-filed"><label>${memberSummary.pendingAmount}</label></span>
+    </div>
+</div>
+<div class="nk-form-section">
+    <div class="span10">
         <span class="nk-filed-label">
             <div class="btn-group">
                 <nk:security operations="membership-renew">
                     <a class="btn" href="<%=request.getContextPath()%>/member/membership/renew/${member.id}">Renew</a>
                 </nk:security>
-                <a class="btn" href="<%=request.getContextPath()%>/member/membership/payment/createForm/${member.id}">Make Payment</a>
+                <a class="btn" href="<%=request.getContextPath()%>/member/membership/payment/createForm/${member.id}">Make
+                    Payment</a>
             </div>
             <br/>
         </span>

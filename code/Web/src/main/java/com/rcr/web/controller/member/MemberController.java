@@ -1,8 +1,12 @@
 package com.rcr.web.controller.member;
 
 import com.rcr.domain.*;
+import com.rcr.domain.account.MembershipPayment;
+import com.rcr.domain.account.Payment;
 import com.rcr.domain.member.Member;
 import com.rcr.domain.member.MemberSearchCriteria;
+import com.rcr.domain.member.MemberSummary;
+import com.rcr.domain.member.MembershipDetails;
 import com.rcr.service.member.MemberService;
 import com.rcr.service.member.MembershipService;
 import com.rcr.web.model.MemberAutoComplete;
@@ -68,10 +72,15 @@ public class MemberController {
     @RequestMapping(value = "/viewForm/{memberId}", method = RequestMethod.GET)
     @Authorize(Operation.MEMBER_VIEW)
     public ModelAndView memberViewForm(@PathVariable("memberId") long memberId) {
-        ModelAndView modelAndView = new ModelAndView("member/viewForm", "member", memberService.getMemberDetails(memberId));
-        modelAndView.getModelMap().put("membershipDetails", membershipService.getMembershipDetails(memberId));
-        modelAndView.getModelMap().put("membershipPayments", membershipService.getMembershipPaymentDetails(memberId));
-        modelAndView.getModelMap().put("memberSummary", memberService.getMemberSummary(memberId));
+        Member memberDetails = memberService.getMemberDetails(memberId);
+        MembershipDetails membershipDetails = membershipService.getMembershipDetails(memberId);
+        List<MembershipPayment> membershipPaymentDetails = (List<MembershipPayment>) membershipService.getMembershipPaymentDetails(memberId);
+        MemberSummary memberSummary = new MemberSummary(memberDetails,membershipDetails,membershipPaymentDetails);
+
+        ModelAndView modelAndView = new ModelAndView("member/viewForm", "member", memberDetails);
+        modelAndView.getModelMap().put("membershipDetails", membershipDetails);
+        modelAndView.getModelMap().put("membershipPayments", membershipPaymentDetails);
+        modelAndView.getModelMap().put("memberSummary", memberSummary);
         return modelAndView;
     }
 

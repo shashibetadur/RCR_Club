@@ -1,7 +1,7 @@
 package com.rcr.service.member;
 
 import com.rcr.domain.account.AccountTransaction;
-import com.rcr.domain.account.Payment;
+import com.rcr.domain.account.MembershipPayment;
 import com.rcr.domain.member.MembershipDetail;
 import com.rcr.domain.member.MembershipDetails;
 import com.rcr.domain.member.MembershipType;
@@ -72,15 +72,9 @@ public class MembershipServiceImpl implements MembershipService {
 
     @Override
     public Date getRenewalDate(long memberId) {
-        Date renewalDate = null;
         MembershipDetails membershipDetails = getMembershipDetails(memberId);
         if (membershipDetails.getMembershipDetailList().isEmpty()) return new Date(System.currentTimeMillis());
-        for (MembershipDetail membershipDetail : membershipDetails.getMembershipDetailList()) {
-            if (renewalDate == null) renewalDate = membershipDetail.getEndDate();
-            else if (renewalDate.compareTo(membershipDetail.getEndDate()) < 0)
-                renewalDate = membershipDetail.getEndDate();
-
-        }
+        Date renewalDate = membershipDetails.getCurrentMembership().getEndDate();
         Calendar instance = Calendar.getInstance();
         instance.setTime(renewalDate);
         instance.add(Calendar.DATE, 1);
@@ -88,14 +82,14 @@ public class MembershipServiceImpl implements MembershipService {
     }
 
     @Override
-    public List<Payment> getMembershipPaymentDetails(long memberId) {
+    public List<MembershipPayment> getMembershipPaymentDetails(long memberId) {
         List<AccountTransaction> paymentTransactionDetails = accountTransactionRepository.getMemberPaymentTransactionDetails(memberId);
-        final List<Payment> membershipPayments = new ArrayList<Payment>();
+        final List<MembershipPayment> membershipPayments = new ArrayList<MembershipPayment>();
         CollectionUtils.forAllDo(paymentTransactionDetails, new Closure() {
             @Override
             public void execute(Object input) {
                 AccountTransaction accountTransaction = (AccountTransaction) input;
-                membershipPayments.add(accountTransaction.buildPayment());
+                membershipPayments.add((MembershipPayment) accountTransaction.buildPayment());
             }
         });
         return membershipPayments;

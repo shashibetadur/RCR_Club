@@ -86,9 +86,6 @@
         if(isEmpty(jqVal(".visit-date"))){
             errors += errorMessageTemplate.replace(/:message/g,"Visit date cannot be empty");
         }
-        if(!isEmpty(jqVal(".visit-date")) && !canParseDate(jqVal(".visit-date"))){
-            errors += errorMessageTemplate.replace(/:message/g,"Visit date is in incorrect format");
-        }
         if(errors){
             $(".save-status").html(errors+"<br/><br/>");
             return false;

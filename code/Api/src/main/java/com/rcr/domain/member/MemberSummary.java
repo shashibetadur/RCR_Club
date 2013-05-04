@@ -1,6 +1,9 @@
 package com.rcr.domain.member;
 
+import com.rcr.domain.account.MembershipPayment;
+
 import java.util.Date;
+import java.util.List;
 
 public class MemberSummary {
 
@@ -12,35 +15,36 @@ public class MemberSummary {
 
     private double pendingAmount;
 
-    public String getMembershipType() {
-        return membershipType;
+    public MemberSummary(Member memberDetails, MembershipDetails membershipDetails, List<MembershipPayment> membershipPaymentDetails) {
+        MembershipDetail currentMembership = membershipDetails.getCurrentMembership();
+        status = memberDetails.getStatus();
+        if (currentMembership != null) {
+            membershipType = currentMembership.getMembershipType().getName();
+            expiryDate = currentMembership.getEndDate();
+        } else {
+            membershipType = "NONE";
+        }
+        double amount = membershipDetails.getMembershipAmount();
+        double membershipAmountPaid = 0;
+        for (MembershipPayment membershipPayment : membershipPaymentDetails) {
+            membershipAmountPaid += membershipPayment.getAmount();
+        }
+        pendingAmount = amount - membershipAmountPaid;
     }
 
-    public void setMembershipType(String membershipType) {
-        this.membershipType = membershipType;
+    public String getMembershipType() {
+        return membershipType;
     }
 
     public String getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public Date getExpiryDate() {
         return expiryDate;
     }
 
-    public void setExpiryDate(Date expiryDate) {
-        this.expiryDate = expiryDate;
-    }
-
     public double getPendingAmount() {
         return pendingAmount;
-    }
-
-    public void setPendingAmount(double pendingAmount) {
-        this.pendingAmount = pendingAmount;
     }
 }
