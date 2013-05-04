@@ -5,6 +5,8 @@ import com.rcr.repository.inventory.InventoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class InventoryServiceImpl implements InventoryService {
 
@@ -24,5 +26,10 @@ public class InventoryServiceImpl implements InventoryService {
     public long getMaterialQty(long id) {
         long quantity = inventoryRepository.getMaterialQty(id);
         return quantity;
+    }
+
+    @Override
+    public List<Inventory> getCurrentStock() {
+        return inventoryRepository.getCurrentStock();
     }
 }
