@@ -29,8 +29,8 @@
             <column name="DELETE_FLAG"/>
         </property>
     </class>
-    <sql-query name="getAllCurrentStock">
-        <![CDATA[select * from Inventory where id in (select max(id) from inventory group by material_id)]]>
-    </sql-query>
+    <query name="getAllCurrentStock">
+        <![CDATA[from Inventory where id in (select max(id) from Inventory  inv group by inv.material.id)]]>
+    </query>
 </hibernate-mapping>
 

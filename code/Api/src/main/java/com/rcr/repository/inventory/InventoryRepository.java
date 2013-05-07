@@ -5,19 +5,17 @@ import com.rcr.domain.Material;
 import com.rcr.repository.BaseRepository;
 import com.rcr.repository.material.MaterialRepository;
 import org.hibernate.Criteria;
-import org.hibernate.Query;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.*;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 @Repository
-public class InventoryRepository extends BaseRepository {
+public class InventoryRepository extends BaseRepository<Inventory> {
 
     private MaterialRepository materialRepository;
 
@@ -40,23 +38,6 @@ public class InventoryRepository extends BaseRepository {
     }
 
     public List<Inventory> getCurrentStock() {
-        List<Object> invList = new ArrayList<Object>();
-        List<Inventory> inventoryList = new ArrayList<Inventory>();
-        /*DetachedCriteria subQuery = DetachedCriteria.forClass(Inventory.class)
-                .setProjection(Projections.projectionList().add(Projections.max("id"))
-                        .add(Projections.groupProperty("material")));
-
-        Criteria criteria = getSession().createCriteria(Inventory.class)
-                .add(Subqueries.in("id",subQuery));
-
-        inventoryList = criteria.list();*/
-        Query qry = getSession().getNamedQuery("getAllCurrentStock");
-        invList = qry.list();
-        Iterator iterator = invList.iterator();
-        while(iterator.hasNext()){
-            Inventory inv = (Inventory) iterator.next();
-            inventoryList.add(inv);
-        }
-        return inventoryList;
+        return getSession().getNamedQuery("getAllCurrentStock").list();
     }
 }
