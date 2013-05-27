@@ -5,6 +5,7 @@ import com.rcr.domain.Material;
 import com.rcr.repository.BaseRepository;
 import com.rcr.repository.material.MaterialRepository;
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
@@ -29,10 +30,16 @@ public class InventoryRepository extends BaseRepository<Inventory> {
     public long getMaterialQty(long id) {
         Material material = materialRepository.get(id);
         Criteria criteria = getSession().createCriteria(Inventory.class);
-        List<Inventory> inventoryList = criteria.add(Restrictions.eq("material", material))
-                .addOrder(Order.desc("id")).list();
+        /*List<Inventory> inventoryList; = criteria.add(Restrictions.eq("material", material))
+                .addOrder(Order.desc("id")).list(); */
+
+        Query qry = getSession().getNamedQuery("getCurrentStock");
+                qry.setParameter("materialId", id);
+
+        List<Inventory> inventoryList = qry.list();
+
         if (inventoryList.size() != 0)
-            return inventoryList.get(0).getQuantity();
+            return inventoryList.get(0).getCurrentStock();
         else
             return 0;
     }

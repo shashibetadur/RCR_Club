@@ -22,6 +22,8 @@ public class Material extends Entity {
 
     private String value;
 
+    private Long stock;
+
     public Material() {
         value = name;
     }
@@ -110,5 +112,13 @@ public class Material extends Entity {
 
     public void setInventoryId(long inventoryId) {
         this.inventoryId = inventoryId;
+    }
+
+    public Long getStock() {
+        return stock;
+    }
+
+    public void setStock(Long stock) {
+        this.stock = stock;
     }
 }

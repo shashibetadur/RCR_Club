@@ -1,6 +1,7 @@
 package com.rcr.web.controller;
 
 import com.rcr.domain.*;
+import com.rcr.service.inventory.InventoryService;
 import com.rcr.service.material.MaterialService;
 import org.apache.commons.collections.Transformer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +20,12 @@ import static org.apache.commons.collections.CollectionUtils.collect;
 public class BarController {
 
     private MaterialService materialService;
+    private InventoryService inventoryService;
 
     @Autowired
-    public BarController(MaterialService materialService) {
+    public BarController(MaterialService materialService, InventoryService inventoryService) {
         this.materialService = materialService;
+        this.inventoryService = inventoryService;
     }
 
     @RequestMapping(value = "/material/createForm", method = RequestMethod.GET)
@@ -73,6 +76,21 @@ public class BarController {
         return materials;
     }
 
+    @RequestMapping(value = "/material/searchUpdateStock", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public
+    @ResponseBody
+    List<Material> searchMaterialsUpdateStock(@RequestParam("searchToken") String searchToken) {
+
+        List<Material> materials = materialService.searchMaterials(searchToken);
+
+        if (materials.isEmpty()) return Collections.EMPTY_LIST;
+
+        for(Material material: materials ) {
+            material.setStock(inventoryService.getMaterialQty(material.getId()));
+        }
+        return materials;
+    }
+
     @RequestMapping(value = "/item/search", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public
     @ResponseBody
@@ -84,6 +102,7 @@ public class BarController {
 
         return items;
     }
+
     @RequestMapping(value = "/item/createForm", method = RequestMethod.GET)
     public ModelAndView itemCreationForm() {
         return new ModelAndView("bar/item/createForm", "item", new Item());

@@ -14,4 +14,5 @@
     <li class="nk-side-menu-sep"><a href="<%=request.getContextPath()%>/order/searchOrder">Search Order</a></li>
     <li class="nk-side-menu-sep"><a href="<%=request.getContextPath()%>/bill/searchBill">Search Bill</a></li>
     <li class="nk-side-menu-sep"><a href="<%=request.getContextPath()%>/inventory/currentStock">Current Stock</a></li>
+    <li class="nk-side-menu-sep"><a href="<%=request.getContextPath()%>/inventory/updateStock">Update Stock</a></li>
 </ul>

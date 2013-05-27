@@ -38,12 +38,6 @@ public class BillRepository extends BaseRepository {
         if (billSearchCriteria.hasDateRange()) {
             criteria.add(Restrictions.between("date", billSearchCriteria.getFromDate(), billSearchCriteria.getToDate()));
         }
-/*        if (!billSearchCriteria.getOrderTypeList().isEmpty()) {
-            criteria.add(Restrictions.in("orderType", billSearchCriteria.getOrderTypeList()));
-        }
-        if (!billSearchCriteria.getOrderStatusList().isEmpty()) {
-            criteria.add(Restrictions.in("orderStatus", billSearchCriteria.getOrderStatusList()));
-        }  */
         return criteria.list();
     }
 }

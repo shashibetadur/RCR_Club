@@ -2,6 +2,7 @@ package com.rcr.web.controller;
 
 import com.rcr.domain.Inventory;
 import com.rcr.service.inventory.InventoryService;
+import com.rcr.web.model.ProcessOrderForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,5 +27,12 @@ public class InventoryController {
         List<Inventory> inventoryList = inventoryService.getCurrentStock();
 
         return new ModelAndView("inventory/currentStock", "inventoryList", inventoryList);
+    }
+
+    @RequestMapping(value = "/updateStock", method = RequestMethod.GET)
+    public ModelAndView updateStock() {
+
+        ProcessOrderForm processOrderForm = new ProcessOrderForm();
+        return new ModelAndView("inventory/updateStock","processOrderForm",processOrderForm);
     }
 }
