@@ -5,35 +5,40 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/jquery-ui-1.9.0.custom.css" type="text/css"/>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-ui-1.9.0.custom.min.js"></script>
 <div class="row well">
-<legend>Update Stock</legend>
-<div class="item-selection-section">
-    <jq>
-        <div class="nk-form-section">
-            <div class="span10">
-                <span class="nk-filed-label"><label for="material-name"><b>Select Material</b></label></span>
-                <span class="nk-filed"><input type="text" id="material-name" maxlength="100"/></span>
-            </div>
-        </div>
-        <div class="nk-form-section span10">
-            <h4>Material List</h4>
+    <form id="order-creation-form" method="POST" action="<%=request.getContextPath()%>/inventory/saveStock">
+        <legend>Update Stock</legend>
+        <div class="item-selection-section">
+            <jq>
+                <div class="nk-form-section">
+                    <div class="span10">
+                        <span class="nk-filed-label"><label for="material-name"><b>Select Material</b></label></span>
+                        <span class="nk-filed"><input type="text" id="material-name" maxlength="100"/></span>
+                    </div>
+                </div>
+                <div class="nk-form-section span10">
+                    <h4>Material List</h4>
 
-            <div class="item-list-location">
-                <table class="nk-table table table-striped table-bordered">
-                    <thead>
-                    <th>Material Name</th>
-                    <th style="width: 15%">Current Stock</th>
-                    <th style="width: 20%">Quantity</th>
-                    <th style="width: 15%">Updated Quantity</th>
-                    <th style="width: 5%">Action</th>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
-            </div>
+                    <div class="item-list-location">
+                        <table class="nk-table table table-striped table-bordered">
+                            <thead>
+                            <th>Material Name</th>
+                            <th style="width: 15%">Current Stock</th>
+                            <th style="width: 20%">Reduce Quantity</th>
+                            <th style="width: 15%">Updated Quantity</th>
+                            <th style="width: 5%">Action</th>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="menu-location"></div>
+            </jq>
         </div>
-        <div class="menu-location"></div>
-    </jq>
-</div>
+        <div class="span8 nk-form-section">
+            <button type="submit" class="btn btn-primary">Save changes</button>
+        </div>
+    </form>
 </div>
 <script type="text/javascript">
         var materialBasket = [];
@@ -43,7 +48,7 @@
                                         + "<label>:itemName</label>"
                                         + "</td>"
                                         + "<td>"
-                                        + "<input type='hidden' name='displayMaterialList[:index].price' value=':itemStock'/>"
+                                        + "<input type='hidden' name='displayMaterialList[:index].stock' value=':itemStock'/>"
                                         + "<label>:itemStock</label>"
                                         + "</td>"
                                         + "<td>"
@@ -84,7 +89,8 @@
         function updateQty(selectedIndex) {
             var itemQtySelector = '.itemQty' + selectedIndex;
             var qty = $(itemQtySelector).val();
-            materialBasket[selectedIndex].qty = $(itemQtySelector).val();
+            materialBasket[selectedIndex].qty = qty;
+            materialBasket[selectedIndex].total = materialBasket[selectedIndex].stock - $(itemQtySelector).val();
             renderTable();
         }
 
