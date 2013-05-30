@@ -64,7 +64,7 @@
 
         $(document).ready(function () {
 
-            materialBasket = eval(${processOrderForm.materialListJason});
+            materialBasket = eval(${stockBasket.materialListJason});
             renderTable();
 
             $("#material-name").autocomplete({
