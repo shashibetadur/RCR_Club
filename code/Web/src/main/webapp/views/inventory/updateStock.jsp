@@ -5,9 +5,10 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/jquery-ui-1.9.0.custom.css" type="text/css"/>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-ui-1.9.0.custom.min.js"></script>
 <div class="row well">
-    <form id="order-creation-form" method="POST" action="<%=request.getContextPath()%>/inventory/saveStock">
+    <form id="update-stock-form" method="POST" action="<%=request.getContextPath()%>/inventory/saveStock">
         <legend>Update Stock</legend>
         <div class="item-selection-section">
+        <div class="span10 stock-update-errors"></div>
             <jq>
                 <div class="nk-form-section">
                     <div class="span10">
@@ -76,6 +77,7 @@
                 appendTo:".menu-location",
                 select:function (event, ui) {
                     addItem(ui.item);
+                    $('#material-name').val("");
                     return false;
                 }
             });
@@ -98,6 +100,27 @@
             materialBasket.push(item);
             renderTable();
         }
+
+        $("#update-stock-form").submit(function () {
+            var errors = "";
+            var errorMessageTemplate = "<label class='label label-important'>:message</label>"
+            $(".stock-update-errors").html("");
+            $(".item-row input[type='text']").each(function () {
+                var value = $(this).val();
+                if (isEmpty(value) || value == 0) {
+                    errors += errorMessageTemplate.replace(/:message/g, "Quantity field cannot be empty or Zero");
+                }
+                if (!isEmpty(value) && !canParseNumber(value)) {
+                    errors += errorMessageTemplate.replace(/:message/g, "Quantity field can only have digits");
+                }
+            });
+            if (errors) {
+                $(".stock-update-errors").html(errors + "<br/><br/>");
+                return false;
+            }
+            return true;
+        });
+
         function renderTable() {
             var rows = "";
             var total = 0;
@@ -116,9 +139,7 @@
                     rows += row;
                     total += value.total;
             });
-            if (materialBasket.length > 0) {
-                rows += "<tr><td colspan='3'>Grand Total</td><td colspan='2'>" + (total) + "</td></tr>";
-            }
+
             $(".item-list-location table tbody").html(rows);
             $("input[type='text']").blur(function () {
                 $(this).val(specialTrim($(this).val()));

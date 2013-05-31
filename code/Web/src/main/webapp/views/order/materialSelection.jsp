@@ -69,6 +69,7 @@
                 appendTo:".menu-location",
                 select:function (event, ui) {
                     addItem(ui.item);
+                    $('#material-name').val("");
                     return false;
                 }
             });
