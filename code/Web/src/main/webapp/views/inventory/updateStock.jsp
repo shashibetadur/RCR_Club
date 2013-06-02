@@ -97,6 +97,22 @@
         }
 
         function addItem(item) {
+            var errors = "";
+            var errorMessageTemplate = "<label class='label label-important'>:message</label>"
+            $(".stock-update-errors").html("");
+            if(item.stock == 0){
+                var value = item.stock;
+                if (isEmpty(value) || value == 0) {
+                    errors += errorMessageTemplate.replace(/:message/g, "Stock is Zero for Material: " + item.value);
+                }
+                if (!isEmpty(value) && !canParseNumber(value)) {
+                    errors += errorMessageTemplate.replace(/:message/g, "Stock field can only have digits for Material: " + item.value);
+                }
+            }
+            if (errors) {
+                $(".stock-update-errors").html(errors + "<br/><br/>");
+                return false;
+            }
             materialBasket.push(item);
             renderTable();
         }
