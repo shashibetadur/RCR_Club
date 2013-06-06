@@ -79,6 +79,22 @@
             var itemQtySelector = '.itemQty' + selectedIndex;
             var itemTotalSelector = '.itemTotal' + selectedIndex;
             var qty = $(itemQtySelector).val();
+
+                    var errors = "";
+                    var errorMessageTemplate = "<label class='label label-important'>:message</label>"
+                    $(".order-creation-errors").html("");
+                    var value = qty;
+                    if (isEmpty(value) || value == 0) {
+                        errors += errorMessageTemplate.replace(/:message/g, "Quantity cannot be Zero");
+                    }
+                    if (!isEmpty(value) && !canParseNumber(value)) {
+                        errors += errorMessageTemplate.replace(/:message/g, "Quantity field can only have digits");
+                    }
+                    if (errors) {
+                        $(".order-creation-errors").html(errors + "<br/><br/>");
+                        return false;
+                    }
+
             var total = (itemBasket[selectedIndex].price) * qty;
             itemBasket[selectedIndex].qty = $(itemQtySelector).val();
             itemBasket[selectedIndex].total = total;

@@ -46,7 +46,7 @@
                 errors += errorMessageTemplate.replace(/:message/g, "Quantity field cannot be empty");
             }
             if (!isEmpty(value) && !canParseNumber(value)) {
-                errors += errorMessageTemplate.replace(/:message/g, "Quantity field can  only have digits");
+                errors += errorMessageTemplate.replace(/:message/g, "Quantity field can only have digits");
             }
         });
         if (errors) {

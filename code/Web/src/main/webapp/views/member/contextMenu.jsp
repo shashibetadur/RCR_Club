@@ -4,7 +4,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="nk" uri="/WEB-INF/custom-tags.tld" %>
 <ul class="nk-side-menu nav nav-tabs nav-pills nav-stacked">
-    <li class="nk-side-menu-sep"><a class="btn" href="#">Context Menu</a></li>
+    <li class="nk-side-menu-sep"><a class="btn" href="#">Member Context</a></li>
     <nk:security operations="membership-type-list">
         <li class="nk-side-menu-sep"><a href="<%=request.getContextPath()%>/member/type/list">Membership Types</a></li>
     </nk:security>

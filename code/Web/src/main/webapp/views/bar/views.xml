@@ -4,30 +4,30 @@
 <tiles-definitions>
     <definition name="bar/material/createForm" extends="default">
         <put-attribute name="main-content" value="/views/bar/createForm.jsp"/>
-        <put-attribute name="context-menu" value="/views/bar/contextMenu.jsp"/>
+        <put-attribute name="context-menu" value="/views/order/contextMenu.jsp"/>
     </definition>
     <definition name="bar/material/viewForm" extends="default">
         <put-attribute name="main-content" value="/views/bar/viewForm.jsp"/>
-        <put-attribute name="context-menu" value="/views/bar/contextMenu.jsp"/>
+        <put-attribute name="context-menu" value="/views/order/contextMenu.jsp"/>
     </definition>
     <definition name="bar/material/list" extends="default">
         <put-attribute name="main-content" value="/views/bar/viewMaterialList.jsp"/>
-        <put-attribute name="context-menu" value="/views/bar/contextMenu.jsp"/>
+        <put-attribute name="context-menu" value="/views/order/contextMenu.jsp"/>
     </definition>
     <definition name="bar/material/convertMaterials" extends="default">
         <put-attribute name="main-content" value="/views/bar/convertMaterialList.jsp"/>
-        <put-attribute name="context-menu" value="/views/bar/contextMenu.jsp"/>
+        <put-attribute name="context-menu" value="/views/order/contextMenu.jsp"/>
     </definition>
     <definition name="bar/item/createForm" extends="default">
         <put-attribute name="main-content" value="/views/bar/createItemForm.jsp"/>
-        <put-attribute name="context-menu" value="/views/bar/contextMenu.jsp"/>
+        <put-attribute name="context-menu" value="/views/bill/contextMenu.jsp"/>
     </definition>
     <definition name="bar/item/viewForm" extends="default">
         <put-attribute name="main-content" value="/views/bar/viewItemForm.jsp"/>
-        <put-attribute name="context-menu" value="/views/bar/contextMenu.jsp"/>
+        <put-attribute name="context-menu" value="/views/bill/contextMenu.jsp"/>
     </definition>
     <definition name="bar/item/list" extends="default">
         <put-attribute name="main-content" value="/views/bar/viewItemList.jsp"/>
-        <put-attribute name="context-menu" value="/views/bar/contextMenu.jsp"/>
+        <put-attribute name="context-menu" value="/views/bill/contextMenu.jsp"/>
     </definition>
 </tiles-definitions>

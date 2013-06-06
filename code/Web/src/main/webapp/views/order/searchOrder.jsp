@@ -6,6 +6,7 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/bootstrap-datepicker.js"></script>
 <div class="order-search-form">
     <div class="row well">
+        <legend>Search Purchase Order</legend>
         <form class="nk-search-form form-inline">
             <input type="text" class="order-id input-large" name="orderId" placeholder="Order Id" maxlength="15"/>
             <br/>

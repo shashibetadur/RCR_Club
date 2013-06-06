@@ -9,7 +9,7 @@
 
 <div class="row well">
     <form class="nk-search-form form-inline">
-        <legend>Update Stock</legend>
+        <legend>Search Stock</legend>
         <div class="item-selection-section">
         <div class="span10 stock-update-errors"></div>
             <jq>
