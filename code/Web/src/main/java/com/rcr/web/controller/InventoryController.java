@@ -13,9 +13,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -35,6 +38,25 @@ public class InventoryController {
     public ModelAndView currentStock() {
         List<Inventory> inventoryList = inventoryService.getCurrentStock();
         return new ModelAndView("inventory/currentStock", "inventoryList", inventoryList);
+    }
+
+    @RequestMapping(value = "/searchStock", method = RequestMethod.GET)
+    public ModelAndView searchStock() {
+        StockBasket stockBasket = new StockBasket();
+        return new ModelAndView("inventory/searchStock","stockBasket", stockBasket);
+    }
+
+    @RequestMapping(value = "/searchStock", method = RequestMethod.POST)
+    public ModelAndView searchStock(StockBasket stockBasket) {
+
+        List<Material> materials = new ArrayList<Material>();
+        for(DisplayMaterial displayMaterial: stockBasket.getDisplayMaterialList() ) {
+            Material material = materialService.getMaterialDetails(displayMaterial.getId());
+            material.setStock(inventoryService.getQtyAtDate(displayMaterial.getId(),stockBasket.getOnDate()));
+            materials.add(material);
+        }
+
+        return new ModelAndView("inventory/stockSearchResults","materials", materials);
     }
 
     @RequestMapping(value = "/updateStock", method = RequestMethod.GET)

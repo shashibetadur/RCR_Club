@@ -5,6 +5,7 @@ import com.rcr.repository.inventory.InventoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -31,5 +32,10 @@ public class InventoryServiceImpl implements InventoryService {
     @Override
     public List<Inventory> getCurrentStock() {
         return inventoryRepository.getCurrentStock();
+    }
+
+    @Override
+    public Long getQtyAtDate(long id, Date onDate) {
+        return inventoryRepository.getQtyAtDate(id,onDate);
     }
 }

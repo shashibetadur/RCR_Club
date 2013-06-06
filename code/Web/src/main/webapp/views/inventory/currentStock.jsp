@@ -14,7 +14,7 @@
                 <th>Name</th>
                 <th>Description</th>
                 <th>Current Stock</th>
-                <th>Entry Date</th>
+                <th>Date</th>
                 </thead>
                 <tbody>
                     <c:forEach var="inventory" items="${inventoryList}">
@@ -22,7 +22,7 @@
                             <td><label>${inventory.material.name}</label></td>
                             <td><label>${inventory.material.description}</label></td>
                             <td><label>${inventory.currentStock}</label></td>
-                            <td><label><fmt:formatDate pattern="dd-MM-yyyy" value="${inventory.entryDate}"/></label></td>
+                            <td><label><fmt:formatDate pattern="dd-MM-yyyy" value="${inventory.date}"/></label></td>
                         </tr>
                     </c:forEach>
                 </tbody>

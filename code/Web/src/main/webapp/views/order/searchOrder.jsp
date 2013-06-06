@@ -27,8 +27,10 @@
                     </div>
                     <br/>
                 </div>
-            </div> <br/><br/><br/>
-            <a href="#" class="nk-search-button btn btn-small btn-primary">Search</a>
+            </div> <br/>
+            <div class="span8 nk-form-section">
+                <a href="#" class="nk-search-button btn btn-small btn-primary">Search Order</a>
+            </div>
         </form>
     </div>
     <div class="search-results">

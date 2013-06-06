@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -28,13 +29,9 @@ public class InventoryRepository extends BaseRepository<Inventory> {
     }
 
     public long getMaterialQty(long id) {
-        Material material = materialRepository.get(id);
-        Criteria criteria = getSession().createCriteria(Inventory.class);
-        /*List<Inventory> inventoryList; = criteria.add(Restrictions.eq("material", material))
-                .addOrder(Order.desc("id")).list(); */
 
         Query qry = getSession().getNamedQuery("getCurrentStock");
-                qry.setParameter("materialId", id);
+        qry.setParameter("materialId", id);
 
         List<Inventory> inventoryList = qry.list();
 
@@ -46,5 +43,19 @@ public class InventoryRepository extends BaseRepository<Inventory> {
 
     public List<Inventory> getCurrentStock() {
         return getSession().getNamedQuery("getAllCurrentStock").list();
+    }
+
+    public Long getQtyAtDate(long id, Date onDate) {
+
+        Query qry = getSession().getNamedQuery("getStockAtDate");
+        qry.setParameter("materialId", id);
+        qry.setParameter("onDate", onDate);
+
+        List<Inventory> inventoryList = qry.list();
+
+        if (inventoryList.size() != 0)
+            return inventoryList.get(0).getCurrentStock();
+        else
+            return (long) 0;
     }
 }

@@ -35,5 +35,8 @@
     <query name="getCurrentStock">
         <![CDATA[from Inventory where id = (select max(id) from Inventory inv where inv.material.id = :materialId)]]>
     </query>
+    <query name="getStockAtDate">
+        <![CDATA[from Inventory where id = (select max(id) from Inventory inv where inv.material.id = :materialId and date <= :onDate)]]>
+    </query>
 </hibernate-mapping>
 

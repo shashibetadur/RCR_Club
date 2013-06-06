@@ -76,6 +76,21 @@ public class BarController {
         return materials;
     }
 
+    @RequestMapping(value = "/material/searchStock", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public
+    @ResponseBody
+    List<Material> searchStock(@RequestParam("searchToken") String searchToken, @RequestParam(value = "onDate", required = true) Date onDate) {
+
+        List<Material> materials = materialService.searchMaterials(searchToken);
+
+        if (materials.isEmpty()) return Collections.EMPTY_LIST;
+
+        for(Material material: materials ) {
+            material.setStock(inventoryService.getQtyAtDate(material.getId(),onDate));
+        }
+        return materials;
+    }
+
     @RequestMapping(value = "/material/searchUpdateStock", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public
     @ResponseBody

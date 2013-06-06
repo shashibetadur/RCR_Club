@@ -10,4 +10,11 @@
         <put-attribute name="main-content" value="/views/inventory/updateStock.jsp"/>
         <put-attribute name="context-menu" value="/views/bar/contextMenu.jsp"/>
     </definition>
+    <definition name="inventory/searchStock" extends="default">
+        <put-attribute name="main-content" value="/views/inventory/searchStock.jsp"/>
+        <put-attribute name="context-menu" value="/views/bar/contextMenu.jsp"/>
+    </definition>
+    <definition name="inventory/stockSearchResults" extends="ajaxSection">
+        <put-attribute name="content" value="/views/inventory/stockSearchResults.jsp"/>
+    </definition>
 </tiles-definitions>

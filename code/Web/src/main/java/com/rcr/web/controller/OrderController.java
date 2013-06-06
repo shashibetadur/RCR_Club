@@ -78,7 +78,7 @@ public class OrderController {
             for (PurchaseOrderDetail purchaseOrderDetail : purchaseOrder.getPurchaseOrderDetails()) {
                 Inventory inventory = new Inventory();
                 inventory.setMaterial(purchaseOrderDetail.getMaterial());
-                inventory.setDate(DateUtils.currentDate());
+                inventory.setDate(purchaseOrder.getDate());
                 inventory.setEntryDate(DateUtils.currentDate());
                 inventory.setCurrentStock(inventoryService.getMaterialQty(purchaseOrderDetail.getMaterial().getId())
                         + purchaseOrderDetail.getQuantity());
