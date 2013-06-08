@@ -45,14 +45,15 @@ public class MemberBillServiceImpl implements MemberBillService {
             return orderList;
         } else {
             List<Long> personIds = new ArrayList<Long>();
-            MemberSearchCriteria memberSearchCriteria = new MemberSearchCriteria(billSearchCriteria.getPhone(), billSearchCriteria.getFirstName(), billSearchCriteria.getLastName());
+            MemberSearchCriteria memberSearchCriteria = new MemberSearchCriteria(billSearchCriteria.getPhone(), billSearchCriteria.getFirstName(),
+                    billSearchCriteria.getLastName());
             if (memberSearchCriteria.hasPhoneCriteria() || memberSearchCriteria.hasNameCriteria()) {
                 personIds = fetchCustomerIdsMatchingCriteria(memberSearchCriteria);
-                // if no customers found for whom orders need to be looked up
+                // if no customers found - for whom orders need to be looked up
                 if (personIds.isEmpty()) return orderList;
             }
             List<Member> memberList = new ArrayList<Member>();
-            for(Long personId: personIds){
+            for (Long personId : personIds) {
                 memberList.add(memberRepository.get(personId));
             }
             List<Bill> memberBills = billRepository.findBy(billSearchCriteria, memberList);

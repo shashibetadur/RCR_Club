@@ -13,7 +13,7 @@ public class BillSearchCriteria {
     private String lastName;
     private Date fromDate;
     private Date toDate;
-    private List<String> orderStatusList = new ArrayList<String>();
+    private List<String> billStatusList = new ArrayList<String>();
 
     public BillSearchCriteria() {
     }
@@ -66,12 +66,12 @@ public class BillSearchCriteria {
         this.lastName = lastName;
     }
 
-    public List<String> getOrderStatusList() {
-        return orderStatusList;
+    public List<String> getBillStatusList() {
+        return billStatusList;
     }
 
-    public void setOrderStatusList(List<String> orderStatusList) {
-        this.orderStatusList = orderStatusList;
+    public void setBillStatusList(List<String> billStatusList) {
+        this.billStatusList = billStatusList;
     }
 
     public boolean hasPhoneAndNameCriteria() {

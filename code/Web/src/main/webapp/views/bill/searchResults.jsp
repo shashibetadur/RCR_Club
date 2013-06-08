@@ -12,6 +12,7 @@
                 <thead>
                 <th></th>
                 <th>Bill Id</th>
+                <th>Member</th>
                 <th>Amount</th>
                 <th>Bill Date</th>
                 <th>Bill Status</th>
@@ -21,6 +22,7 @@
                     <tr>
                         <td><input type='radio' name='row' value='${order.id}'/></td>
                         <td><label>${order.id}</label></td>
+                        <td><label>${order.member.personalDetails.firstName} &nbsp ${order.member.personalDetails.lastName}</label></td>
                         <td><label>${order.totalAmount}</label></td>
                         <td><label><fmt:formatDate pattern="dd-MM-yyyy" value="${order.billDate}"/></label></td>
                         <td><label>${order.billStatus}</label></td>

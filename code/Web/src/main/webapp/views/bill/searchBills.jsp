@@ -7,6 +7,7 @@
 <div class="order-search-form">
     <div class="row well">
         <form class="nk-search-form form-inline">
+        <legend>Search Bills</legend>
             <input type="text" class="order-id input-large" name="billId" placeholder="Bill Id" maxlength="15"/>
             <br/>
             <br/>
@@ -24,7 +25,21 @@
             <input type="text" class="to-date input-large" name="toDate" placeholder="To Date" maxlength="100"/>
             <br/>
             <br/>
-            <a href="#" class="nk-search-button btn btn-small btn-primary">Search</a>
+            <div>
+                <div class="order-status-selection">
+                    <label>Bill Status</label>
+                    <br/>
+                    <div class="list well">
+                        <c:forEach var="billState" items="${billStates}">
+                            <input class="order-status" type="checkbox" name="billStatusList"
+                                value="${billState}"><label>${billState}</label><br>
+                        </c:forEach>
+                    </div>
+                </div>
+            </div>
+            <div class="span8 nk-form-section">
+                <a href="#" class="nk-search-button btn btn-small btn-primary">Search Bills</a>
+            </div>
         </form>
     </div>
     <div class="search-results">
@@ -40,6 +55,7 @@
             format:"dd-mm-yyyy"
         });
         $('.nk-search-button').click(function () {
+
             var formData = $('form').serialize();
             $.ajax({
                 type:'POST',

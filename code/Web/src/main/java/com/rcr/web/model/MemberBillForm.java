@@ -102,6 +102,7 @@ public class MemberBillForm {
         this.setId(bill.getId());
         this.setBillStatus(bill.getStatus());
         this.setBillDate(bill.getDate());
+        this.setMember(bill.getMember());
         for (BillDetail billDetail : bill.getBillDetails()) {
             DisplayItem displayItem = new DisplayItem();
             displayItem.setId(billDetail.getItem().getId());

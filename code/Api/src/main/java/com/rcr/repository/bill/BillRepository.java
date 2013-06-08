@@ -38,6 +38,10 @@ public class BillRepository extends BaseRepository {
         if (billSearchCriteria.hasDateRange()) {
             criteria.add(Restrictions.between("date", billSearchCriteria.getFromDate(), billSearchCriteria.getToDate()));
         }
+        if(billSearchCriteria.getBillStatusList().size() > 0){
+            criteria.add(Restrictions.in("status", billSearchCriteria.getBillStatusList()));
+        }
+
         return criteria.list();
     }
 }
