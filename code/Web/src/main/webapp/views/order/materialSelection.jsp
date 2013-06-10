@@ -90,10 +90,10 @@
                     $(".order-creation-errors").html("");
                     var value = qty;
                     if (isEmpty(value) || value == 0) {
-                        errors += errorMessageTemplate.replace(/:message/g, "Quantity cannot be Zero");
+                        errors += errorMessageTemplate.replace(/:message/g, "Stock is Zero for Material: " + item.value);
                     }
                     if (!isEmpty(value) && !canParseNumber(value)) {
-                        errors += errorMessageTemplate.replace(/:message/g, "Quantity field can only have digits");
+                        errors += errorMessageTemplate.replace(/:message/g, "Stock field can only have digits for Material: " + item.value);
                     }
                     if (errors) {
                         $(".order-creation-errors").html(errors + "<br/><br/>");
