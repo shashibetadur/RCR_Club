@@ -95,20 +95,19 @@
 
             $('.nk-search-button').click(function () {
                 var formData = $('form').serialize();
-                $.ajax({
-                    type:'POST',
-                    url:'<%=request.getContextPath()%>/inventory/searchStock',
-                    processData:true,
-                    async:false,
-                    timeout:3000,
-                    data:formData,
-                    success:function (data) {
-                        $(".search-results").html(data);
-                    },
-                    error:function (data) {
-                        $(".search-results").html("error fetching search results");
+                var length = materialBasket.length;
+                var count = 0;
+                for(i=0; i <  length; i++){
+                    var mat = materialBasket[i];
+                    $.getJSON("<%=request.getContextPath()%>/bar/material/searchMaterialStock?onDate="+$('#on-date').val(), {
+                        materialId:mat.id
                     }
-                });
+                    , function(data,status,xhr){
+                        materialBasket.splice(count++, 1, data);
+                        renderTable();
+                    }
+                    );
+                }
             });
         });
 

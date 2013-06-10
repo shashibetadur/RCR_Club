@@ -91,6 +91,20 @@ public class BarController {
         return materials;
     }
 
+    @RequestMapping(value = "/material/searchMaterialStock", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public
+    @ResponseBody
+    Material searchMaterialStock(@RequestParam(value = "materialId", required = true) long materialId, @RequestParam(value = "onDate", required = true) Date onDate ) {
+
+        Material material = materialService.getMaterialDetails(materialId);
+
+        if (material == null) return (Material) Collections.EMPTY_LIST;
+
+            material.setStock(inventoryService.getQtyAtDate(material.getId(),onDate));
+
+        return material;
+    }
+
     @RequestMapping(value = "/material/searchUpdateStock", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public
     @ResponseBody
