@@ -6,6 +6,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt"%>
 <%@ taglib prefix="nk" uri="/WEB-INF/custom-tags.tld" %>
 <div class="row well">
+    <div class="span10 search-edit-errors"></div>
     <c:choose>
         <c:when test="${fn:length(orderFormList) > 0}">
             <table class="nk-table table table-bordered table-striped">
@@ -20,7 +21,8 @@
                 <c:forEach var="order" items="${orderFormList}">
                     <tr>
                         <td><input type='radio' name='row' value='${order.id}'/></td>
-                        <td><label>${order.id}</label></td>
+                        <td><input type='hidden' name='state' value='${order.orderStatus}'/>
+                        <label>${order.id}</label></td>
                         <td><label>${order.totalAmount}</label></td>
                         <td><label>${order.orderStatusDescription}</label></td>
                         <td><label><fmt:formatDate pattern="dd-MM-yyyy" value="${order.orderDate}"/></label></td>
@@ -44,6 +46,19 @@
         $('.edit-order').click(function (event) {
             event.preventDefault();
             var selectedOrder = $('input:radio[name=row]:checked').val();
+            var selectedOrderStatus = $('input:hidden[name=state]').val();
+
+                    var errors = "";
+                    var errorMessageTemplate = "<label class='label label-important'>:message</label>"
+                    $(".search-edit-errors").html("");
+                    if(selectedOrderStatus == 'D'){
+                        errors += errorMessageTemplate.replace(/:message/g, "Received Order Cannot be Edited");
+                    }
+                    if (errors) {
+                        $(".search-edit-errors").html(errors + "<br/><br/>");
+                        return false;
+                    }
+
             if (selectedOrder) document.location.href = ($(this).attr('href') + "/" + selectedOrder);
             else return false;
         });
