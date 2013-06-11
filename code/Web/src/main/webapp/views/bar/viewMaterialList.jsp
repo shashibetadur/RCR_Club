@@ -23,7 +23,7 @@
                 <th style="width: 10%">Unit</th>
                 <th style="width: 15%">Type</th>
                 <th style="width: 15%">Price</th>
-                <th style="width: 10%">Action</th>
+                <th style="width: 10%">Edit</th>
                 </thead>
                 <tbody>
                     <c:forEach var="material" items="${materials}">
@@ -34,7 +34,7 @@
                             <td><label>${material.materialTypeDescription}</label></td>
                             <td><label>${material.price}</label></td>
                             <td>
-                                <a target="_blank" href="<%=request.getContextPath()%>/bar/material/editForm/${material.id}">Edit</a>
+                                <a target="_blank" href="<%=request.getContextPath()%>/bar/material/editForm/${material.id}">c</a>
                                 <a name="material${material.id}"></a>
                             </td>
                         </tr>

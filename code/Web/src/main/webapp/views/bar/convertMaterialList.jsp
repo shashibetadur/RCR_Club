@@ -14,7 +14,7 @@
             <th>Unit</th>
             <th>Type</th>
             <th>Price</th>
-            <th>Action</th>
+            <th>Convert</th>
             </thead>
             <tbody>
                 <c:forEach var="material" items="${materials}">
@@ -25,7 +25,7 @@
                         <td><label>${material.materialTypeDescription}</label></td>
                         <td><label>${material.price}</label></td>
                         <td>
-                            <a target="_blank" href="<%=request.getContextPath()%>/bar/material/convertToItem/${material.id}">Convert</a>
+                            <a target="_blank" href="<%=request.getContextPath()%>/bar/material/convertToItem/${material.id}"><i class = 'icon-wrench'></i></a>
                             <a name="material${material.id}"></a>
                         </td>
                     </tr>
