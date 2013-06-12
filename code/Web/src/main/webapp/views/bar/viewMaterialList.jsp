@@ -34,7 +34,7 @@
                             <td><label>${material.materialTypeDescription}</label></td>
                             <td><label>${material.price}</label></td>
                             <td>
-                                <a target="_blank" href="<%=request.getContextPath()%>/bar/material/editForm/${material.id}">c</a>
+                                <a target="_blank" href="<%=request.getContextPath()%>/bar/material/editForm/${material.id}"><i class = 'icon-pencil'></i></a>
                                 <a name="material${material.id}"></a>
                             </td>
                         </tr>
