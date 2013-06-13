@@ -23,6 +23,10 @@
             <key column="PURCHASE_ORDER_ID" not-null="true"/>
             <one-to-many class="com.rcr.domain.PurchaseOrderDetail"/>
         </bag>
+        <bag name="orderTaxDetails" cascade="all,all-delete-orphan" lazy="false">
+            <key column="PURCHASE_ORDER_ID" not-null="true"/>
+            <one-to-many class="com.rcr.domain.OrderTaxDetail"/>
+        </bag>
     </class>
 </hibernate-mapping>
 

@@ -34,6 +34,7 @@
 </div>
 <script type="text/javascript">
         var materialBasket = [];
+        var taxConfigurations = [];
         var materialTemplateRow =
                                 "<td>"
                                         + "<input type='hidden' name='displayMaterialList[:index].id' value=':materialId'/>"
@@ -58,6 +59,13 @@
         $(document).ready(function () {
 
             materialBasket = eval(${processOrderForm.materialListJason});
+            taxConfigurations = eval(${processOrderForm.taxListJason});
+
+            <c:forEach varStatus="index" var="taxConfiguration" items="${taxConfigurations}">
+                taxConfigurations.push({
+                    taxType:"${taxConfiguration.taxType}",
+                    percentage:"${taxConfiguration.percentage}"});
+            </c:forEach>
             renderTable();
 
             $("#material-name").autocomplete({
@@ -114,6 +122,7 @@
         function renderTable() {
             var rows = "";
             var total = 0;
+            var taxTotal = 0;
             $.each(materialBasket, function (index, value) {
 
                     var row = "<tr  class='item-row'>" +
@@ -131,7 +140,16 @@
                     total += value.total;
             });
             if (materialBasket.length > 0) {
-                rows += "<tr><td colspan='3'>Grand Total</td><td colspan='2'>" + (total) + "</td></tr>";
+                $.each(taxConfigurations, function (index, value) {
+                    var taxValue = ((total * value.percentage) / 100);
+                    var row = "<tr><td colspan='3'>:taxType (:percentage)</td><td colspan='2'>:totalTax</td></tr>"
+                            .replace(/:taxType/g, value.taxType)
+                            .replace(/:percentage/g, value.percentage)
+                            .replace(/:totalTax/g, taxValue);
+                    rows += row;
+                    taxTotal += taxValue;
+                });
+                rows += "<tr><td colspan='3'>Grand Total</td><td colspan='2'>" + (total + taxTotal) + "</td></tr>";
             }
             $(".item-list-location table tbody").html(rows);
             $("input[type='text']").blur(function () {

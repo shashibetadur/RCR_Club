@@ -12,6 +12,8 @@ public class PurchaseOrder extends Entity {
 
     private List<PurchaseOrderDetail> purchaseOrderDetails = new ArrayList<PurchaseOrderDetail>();
 
+    private List<OrderTaxDetail> orderTaxDetails = new ArrayList<OrderTaxDetail>();
+
     public PurchaseOrder() {
         date = Calendar.getInstance().getTime();
     }
@@ -50,5 +52,13 @@ public class PurchaseOrder extends Entity {
 
     public void setPurchaseOrderDetails(List<PurchaseOrderDetail> purchaseOrderDetails) {
         this.purchaseOrderDetails = purchaseOrderDetails;
+    }
+
+    public List<OrderTaxDetail> getOrderTaxDetails() {
+        return orderTaxDetails;
+    }
+
+    public void setOrderTaxDetails(List<OrderTaxDetail> orderTaxDetails) {
+        this.orderTaxDetails = orderTaxDetails;
     }
 }

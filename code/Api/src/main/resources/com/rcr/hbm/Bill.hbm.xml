@@ -29,6 +29,10 @@
             <key column="BILL_ID" not-null="true"/>
             <one-to-many class="com.rcr.domain.BillDetail"/>
         </bag>
+        <bag name="billTaxDetails" cascade="all,all-delete-orphan" lazy="false">
+            <key column="BILL_ID" not-null="true"/>
+            <one-to-many class="com.rcr.domain.BillTaxDetail"/>
+        </bag>
     </class>
 </hibernate-mapping>
 

@@ -41,7 +41,9 @@ public class OrderController {
     public ModelAndView orderCreationForm() {
 
         ProcessOrderForm processOrderForm = new ProcessOrderForm();
-        return new ModelAndView("order/createOrder", "processOrderForm", processOrderForm);
+        ModelAndView modelAndView = new ModelAndView("order/createOrder", "processOrderForm", processOrderForm);
+        modelAndView.getModelMap().put("taxConfigurations", purchaseOrderService.getTaxConfiguration().filterBy("Order"));
+        return modelAndView;
     }
 
     @RequestMapping(value = "/searchOrder", method = RequestMethod.GET)
@@ -73,7 +75,7 @@ public class OrderController {
     @RequestMapping(value = "/saveOrder", method = RequestMethod.POST)
     public String saveOrder(ProcessOrderForm processOrderForm, Model model) {
         model.asMap().clear();
-        PurchaseOrder purchaseOrder = processOrderForm.buildOrder();
+        PurchaseOrder purchaseOrder = processOrderForm.buildOrder(purchaseOrderService.getTaxConfiguration().filterBy("Order"));
         if (purchaseOrder.getStatus() == OrderStatus.RECEIVED.getCode()) {
             for (PurchaseOrderDetail purchaseOrderDetail : purchaseOrder.getPurchaseOrderDetails()) {
                 Inventory inventory = new Inventory();

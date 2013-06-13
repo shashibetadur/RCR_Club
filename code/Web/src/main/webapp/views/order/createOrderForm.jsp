@@ -6,7 +6,7 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/bootstrap-datepicker.js"></script>
 <div class="row well">
     <form id="order-creation-form" method="POST" action="<%=request.getContextPath()%>/order/saveOrder">
-        <legend>Create Purchase Order</legend>
+        <legend>Purchase Order</legend>
         <form:hidden path="processOrderForm.id"/>
         <div class="span10 order-creation-errors"></div>
         <div class="nk-form-section">

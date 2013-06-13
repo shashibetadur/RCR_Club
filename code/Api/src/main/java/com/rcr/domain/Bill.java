@@ -21,6 +21,8 @@ public class Bill extends Entity {
 
     private List<BillDetail> billDetails = new ArrayList<BillDetail>();
 
+    private List<BillTaxDetail> billTaxDetails = new ArrayList<BillTaxDetail>();
+
     public Member getMember() {
         return member;
     }
@@ -67,5 +69,13 @@ public class Bill extends Entity {
 
     public void setBillDetails(List<BillDetail> billDetails) {
         this.billDetails = billDetails;
+    }
+
+    public List<BillTaxDetail> getBillTaxDetails() {
+        return billTaxDetails;
+    }
+
+    public void setBillTaxDetails(List<BillTaxDetail> billTaxDetails) {
+        this.billTaxDetails = billTaxDetails;
     }
 }

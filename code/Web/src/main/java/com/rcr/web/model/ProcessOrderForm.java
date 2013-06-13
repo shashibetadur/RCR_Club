@@ -1,9 +1,6 @@
 package com.rcr.web.model;
 
-import com.rcr.domain.Material;
-import com.rcr.domain.OrderStatus;
-import com.rcr.domain.PurchaseOrder;
-import com.rcr.domain.PurchaseOrderDetail;
+import com.rcr.domain.*;
 import com.rcr.web.JsonSerializer;
 
 import java.util.ArrayList;
@@ -22,7 +19,11 @@ public class ProcessOrderForm {
 
     private List<DisplayMaterial> displayMaterialList = new ArrayList<DisplayMaterial>();
 
-    private String materialListJason="[]";
+    private List<OrderTaxDetail> orderTaxDetails = new ArrayList<OrderTaxDetail>();
+
+    private String materialListJason = "[]";
+
+    private String taxListJason = "[]";
 
     private double totalAmount;
 
@@ -72,20 +73,31 @@ public class ProcessOrderForm {
         this.orderStatus = orderStatus;
     }
 
-    public PurchaseOrder buildOrder() {
+    public PurchaseOrder buildOrder(List<Tax> taxList) {
 
         double totalAmount = 0;
         PurchaseOrder purchaseOrder = new PurchaseOrder();
         purchaseOrder.setId(id);
         purchaseOrder.setStatus(orderStatus);
         purchaseOrder.setDate(orderDate);
-        for(DisplayMaterial displayMaterial: displayMaterialList ){
+        for (DisplayMaterial displayMaterial : displayMaterialList) {
             PurchaseOrderDetail purchaseOrderDetail = new PurchaseOrderDetail();
             purchaseOrderDetail.setMaterial(new com.rcr.domain.Material(displayMaterial.getId()));
             purchaseOrderDetail.setQuantity(displayMaterial.getQty());
             purchaseOrder.getPurchaseOrderDetails().add(purchaseOrderDetail);
             totalAmount += (displayMaterial.getPrice() * displayMaterial.getQty());
         }
+
+        double taxAmount = 0;
+        for (Tax tax : taxList) {
+            OrderTaxDetail orderTaxDetail = new OrderTaxDetail();
+            orderTaxDetail.setTax(tax);
+            orderTaxDetail.setPercentage(tax.getPercentage());
+            orderTaxDetail.setTaxAmount(((totalAmount * tax.getPercentage()) / 100));
+            taxAmount = taxAmount + ((totalAmount * tax.getPercentage()) / 100);
+            purchaseOrder.getOrderTaxDetails().add(orderTaxDetail);
+        }
+        totalAmount += taxAmount;
         purchaseOrder.setAmount(totalAmount);
         return purchaseOrder;
     }
@@ -107,7 +119,16 @@ public class ProcessOrderForm {
             this.getDisplayMaterialList().add(displayMaterial);
             totalAmount += displayMaterial.getTotal();
         }
+
+        double taxAmount = 0;
+        for (OrderTaxDetail orderTaxDetail : purchaseOrder.getOrderTaxDetails()) {
+            taxAmount += orderTaxDetail.getTaxAmount();
+        }
+
+        totalAmount += taxAmount;
         this.setTotalAmount(totalAmount);
+        this.setOrderTaxDetails(purchaseOrder.getOrderTaxDetails());
+        taxListJason = new JsonSerializer().serialize(purchaseOrder.getOrderTaxDetails());
         materialListJason = new JsonSerializer().serialize(displayMaterialList);
     }
 
@@ -133,5 +154,21 @@ public class ProcessOrderForm {
 
     public void setOrderDate(Date orderDate) {
         this.orderDate = orderDate;
+    }
+
+    public List<OrderTaxDetail> getOrderTaxDetails() {
+        return orderTaxDetails;
+    }
+
+    public void setOrderTaxDetails(List<OrderTaxDetail> orderTaxDetails) {
+        this.orderTaxDetails = orderTaxDetails;
+    }
+
+    public String getTaxListJason() {
+        return taxListJason;
+    }
+
+    public void setTaxListJason(String taxListJason) {
+        this.taxListJason = taxListJason;
     }
 }

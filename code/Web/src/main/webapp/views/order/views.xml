@@ -21,4 +21,8 @@
     <definition name="order/searchResults" extends="ajaxSection">
         <put-attribute name="content" value="/views/order/searchResults.jsp"/>
     </definition>
+    <definition name="order/configuration" extends="default">
+        <put-attribute name="main-content" value="/views/order/taxConfiguration.jsp"/>
+        <put-attribute name="context-menu" value="/views/order/contextMenu.jsp"/>
+    </definition>
 </tiles-definitions>

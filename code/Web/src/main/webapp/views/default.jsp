@@ -31,7 +31,7 @@
                         Logged in as <a href="#" class="navbar-link">Username</a>
                         </p-->
                         <ul class="nav nav-tabs nav-pills">
-                            <li class="divider-vertical"><a href="<%=request.getContextPath()%>/home">Home</a></li>
+                            <li class="divider-vertical"><a href="<%=request.getContextPath()%>/home"><i class = 'icon-home'></i>&nbsp Home</a></li>
                             <li class="divider-vertical"><a href="<%=request.getContextPath()%>/member/creationForm">Members</a></li>
                             <li class="divider-vertical"><a href="<%=request.getContextPath()%>/order/searchOrder">Procurement</a></li>
                             <li class="divider-vertical"><a href="<%=request.getContextPath()%>/bill/searchBill">Sales</a></li>
