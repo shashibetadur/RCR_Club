@@ -97,6 +97,7 @@ public class ProcessOrderForm {
             taxAmount = taxAmount + ((totalAmount * tax.getPercentage()) / 100);
             purchaseOrder.getOrderTaxDetails().add(orderTaxDetail);
         }
+
         totalAmount += taxAmount;
         purchaseOrder.setAmount(totalAmount);
         return purchaseOrder;

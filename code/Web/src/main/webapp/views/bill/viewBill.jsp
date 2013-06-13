@@ -51,6 +51,12 @@
                         <td>${billDetail.total}</td>
                     </tr>
                 </c:forEach>
+                <c:forEach var="taxDetail" items="${bill.billTaxDetails}" varStatus="index">
+                    <tr>
+                        <td colspan='3'>${taxDetail.tax.taxType}(${taxDetail.percentage})</td>
+                        <td colspan='2'>${taxDetail.taxAmount}</td>
+                    </tr>
+                </c:forEach>
                 <tr>
                     <td colspan='3'>Grand Total</td>
                     <td colspan='2'>${bill.totalAmount}</td>

@@ -6,6 +6,7 @@ public class BillTaxDetail extends Entity{
     private Tax tax;
     private double percentage;
     private double taxAmount;
+    private String taxType;
 
     public long getBillId() {
         return billId;
@@ -37,5 +38,13 @@ public class BillTaxDetail extends Entity{
 
     public void setTaxAmount(double taxAmount) {
         this.taxAmount = taxAmount;
+    }
+
+    public String getTaxType() {
+        return tax.getTaxType();
+    }
+
+    public void setTaxType(String taxType) {
+        this.taxType = taxType;
     }
 }

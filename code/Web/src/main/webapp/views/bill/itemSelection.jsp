@@ -58,6 +58,14 @@
         $(document).ready(function () {
 
             itemBasket = eval(${memberBillForm.itemListJason});
+            taxConfigurations = eval(${memberBillForm.taxListJason});
+
+            <c:forEach varStatus="index" var="taxConfiguration" items="${taxConfigurations}">
+                taxConfigurations.push({
+                    taxType:"${taxConfiguration.taxType}",
+                    percentage:"${taxConfiguration.percentage}"});
+            </c:forEach>
+
             renderTable();
 
             $("#item-name").autocomplete({

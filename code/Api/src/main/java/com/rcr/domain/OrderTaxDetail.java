@@ -1,6 +1,5 @@
 package com.rcr.domain;
 
-
 public class OrderTaxDetail extends Entity {
 
     private long orderId;

@@ -1,8 +1,6 @@
 package com.rcr.web.model;
 
-import com.rcr.domain.Bill;
-import com.rcr.domain.BillDetail;
-import com.rcr.domain.Item;
+import com.rcr.domain.*;
 import com.rcr.domain.member.Member;
 import com.rcr.web.JsonSerializer;
 
@@ -22,7 +20,11 @@ public class MemberBillForm {
 
     private List<DisplayItem> displayItemList = new ArrayList<DisplayItem>();
 
+    private List<BillTaxDetail> billTaxDetails = new ArrayList<BillTaxDetail>();
+
     private String itemListJason = "[]";
+
+    private String taxListJason = "[]";
 
     private double totalAmount;
 
@@ -79,7 +81,7 @@ public class MemberBillForm {
         this.displayItemList = displayItemList;
     }
 
-    public Bill buildOrder() {
+    public Bill buildOrder(List<Tax> taxList) {
 
         double totalAmount = 0;
         Bill bill = new Bill();
@@ -93,6 +95,18 @@ public class MemberBillForm {
             bill.getBillDetails().add(billDetail);
             totalAmount += (displayItem.getPrice() * displayItem.getQty());
         }
+
+        double taxAmount = 0;
+        for (Tax tax : taxList) {
+            BillTaxDetail billTaxDetail = new BillTaxDetail();
+            billTaxDetail.setTax(tax);
+            billTaxDetail.setPercentage(tax.getPercentage());
+            billTaxDetail.setTaxAmount(((totalAmount * tax.getPercentage()) / 100));
+            taxAmount = taxAmount + ((totalAmount * tax.getPercentage()) / 100);
+            bill.getBillTaxDetails().add(billTaxDetail);
+        }
+
+        totalAmount += taxAmount;
         bill.setAmount(totalAmount);
         return bill;
     }
@@ -114,7 +128,16 @@ public class MemberBillForm {
             this.getDisplayItemList().add(displayItem);
             totalAmount += displayItem.getTotal();
         }
+
+        double taxAmount = 0;
+        for (BillTaxDetail billTaxDetail : bill.getBillTaxDetails()) {
+            taxAmount += billTaxDetail.getTaxAmount();
+        }
+
+        totalAmount += taxAmount;
         this.setTotalAmount(totalAmount);
+        this.setBillTaxDetails(bill.getBillTaxDetails());
+        taxListJason = new JsonSerializer().serialize(bill.getBillTaxDetails());
         itemListJason = new JsonSerializer().serialize(displayItemList);
     }
 
@@ -132,5 +155,21 @@ public class MemberBillForm {
 
     public void setBillDate(Date billDate) {
         this.billDate = billDate;
+    }
+
+    public List<BillTaxDetail> getBillTaxDetails() {
+        return billTaxDetails;
+    }
+
+    public void setBillTaxDetails(List<BillTaxDetail> billTaxDetails) {
+        this.billTaxDetails = billTaxDetails;
+    }
+
+    public String getTaxListJason() {
+        return taxListJason;
+    }
+
+    public void setTaxListJason(String taxListJason) {
+        this.taxListJason = taxListJason;
     }
 }

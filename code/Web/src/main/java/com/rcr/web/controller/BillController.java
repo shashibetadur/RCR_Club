@@ -4,6 +4,7 @@ import com.rcr.domain.Bill;
 import com.rcr.domain.BillSearchCriteria;
 import com.rcr.service.bill.MemberBillService;
 import com.rcr.service.member.MemberService;
+import com.rcr.service.order.PurchaseOrderService;
 import com.rcr.web.model.MemberBillForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,12 +21,14 @@ import java.util.List;
 public class BillController {
 
     MemberBillService memberBillService;
+    private PurchaseOrderService purchaseOrderService;
 
     MemberService memberService;
 
     @Autowired
-    public BillController(MemberBillService memberBillService, MemberService memberService) {
+    public BillController(MemberBillService memberBillService, PurchaseOrderService purchaseOrderService, MemberService memberService) {
         this.memberBillService = memberBillService;
+        this.purchaseOrderService = purchaseOrderService;
         this.memberService = memberService;
     }
 
@@ -34,13 +37,15 @@ public class BillController {
 
         MemberBillForm memberBillForm = new MemberBillForm();
         memberBillForm.setMember(memberService.getMemberDetails(memberId));
-        return new ModelAndView("bill/createBill", "memberBillForm", memberBillForm);
+        ModelAndView modelAndView = new ModelAndView("bill/createBill", "memberBillForm", memberBillForm);
+        modelAndView.getModelMap().put("taxConfigurations", purchaseOrderService.getTaxConfiguration().filterBy("Bill"));
+        return modelAndView;
     }
 
     @RequestMapping(value = "/saveBill", method = RequestMethod.POST)
     public String saveOrder(MemberBillForm memberBillForm, Model model) {
         model.asMap().clear();
-        Bill bill = memberBillForm.buildOrder();
+        Bill bill = memberBillForm.buildOrder(purchaseOrderService.getTaxConfiguration().filterBy("Bill"));
         bill.setMember(memberService.getMemberDetails(memberBillForm.getMember().getPersonalDetails().getId()));
         memberBillService.saveOrder(bill);
         return "redirect:/bill/viewBill/" + bill.getId();
