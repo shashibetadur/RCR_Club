@@ -149,6 +149,7 @@
                     rows += row;
                     taxTotal += taxValue;
                 });
+                taxTotal = Math.round(taxTotal * 100) / 100;
                 rows += "<tr><td colspan='3'>Grand Total</td><td colspan='2'>" + (total + taxTotal) + "</td></tr>";
             }
             $(".item-list-location table tbody").html(rows);

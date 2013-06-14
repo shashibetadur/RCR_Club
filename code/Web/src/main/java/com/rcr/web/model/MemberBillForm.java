@@ -4,6 +4,7 @@ import com.rcr.domain.*;
 import com.rcr.domain.member.Member;
 import com.rcr.web.JsonSerializer;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -81,6 +82,11 @@ public class MemberBillForm {
         this.displayItemList = displayItemList;
     }
 
+    private double roundTo2Decimals(double val) {
+                DecimalFormat df2 = new DecimalFormat("###.##");
+            return Double.valueOf(df2.format(val));
+    }
+
     public Bill buildOrder(List<Tax> taxList) {
 
         double totalAmount = 0;
@@ -98,14 +104,21 @@ public class MemberBillForm {
 
         double taxAmount = 0;
         for (Tax tax : taxList) {
+            double taxValue = 0;
             BillTaxDetail billTaxDetail = new BillTaxDetail();
             billTaxDetail.setTax(tax);
             billTaxDetail.setPercentage(tax.getPercentage());
-            billTaxDetail.setTaxAmount(((totalAmount * tax.getPercentage()) / 100));
-            taxAmount = taxAmount + ((totalAmount * tax.getPercentage()) / 100);
+            taxValue = (totalAmount * tax.getPercentage()) / 100;
+            taxValue = roundTo2Decimals(taxValue);
+            billTaxDetail.setTaxAmount(taxValue);
+            taxAmount += taxValue;
             bill.getBillTaxDetails().add(billTaxDetail);
         }
-
+        taxAmount =  roundTo2Decimals(taxAmount);
+        if((taxAmount - Math.floor(taxAmount)) >= .5)
+            taxAmount = Math.ceil(taxAmount);
+        else
+            taxAmount = Math.floor(taxAmount);
         totalAmount += taxAmount;
         bill.setAmount(totalAmount);
         return bill;
@@ -135,6 +148,12 @@ public class MemberBillForm {
         }
 
         totalAmount += taxAmount;
+        totalAmount =  roundTo2Decimals(totalAmount);
+        if((totalAmount - Math.floor(totalAmount)) >= .5)
+            totalAmount = Math.ceil(totalAmount);
+        else
+            totalAmount = Math.floor(totalAmount);
+
         this.setTotalAmount(totalAmount);
         this.setBillTaxDetails(bill.getBillTaxDetails());
         taxListJason = new JsonSerializer().serialize(bill.getBillTaxDetails());

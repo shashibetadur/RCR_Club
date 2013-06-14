@@ -140,6 +140,7 @@
             if (itemBasket.length > 0) {
                 $.each(taxConfigurations, function (index, value) {
                     var taxValue = ((total * value.percentage) / 100);
+                    taxValue = Math.round(taxValue * 100) / 100;
                     var row = "<tr><td colspan='3'>:taxType (:percentage)</td><td colspan='2'>:totalTax</td></tr>"
                             .replace(/:taxType/g, value.taxType)
                             .replace(/:percentage/g, value.percentage)
@@ -147,6 +148,12 @@
                     rows += row;
                     taxTotal += taxValue;
                 });
+                taxTotal = Math.round(taxTotal * 100) / 100;
+                if((taxTotal - Math.floor(taxTotal)) >= .5)
+                    taxTotal = Math.ceil(taxTotal);
+                else
+                    taxTotal = Math.floor(taxTotal);
+
                 rows += "<tr><td colspan='3'>Grand Total</td><td colspan='2'>" + (total + taxTotal) + "</td></tr>";
             }
             $(".item-list-location table tbody").html(rows);
