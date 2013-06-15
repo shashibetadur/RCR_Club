@@ -3,6 +3,7 @@ package com.rcr.web.model;
 import com.rcr.domain.*;
 import com.rcr.web.JsonSerializer;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -73,6 +74,11 @@ public class ProcessOrderForm {
         this.orderStatus = orderStatus;
     }
 
+    private double roundTo2Decimals(double val) {
+        DecimalFormat df2 = new DecimalFormat("###.##");
+        return Double.valueOf(df2.format(val));
+    }
+
     public PurchaseOrder buildOrder(List<Tax> taxList) {
 
         double totalAmount = 0;
@@ -90,13 +96,22 @@ public class ProcessOrderForm {
 
         double taxAmount = 0;
         for (Tax tax : taxList) {
+            double taxValue = 0;
             OrderTaxDetail orderTaxDetail = new OrderTaxDetail();
             orderTaxDetail.setTax(tax);
             orderTaxDetail.setPercentage(tax.getPercentage());
-            orderTaxDetail.setTaxAmount(((totalAmount * tax.getPercentage()) / 100));
-            taxAmount = taxAmount + ((totalAmount * tax.getPercentage()) / 100);
+            taxValue = ((totalAmount * tax.getPercentage()) / 100);
+            taxValue = roundTo2Decimals(taxValue);
+            orderTaxDetail.setTaxAmount(taxValue);
+            taxAmount += taxValue;
             purchaseOrder.getOrderTaxDetails().add(orderTaxDetail);
         }
+
+        taxAmount = roundTo2Decimals(taxAmount);
+        if ((taxAmount - Math.floor(taxAmount)) >= .5)
+            taxAmount = Math.ceil(taxAmount);
+        else
+            taxAmount = Math.floor(taxAmount);
 
         totalAmount += taxAmount;
         purchaseOrder.setAmount(totalAmount);
@@ -127,6 +142,12 @@ public class ProcessOrderForm {
         }
 
         totalAmount += taxAmount;
+        totalAmount =  roundTo2Decimals(totalAmount);
+        if((totalAmount - Math.floor(totalAmount)) >= .5)
+            totalAmount = Math.ceil(totalAmount);
+        else
+            totalAmount = Math.floor(totalAmount);
+
         this.setTotalAmount(totalAmount);
         this.setOrderTaxDetails(purchaseOrder.getOrderTaxDetails());
         taxListJason = new JsonSerializer().serialize(purchaseOrder.getOrderTaxDetails());
