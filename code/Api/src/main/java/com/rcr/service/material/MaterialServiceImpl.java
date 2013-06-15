@@ -41,6 +41,11 @@ public class MaterialServiceImpl implements MaterialService {
     }
 
     @Override
+    public List<Material> getAllActiveMaterials() {
+        return materialRepository.getAllActive();
+    }
+
+    @Override
     public void saveItemDetails(Item item) {
         itemRepository.save(item);
     }
@@ -67,5 +72,10 @@ public class MaterialServiceImpl implements MaterialService {
         if (isEmpty(searchToken) || isEmpty(searchToken.trim())) return new ArrayList<Item>();
         String[] searchTokens = searchToken.split("\\s+");
         return itemRepository.searchItems(Arrays.asList(searchTokens));
+    }
+
+    @Override
+    public List<Item> getAllActiveItems() {
+        return itemRepository.getAllActive();
     }
 }

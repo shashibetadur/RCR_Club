@@ -35,7 +35,9 @@
         </div>
         <div class="span8 nk-form-section">
             <button type="submit" class="btn btn-primary">Save changes</button>
-            <button type="reset" class="btn">Cancel</button>
+            <c:if test="${item.id > 0}">
+                <a class="btn btn-danger" href="<%=request.getContextPath()%>/bar/item/delete/${item.id}">Delete</a>
+            </c:if>
         </div>
     </form>
 </div>
@@ -52,9 +54,6 @@
             if (isEmpty(jqVal("#item-description"))) {
                 errors += errorMessageTemplate.replace(/:message/g, "Item Description cannot be empty")
             }
-            if (isEmpty(jqVal("#item-unit"))) {
-                errors += errorMessageTemplate.replace(/:message/g, "Item Unit cannot be empty")
-            }
             if (isEmpty(jqVal("#item-price"))) {
                 errors += errorMessageTemplate.replace(/:message/g, "Item Price cannot be empty")
             }
@@ -68,4 +67,7 @@
             return true;
         });
 
+        $('#delete').click(function () {
+
+        });
 </script>

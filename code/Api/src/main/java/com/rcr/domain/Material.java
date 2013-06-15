@@ -2,8 +2,6 @@ package com.rcr.domain;
 
 public class Material extends Entity {
 
-    private long id;
-
     private long inventoryId;
 
     private String name;
@@ -121,4 +119,5 @@ public class Material extends Entity {
     public void setStock(Long stock) {
         this.stock = stock;
     }
+
 }

@@ -46,7 +46,9 @@
 
         <div class="span8 nk-form-section">
             <button type="submit" class="btn btn-primary">Save changes</button>
-            <button type="reset" class="btn">Cancel</button>
+            <c:if test="${material.id > 0}">
+                <a class="btn btn-danger" href="<%=request.getContextPath()%>/bar/material/delete/${material.id}">Delete</a>
+            </c:if>
         </div>
     </form>
 </div>
@@ -78,4 +80,7 @@
             return true;
         });
 
+        $('#delete').click(function () {
+
+        });
 </script>

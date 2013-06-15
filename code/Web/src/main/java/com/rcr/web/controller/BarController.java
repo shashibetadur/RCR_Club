@@ -40,6 +40,14 @@ public class BarController {
         return "redirect:/bar/material/viewForm/" + material.getId();
     }
 
+    @RequestMapping(value = "/material/delete/{id}", method = RequestMethod.GET)
+    public String materialDelete(@PathVariable("id") long materialId) {
+        Material material = materialService.getMaterialDetails(materialId);
+        material.setDeleted(true);
+        materialService.saveMaterialDetails(material);
+        return "redirect:/bar/material/list";
+    }
+
     @RequestMapping(value = "/material/viewForm/{id}", method = RequestMethod.GET)
     public ModelAndView materialViewForm(@PathVariable("id") long materialId) {
         return new ModelAndView("bar/material/viewForm", "material", materialService.getMaterialDetails(materialId));
@@ -52,7 +60,7 @@ public class BarController {
 
     @RequestMapping(value = "/material/list", method = RequestMethod.GET)
     public ModelAndView listMaterials() {
-        List<Material> materialList = materialService.getAllMaterials();
+        List<Material> materialList = materialService.getAllActiveMaterials();
         for (Material material : materialList) {
             material.setValue(material.getName());
         }
@@ -144,6 +152,14 @@ public class BarController {
         return "redirect:/bar/item/viewForm/" + item.getId();
     }
 
+    @RequestMapping(value = "/item/delete/{id}", method = RequestMethod.GET)
+    public String itemDelete(@PathVariable("id") long itemId) {
+        Item item = materialService.getItemDetails(itemId);
+        item.setDeleted(true);
+        materialService.saveItemDetails(item);
+        return "redirect:/bar/item/list";
+    }
+
     @RequestMapping(value = "/item/viewForm/{id}", method = RequestMethod.GET)
     public ModelAndView itemViewForm(@PathVariable("id") long itemId) {
         return new ModelAndView("bar/item/viewForm", "item", materialService.getItemDetails(itemId));
@@ -156,7 +172,7 @@ public class BarController {
 
     @RequestMapping(value = "/item/list", method = RequestMethod.GET)
     public ModelAndView listItems() {
-        return new ModelAndView("bar/item/list", "items", materialService.getAllItems());
+        return new ModelAndView("bar/item/list", "items", materialService.getAllActiveItems());
     }
 
     @RequestMapping(value = "/material/convertToItem/{id}", method = RequestMethod.GET)

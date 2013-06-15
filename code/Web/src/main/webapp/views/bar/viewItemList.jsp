@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/jquery-ui-1.9.0.custom.css" type="text/css"/>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-ui-1.9.0.custom.min.js"></script>
 <div class="row well">
-    <legend>Material List</legend>
+    <legend>Item List</legend>
         <table class="nk-table table table-striped table-bordered">
             <thead>
             <th>Name</th>

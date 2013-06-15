@@ -13,6 +13,8 @@ public interface MaterialService {
 
     List<Material> getAllMaterials();
 
+    List<Material> getAllActiveMaterials();
+
     void saveItemDetails(Item item);
 
     Item getItemDetails(long itemId);
@@ -22,4 +24,6 @@ public interface MaterialService {
     List<Material> searchMaterials(String searchToken);
 
     List<Item> searchItems(String searchToken);
+
+    List<Item> getAllActiveItems();
 }
