@@ -30,6 +30,8 @@ public class ProcessOrderForm {
 
     private Date orderDate;
 
+    private Character deleteFlag;
+
     public ProcessOrderForm() {
         orderStatus = 'P';
     }
@@ -124,6 +126,7 @@ public class ProcessOrderForm {
         this.setId(purchaseOrder.getId());
         this.setOrderStatus(purchaseOrder.getStatus());
         this.setOrderDate(purchaseOrder.getDate());
+        this.setDeleteFlag(purchaseOrder.getDeleteFlag());
         for (PurchaseOrderDetail purchaseOrderDetail : purchaseOrder.getPurchaseOrderDetails()) {
             DisplayMaterial displayMaterial = new DisplayMaterial();
             displayMaterial.setId(purchaseOrderDetail.getMaterial().getId());
@@ -192,5 +195,13 @@ public class ProcessOrderForm {
 
     public void setTaxListJason(String taxListJason) {
         this.taxListJason = taxListJason;
+    }
+
+    public Character getDeleteFlag() {
+        return deleteFlag;
+    }
+
+    public void setDeleteFlag(Character deleteFlag) {
+        this.deleteFlag = deleteFlag;
     }
 }

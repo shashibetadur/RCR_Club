@@ -12,6 +12,8 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+import static org.hibernate.criterion.Restrictions.*;
+
 @Repository
 public class PurchaseOrderRepository extends BaseRepository {
 
@@ -37,6 +39,7 @@ public class PurchaseOrderRepository extends BaseRepository {
         if (!orderSearchCriteria.getOrderStatusList().isEmpty()) {
             criteria.add(Restrictions.in("status", orderSearchCriteria.getOrderStatusList()));
         }
+        criteria.add(or(isNull("deleteFlag"), not(eq("deleteFlag", 'Y'))));
         return criteria.list();
     }
 }

@@ -61,4 +61,14 @@ public class PurchaseOrder extends Entity {
     public void setOrderTaxDetails(List<OrderTaxDetail> orderTaxDetails) {
         this.orderTaxDetails = orderTaxDetails;
     }
+
+    public void prepareForDeletion() {
+        this.setDeleted(true);
+        for(PurchaseOrderDetail purchaseOrderDetail: this.getPurchaseOrderDetails()){
+            purchaseOrderDetail.setDeleted(true);
+        }
+        for(OrderTaxDetail orderTaxDetail: this.getOrderTaxDetails()){
+            orderTaxDetail.setDeleted(true);
+        }
+    }
 }

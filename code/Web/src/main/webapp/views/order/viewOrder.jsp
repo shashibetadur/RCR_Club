@@ -6,6 +6,12 @@
 <%@ taglib prefix="nk" uri="/WEB-INF/custom-tags.tld" %>
 <div class="row well">
     <legend>Order Details</legend>
+
+       <c:if test="${order.deleteFlag == 'Y'}">
+                <div class="alert alert-error">
+                        <a class="close" data-dismiss="alert"></a>This Order is Marked for Deletion!!
+                </div>
+       </c:if>
     <div class="nk-form-section">
         <div class="span10">
             <span class="nk-filed-label"><label>Order Id:</label></span>
@@ -59,7 +65,9 @@
         </div>
     </div>
     <nk:security operations="order-edit">
-        <a class="btn" href="<%=request.getContextPath()%>/order/orderEditForm/${order.id}">Edit</a>
+        <c:if test="${order.deleteFlag != 'Y'}">
+            <a class="btn" href="<%=request.getContextPath()%>/order/orderEditForm/${order.id}">Edit</a>
+        </c:if>
     </nk:security>
 </div>
 

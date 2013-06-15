@@ -72,6 +72,15 @@ public class OrderController {
         return orderStates;
     }
 
+    @RequestMapping(value = "/delete/{orderId}", method = RequestMethod.GET)
+    public String deleteOrder(@PathVariable("orderId") long orderId) {
+
+        PurchaseOrder purchaseOrder = purchaseOrderService.retrieveOrder(orderId);
+        purchaseOrder.prepareForDeletion();
+        purchaseOrderService.saveOrder(purchaseOrder);
+        return "redirect:/order/searchOrder";
+    }
+
     @RequestMapping(value = "/saveOrder", method = RequestMethod.POST)
     public String saveOrder(ProcessOrderForm processOrderForm, Model model) {
         model.asMap().clear();
@@ -108,6 +117,9 @@ public class OrderController {
         PurchaseOrder purchaseOrder = purchaseOrderService.retrieveOrder(orderId);
         ProcessOrderForm processOrderForm = new ProcessOrderForm();
         processOrderForm.buildDisplayOrder(purchaseOrder);
-        return new ModelAndView("order/editOrder", "processOrderForm", processOrderForm);
+        if(processOrderForm.getDeleteFlag() == null)
+            return new ModelAndView("order/editOrder", "processOrderForm", processOrderForm);
+        else
+            return new ModelAndView("order/viewOrder", "order", processOrderForm);
     }
 }
