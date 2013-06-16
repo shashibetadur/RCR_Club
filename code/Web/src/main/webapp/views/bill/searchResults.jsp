@@ -34,7 +34,7 @@
             <div class="nk-form-section">
                 <div class="span10">
                     <a href="<%=request.getContextPath()%>/bill/billEdit/" class="btn btn-primary edit-bill"><i class = 'icon-edit'></i> &nbsp Edit Bill</a>
-                    <a href="<%=request.getContextPath()%>/bill/viewBill" class="btn btn-info view-order"><i class = 'icon-eye-open'></i> &nbsp View Bill Details</a>
+                    <a href="<%=request.getContextPath()%>/bill/viewBill" class="btn btn-info view-order"><i class = 'icon-eye-open'></i> &nbsp View Bill</a>
                 </div>
             </div>
             <br/><br/>

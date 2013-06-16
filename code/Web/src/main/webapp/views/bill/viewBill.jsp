@@ -70,15 +70,17 @@
             </table>
         </div>
     </div>
-    <nk:security operations="order-edit">
-        <c:if test="${bill.deleteFlag != 'Y' && bill.billStatus != 'CLOSED'}">
+        <c:if test="${bill.deleteFlag != 'Y'}">
             <div class="nk-form-section">
                 <div class="span10">
-                    <a class="btn btn-primary" href="<%=request.getContextPath()%>/bill/billEdit/${bill.id}"><i class = 'icon-edit'></i> &nbsp Edit</a>
+                    <c:if test="${bill.billStatus != 'CLOSED'}">
+                        <a class="btn btn-primary" href="<%=request.getContextPath()%>/bill/billEdit/${bill.id}"><i class = 'icon-edit'></i> &nbsp Edit</a>
+                    </c:if>
+                    <a class="btn btn-success" target="_blank" href="<%=request.getContextPath()%>/member/membership/payment/createForm/${bill.member.personalDetails.id}">
+                    <i class = 'icon-book'> </i> &nbsp Make Payment</a>
                 </div>
             </div>
         </c:if>
-    </nk:security>
 </div>
 
 

@@ -43,8 +43,8 @@
                     <div class="nk-nav-right">
                         <label class="loggedin-username">Logged In As <%=((User) session.getAttribute("user")).getUsername()%>
                         </label>
-                        <a class="logout" href="#">Settings</a>
-                        <a href="<%=request.getContextPath()%>/logout">Logout</a>
+                        <a class="logout" href="#"><i class = 'icon-wrench'></i>&nbsp Settings</a>
+                        <a href="<%=request.getContextPath()%>/logout"><i class = 'icon-off'></i>&nbsp Logout</a>
                     </div>
                 </div>
             </div>

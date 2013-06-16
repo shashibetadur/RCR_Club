@@ -39,6 +39,8 @@
             <c:if test="${memberBillForm.id > 0}">
                 <a class="btn btn-danger" href="<%=request.getContextPath()%>/bill/delete/${memberBillForm.id}"><i class = 'icon-trash'></i>&nbsp Delete</a>
             </c:if>
+            <a class="btn btn-success" target="_blank" href="<%=request.getContextPath()%>/member/membership/payment/createForm/
+            ${memberBillForm.member.personalDetails.id}"><i class = 'icon-book'></i>&nbsp Make Payment</a>
         </div>
     </form>
 </div>
