@@ -13,6 +13,8 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+import static org.hibernate.criterion.Restrictions.*;
+
 @Repository
 public class BillRepository extends BaseRepository {
 
@@ -41,7 +43,7 @@ public class BillRepository extends BaseRepository {
         if(billSearchCriteria.getBillStatusList().size() > 0){
             criteria.add(Restrictions.in("status", billSearchCriteria.getBillStatusList()));
         }
-
+        criteria.add(or(isNull("deleteFlag"), not(eq("deleteFlag", 'Y'))));
         return criteria.list();
     }
 }

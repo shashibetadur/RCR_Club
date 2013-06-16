@@ -78,4 +78,14 @@ public class Bill extends Entity {
     public void setBillTaxDetails(List<BillTaxDetail> billTaxDetails) {
         this.billTaxDetails = billTaxDetails;
     }
+
+    public void prepareForDeletion() {
+        this.setDeleted(true);
+        for(BillDetail billDetail: this.getBillDetails()){
+            billDetail.setDeleted(true);
+        }
+        for(BillTaxDetail billTaxDetail: this.getBillTaxDetails()){
+            billTaxDetail.setDeleted(true);
+        }
+    }
 }

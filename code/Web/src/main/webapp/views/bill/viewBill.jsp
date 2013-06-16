@@ -5,8 +5,13 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt"%>
 <%@ taglib prefix="nk" uri="/WEB-INF/custom-tags.tld" %>
 <div class="row well">
-    <legend>Order Details</legend>
+    <legend>Bill Details</legend>
     <form:hidden path="bill.member.personalDetails.id"/>
+    <c:if test="${bill.deleteFlag == 'Y'}">
+        <div class="alert alert-error">
+                <a class="close" data-dismiss="alert"></a>This Bill is Marked for Deletion!!
+        </div>
+    </c:if>
     <div class="nk-form-section">
         <div class="span10">
             <span class="nk-filed-label"><label>Order Id:</label></span>
@@ -66,7 +71,9 @@
         </div>
     </div>
     <nk:security operations="order-edit">
-        <a class="btn" href="<%=request.getContextPath()%>/bill/billEdit/${bill.id}">Edit</a>
+        <c:if test="${bill.deleteFlag != 'Y' && bill.billStatus != 'CLOSED'}">
+            <a class="btn" href="<%=request.getContextPath()%>/bill/billEdit/${bill.id}">Edit</a>
+        </c:if>
     </nk:security>
 </div>
 

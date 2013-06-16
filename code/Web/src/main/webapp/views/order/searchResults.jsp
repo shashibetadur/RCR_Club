@@ -20,9 +20,8 @@
                 <tbody>
                 <c:forEach var="order" items="${orderFormList}">
                     <tr>
-                        <td><input type='radio' name='row' value='${order.id}'/></td>
-                        <td><input type='hidden' name='state' value='${order.orderStatus}'/>
-                        <label>${order.id}</label></td>
+                        <td><input type='radio' name='row' value='${order.id}:${order.orderStatus}'/></td>
+                        <td><input type='hidden' name='state' value='${order.orderStatus}'/><label>${order.id}</label></td>
                         <td><label>${order.totalAmount}</label></td>
                         <td><label>${order.orderStatusDescription}</label></td>
                         <td><label><fmt:formatDate pattern="dd-MM-yyyy" value="${order.orderDate}"/></label></td>
@@ -45,8 +44,9 @@
     $(function () {
         $('.edit-order').click(function (event) {
             event.preventDefault();
-            var selectedOrder = $('input:radio[name=row]:checked').val();
-            var selectedOrderStatus = $('input:hidden[name=state]').val();
+            var selectedOrderAndStatus = $('input:radio[name=row]:checked').val();
+            var selectedOrder = selectedOrderAndStatus.split(":")[0];
+            var selectedOrderStatus = selectedOrderAndStatus.split(":")[1];
 
                     var errors = "";
                     var errorMessageTemplate = "<label class='label label-important'>:message</label>"
@@ -64,7 +64,8 @@
         });
         $('.view-order').click(function (event) {
             event.preventDefault();
-            var selectedOrder = $('input:radio[name=row]:checked').val();
+            var selectedOrderAndStatus = $('input:radio[name=row]:checked').val();
+            var selectedOrder = selectedOrderAndStatus.split(":")[0];
             if (selectedOrder) document.location.href = $(this).attr('href') + "/" + selectedOrder;
             else return false;
         });

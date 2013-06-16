@@ -28,7 +28,7 @@
         <div class="span8 nk-form-section">
             <button type="submit" class="btn btn-primary">Save changes</button>
             <c:if test="${processOrderForm.id > 0}">
-                <a class="btn btn-danger" href="<%=request.getContextPath()%>/order/delete/${processOrderForm.id}">Delete</a>
+                <a class="btn btn-danger" href="<%=request.getContextPath()%>/order/delete/${processOrderForm.id}"><i class = 'icon-trash'></i>&nbsp Delete</a>
             </c:if>
         </div>
     </form>

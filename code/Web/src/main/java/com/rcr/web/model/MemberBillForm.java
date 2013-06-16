@@ -31,6 +31,8 @@ public class MemberBillForm {
 
     private Date billDate;
 
+    private Character deleteFlag;
+
     public MemberBillForm() {
     }
 
@@ -130,6 +132,7 @@ public class MemberBillForm {
         this.setBillStatus(bill.getStatus());
         this.setBillDate(bill.getDate());
         this.setMember(bill.getMember());
+        this.setDeleteFlag(bill.getDeleteFlag());
         for (BillDetail billDetail : bill.getBillDetails()) {
             DisplayItem displayItem = new DisplayItem();
             displayItem.setId(billDetail.getItem().getId());
@@ -190,5 +193,13 @@ public class MemberBillForm {
 
     public void setTaxListJason(String taxListJason) {
         this.taxListJason = taxListJason;
+    }
+
+    public Character getDeleteFlag() {
+        return deleteFlag;
+    }
+
+    public void setDeleteFlag(Character deleteFlag) {
+        this.deleteFlag = deleteFlag;
     }
 }

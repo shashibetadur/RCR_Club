@@ -66,7 +66,18 @@ public class BillController {
         MemberBillForm memberBillForm = new MemberBillForm();
         memberBillForm.buildDisplayBill(bill);
         memberBillForm.setMember(memberService.getMemberDetails(bill.getMember().getPersonalDetails().getId()));
-        return new ModelAndView("bill/editBill", "memberBillForm", memberBillForm);
+        if(memberBillForm.getDeleteFlag() == null)
+            return new ModelAndView("bill/editBill", "memberBillForm", memberBillForm);
+        else
+            return new ModelAndView("bill/viewBill", "bill", memberBillForm);
+    }
+
+    @RequestMapping(value = "/delete/{billId}", method = RequestMethod.GET)
+    public String deleteBill(@PathVariable("billId") long billId) {
+        Bill bill = memberBillService.retrieveOrder(billId);
+        bill.prepareForDeletion();
+        memberBillService.saveOrder(bill);
+        return "redirect:/bill/searchBill";
     }
 
     @RequestMapping(value = "/searchBill", method = RequestMethod.GET)

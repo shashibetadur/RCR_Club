@@ -21,8 +21,8 @@
                 <tbody>
                 <c:forEach var="order" items="${memberBillList}">
                     <tr>
-                        <td><input type='radio' name='row' value='${order.id}'/></td>
-                        <td><input type='hidden' name='state' value='${order.billStatus}'/><label>${order.id}</label></td>
+                        <td><input type='radio' name='row' value='${order.id}:${order.billStatus}'/></td>
+                        <td><input type='hidden' name='state' value='${order.id}'/><label>${order.id}</label></td>
                         <td><label>${order.member.personalDetails.firstName} &nbsp ${order.member.personalDetails.lastName}</label></td>
                         <td><label>${order.totalAmount}</label></td>
                         <td><label><fmt:formatDate pattern="dd-MM-yyyy" value="${order.billDate}"/></label></td>
@@ -32,7 +32,7 @@
                 </tbody>
             </table>
             <div class="btn-group">
-                    <a href="<%=request.getContextPath()%>/bill/billEdit/" class="btn  edit-order">Edit Bill</a>
+                    <a href="<%=request.getContextPath()%>/bill/billEdit/" class="btn  edit-bill">Edit Bill</a>
                     <a href="<%=request.getContextPath()%>/bill/viewBill" class="btn  view-order">View Bill Details</a>
             </div>
             <br/><br/>
@@ -44,15 +44,16 @@
 </div>
 <script type="text/javascript">
     $(function () {
-        $('.edit-order').click(function (event) {
+        $('.edit-bill').click(function (event) {
             event.preventDefault();
-            var selectedBill = $('input:radio[name=row]:checked').val();
-            var selectedBillStatus = $('input:hidden[name=state]').val();
+            var selectedBillAndStatus = $('input:radio[name=row]:checked').val();
+            var selectedBill = selectedBillAndStatus.split(":")[0];
+            var selectedBillStatus = selectedBillAndStatus.split(":")[1];
 
                     var errors = "";
                     var errorMessageTemplate = "<label class='label label-important'>:message</label>"
                     $(".search-edit-errors").html("");
-                    if(selectedBillStatus == 'CLOSED'){
+                    if(selectedBillStatus == "CLOSED"){
                         errors += errorMessageTemplate.replace(/:message/g, "Closed Bill Cannot be Edited");
                     }
                     if (errors) {
@@ -65,7 +66,8 @@
         });
         $('.view-order').click(function (event) {
             event.preventDefault();
-            var selectedBill = $('input:radio[name=row]:checked').val();
+            var selectedBillAndStatus = $('input:radio[name=row]:checked').val();
+            var selectedBill = selectedBillAndStatus.split(":")[0];
             if (selectedBill) document.location.href = $(this).attr('href') + "/" + selectedBill;
             else return false;
         });
