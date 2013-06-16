@@ -23,16 +23,16 @@
             </div>
             <div class="tax-configurations-buttons btn-group">
                 <nk:security operations="tax-save">
-                    <a class="btn add">Add</a>
-                    <a class="btn  edit">Edit</a>
-                    <a class="btn  delete">Delete</a>
+                    <a class="btn add"><i class = 'icon-plus'></i> &nbsp Add</a>
+                    <a class="btn edit"><i class = 'icon-edit'></i> &nbsp Edit</a>
+                    <a class="btn delete"><i class = 'icon-trash'></i> &nbsp Delete</a>
                 </nk:security>
             </div>
         </div>
         <div class="span8 nk-form-section">
             <nk:security operations="tax-save">
-                <button type="submit" class="btn btn-primary">Save changes</button>
-                <button type="reset" class="btn">Cancel</button>
+                <button type="submit" class="btn btn-primary"><i class = 'icon-ok'></i> &nbsp Save</button>
+                <button type="reset" class="btn btn-warning"><i class = 'icon-refresh'></i> &nbsp Cancel</button>
             </nk:security>
         </div>
     </form>

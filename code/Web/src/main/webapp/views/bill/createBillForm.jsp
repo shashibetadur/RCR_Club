@@ -35,7 +35,7 @@
         </div>
         <jsp:include page="itemSelection.jsp"/>
         <div class="span8 nk-form-section">
-            <button type="submit" class="btn btn-primary">Save changes</button>
+            <button type="submit" class="btn btn-primary"><i class = 'icon-ok'></i> &nbsp Save</button>
             <c:if test="${memberBillForm.id > 0}">
                 <a class="btn btn-danger" href="<%=request.getContextPath()%>/bill/delete/${memberBillForm.id}"><i class = 'icon-trash'></i>&nbsp Delete</a>
             </c:if>

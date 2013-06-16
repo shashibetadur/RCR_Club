@@ -35,6 +35,6 @@
         </div>
     </div>
     <div class="span8 nk-form-section">
-            <a href="<%=request.getContextPath()%>/bar/material/editForm/${material.id}" class="btn">Edit</a>
+            <a href="<%=request.getContextPath()%>/bar/material/editForm/${material.id}" class="btn btn-primary"><i class = 'icon-edit'></i> &nbsp Edit</a>
     </div>
 </div>

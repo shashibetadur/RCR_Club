@@ -37,8 +37,10 @@
                     </div>
                 </div>
             </div>
-            <div class="span8 nk-form-section">
-                <a href="#" class="nk-search-button btn btn-small btn-primary">Search Bills</a>
+            <div class="nk-form-section">
+                <div class="span10">
+                    <a href="#" class="nk-search-button btn btn-small btn-primary"><i class = 'icon-search'></i> &nbsp Search Bills</a>
+                </div>
             </div>
         </form>
     </div>

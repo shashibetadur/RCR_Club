@@ -69,7 +69,7 @@ public class BarController {
 
     @RequestMapping(value = "/material/convertMaterials", method = RequestMethod.GET)
     public ModelAndView convertMaterials() {
-        return new ModelAndView("bar/material/convertMaterials", "materials", materialService.getAllMaterials());
+        return new ModelAndView("bar/material/convertMaterials", "materials", materialService.getAllActiveMaterials());
     }
 
     @RequestMapping(value = "/material/search", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)

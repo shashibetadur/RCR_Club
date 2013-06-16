@@ -34,9 +34,10 @@
             </div>
         </div>
         <div class="span8 nk-form-section">
-            <button type="submit" class="btn btn-primary">Save changes</button>
+            <button type="submit" class="btn btn-primary"><i class = 'icon-ok'></i> &nbsp Save</button>
+            <button type="reset" class="btn btn-warning"><i class = 'icon-refresh'></i> &nbsp Cancel</button>
             <c:if test="${item.id > 0}">
-                <a class="btn btn-danger" href="<%=request.getContextPath()%>/bar/item/delete/${item.id}">Delete</a>
+                <a class="btn btn-danger" href="<%=request.getContextPath()%>/bar/item/delete/${item.id}"><i class = 'icon-trash'></i> &nbsp Delete</a>
             </c:if>
         </div>
     </form>

@@ -11,7 +11,7 @@
                    maxlength="100"/>
             <input type="text" class="last-name input-large" name="lastName" placeholder="Last Name" maxlength="100"/>
             <br/><br/>
-            <a href="#" class="nk-search-button btn btn-small btn-primary">Search</a>
+            <a href="#" class="nk-search-button btn btn-small btn-primary"><i class = 'icon-search'></i> &nbsp Search Members</a>
         </form>
     </div>
     <div class="search-results">

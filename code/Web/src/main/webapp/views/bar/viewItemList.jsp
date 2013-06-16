@@ -23,7 +23,7 @@
                         <td><label>${item.itemTypeDescription}</label></td>
                         <td><label>${item.price}</label></td>
                         <td>
-                            <a target="_blank" href="<%=request.getContextPath()%>/bar/item/editForm/${item.id}"><i class = 'icon-pencil'></i></a>&nbsp
+                            <a target="_blank" href="<%=request.getContextPath()%>/bar/item/editForm/${item.id}"><i class = 'icon-edit'></i></a>&nbsp
                             <a name="item${item.id}"></a>
                         </td>
                     </tr>

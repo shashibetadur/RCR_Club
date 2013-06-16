@@ -29,9 +29,11 @@
                 </c:forEach>
                 </tbody>
             </table>
-            <div class="btn-group">
-                    <a href="<%=request.getContextPath()%>/order/orderEditForm/" class="btn  edit-order">Edit Order</a>
-                    <a href="<%=request.getContextPath()%>/order/viewOrder" class="btn  view-order">View Order Details</a>
+            <div class="nk-form-section">
+                <div class="span10">
+                    <a href="<%=request.getContextPath()%>/order/orderEditForm/" class="btn btn-primary edit-order"><i class = 'icon-edit'></i> &nbsp Edit Order</a>
+                    <a href="<%=request.getContextPath()%>/order/viewOrder" class="btn  btn-info view-order"><i class = 'icon-eye-open'></i> &nbsp View Order Details</a>
+                </div>
             </div>
             <br/><br/>
         </c:when>

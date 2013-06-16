@@ -66,7 +66,11 @@
     </div>
     <nk:security operations="order-edit">
         <c:if test="${order.deleteFlag != 'Y' && order.orderStatus != 'D'}">
-            <a class="btn" href="<%=request.getContextPath()%>/order/orderEditForm/${order.id}">Edit</a>
+            <div class="nk-form-section">
+                <div class="span10">
+                    <a class="btn btn-primary" href="<%=request.getContextPath()%>/order/orderEditForm/${order.id}"><i class = 'icon-edit'></i> &nbsp Edit</a>
+                </div>
+            </div>
         </c:if>
     </nk:security>
 </div>

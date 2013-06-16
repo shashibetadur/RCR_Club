@@ -21,7 +21,7 @@
     <div class="nk-form-section">
         <div class="span10">
             <span class="nk-filed-label"><label>Name :</label></span>
-            <span class="nk-filed"><label>${bill.member.personalDetails.firstName}${bill.member.personalDetails.lastName}</label></span>
+            <span class="nk-filed"><label>${bill.member.personalDetails.firstName} &nbsp ${bill.member.personalDetails.lastName}</label></span>
         </div>
     </div>
     <div class="nk-form-section">
@@ -72,7 +72,11 @@
     </div>
     <nk:security operations="order-edit">
         <c:if test="${bill.deleteFlag != 'Y' && bill.billStatus != 'CLOSED'}">
-            <a class="btn" href="<%=request.getContextPath()%>/bill/billEdit/${bill.id}">Edit</a>
+            <div class="nk-form-section">
+                <div class="span10">
+                    <a class="btn btn-primary" href="<%=request.getContextPath()%>/bill/billEdit/${bill.id}"><i class = 'icon-edit'></i> &nbsp Edit</a>
+                </div>
+            </div>
         </c:if>
     </nk:security>
 </div>
