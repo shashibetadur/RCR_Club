@@ -32,12 +32,12 @@
                         </p-->
                         <ul class="nav nav-tabs nav-pills">
                             <li class="divider-vertical"><a href="<%=request.getContextPath()%>/home"><i class = 'icon-home'></i>&nbsp Home</a></li>
-                            <li class="divider-vertical"><a href="<%=request.getContextPath()%>/member/creationForm">Members</a></li>
-                            <li class="divider-vertical"><a href="<%=request.getContextPath()%>/order/searchOrder">Procurement</a></li>
-                            <li class="divider-vertical"><a href="<%=request.getContextPath()%>/bill/searchBill">Sales</a></li>
-                            <li class="divider-vertical"><a href="<%=request.getContextPath()%>/inventory/currentStock">Bar</a></li>
-                            <li class="divider-vertical"><a href="<%=request.getContextPath()%>/account/list">Accounts</a></li>
-                            <li class="divider-vertical"><a href="<%=request.getContextPath()%>/bill">Assets</a></li>
+                            <li class="divider-vertical"><a href="<%=request.getContextPath()%>/member/creationForm"><i class = 'icon-user'></i>&nbsp Members</a></li>
+                            <li class="divider-vertical"><a href="<%=request.getContextPath()%>/order/searchOrder"><i class = 'icon-arrow-down'></i>&nbsp Procurement</a></li>
+                            <li class="divider-vertical"><a href="<%=request.getContextPath()%>/bill/searchBill"><i class = 'icon-arrow-up'></i>&nbsp Sales</a></li>
+                            <li class="divider-vertical"><a href="<%=request.getContextPath()%>/inventory/currentStock"><i class = 'icon-glass'></i>&nbsp Bar</a></li>
+                            <li class="divider-vertical"><a href="<%=request.getContextPath()%>/account/list"><i class = 'icon-briefcase'></i>&nbsp Accounts</a></li>
+                            <li class="divider-vertical"><a href="<%=request.getContextPath()%>/bill"><i class = 'icon-th-large'></i>&nbsp Assets</a></li>
                         </ul>
                     </div>
                     <div class="nk-nav-right">
