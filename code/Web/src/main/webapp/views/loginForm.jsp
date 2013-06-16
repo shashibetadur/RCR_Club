@@ -37,8 +37,8 @@
                                             <legend></legend>
                                             <div>
                                                 <input type="hidden" name="redirectUrl" value="${redirectUrl}"/>
-                                                <button class="btn btn-primary" type="submit">Login</button>
-                                                <input type="reset" value="Clear"/>
+                                                <button class="btn btn-primary" type="submit"><i class = 'icon-user'></i> &nbspLogin</button>
+                                                <button type="reset" class="btn btn-warning"><i class = 'icon-refresh'></i> &nbsp Clear</button>
                                             </div>
                                       </div>
                                     </div>
