@@ -28,7 +28,7 @@
                     </div>
                 </div><br/><br/><br/>
                 <div class="span8 nk-form-section">
-                    <a href="#" class="nk-search-button btn btn-small btn-primary">Search</a>
+                    <a href="#" class="nk-search-button btn btn-small btn-primary"><i class = 'icon-search'></i> &nbsp Search</a>
                 </div>
                 <div class="nk-form-section span10">
                     <h4>Material List</h4>
