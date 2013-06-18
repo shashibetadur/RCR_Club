@@ -4,10 +4,14 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="nk" uri="/WEB-INF/custom-tags.tld" %>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/jquery-ui-1.9.0.custom.css" type="text/css"/>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/extra.css" type="text/css"/>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-ui-1.9.0.custom.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/plugin_paging.js"></script>
+
 <div class="row well">
     <legend>Item List</legend>
-        <table class="nk-table table table-striped table-bordered">
+        <table id="itemList" class="nk-table table table-striped table-bordered">
             <thead>
             <th>Name</th>
             <th>Description</th>
@@ -31,3 +35,12 @@
             </tbody>
         </table>
 </div>
+
+<script type="text/javascript">
+
+    $(document).ready(function() {
+        $('#itemList').dataTable({
+            "sPaginationType": "bootstrap"
+        });
+    });
+</script>

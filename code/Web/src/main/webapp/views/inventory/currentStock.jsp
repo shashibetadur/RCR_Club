@@ -5,11 +5,13 @@
 <%@ taglib prefix="nk" uri="/WEB-INF/custom-tags.tld" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt"%>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/jquery-ui-1.9.0.custom.css" type="text/css"/>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/extra.css" type="text/css"/>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-ui-1.9.0.custom.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/plugin_paging.js"></script>
 <div class="row well">
     <legend>Inventory List</legend>
-        <div class="menu-list-location">
-            <table class="nk-table table table-striped table-bordered">
+            <table id="example" class="nk-table table table-striped table-bordered">
                 <thead>
                 <th>Name</th>
                 <th>Description</th>
@@ -27,5 +29,11 @@
                     </c:forEach>
                 </tbody>
             </table>
-        </div>
 </div>
+<script type="text/javascript">
+$(document).ready(function() {
+	$('#example').dataTable({
+        "sPaginationType": "bootstrap"
+	});
+});
+</script>

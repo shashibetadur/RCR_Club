@@ -4,19 +4,15 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="nk" uri="/WEB-INF/custom-tags.tld" %>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/jquery-ui-1.9.0.custom.css" type="text/css"/>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/extra.css" type="text/css"/>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-ui-1.9.0.custom.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/plugin_paging.js"></script>
+
 <div class="row well">
     <legend>Material List</legend>
-        <jq>
-            <div class="nk-form-section">
-                <br/>
-                <span class="nk-filed-label"><label for="material-name"><b>Search Material</b></label></span>
-                <span class="nk-filed"><input type="text" id="material-name" maxlength="100"/><a target="_blank" class="new-tab hidden" href="<%=request.getContextPath()%>/bar/material/editForm"></a></span>
-                <div class="menu-location"></div>
-            </div>
-        </jq> </br>
         <div class="menu-list-location">
-            <table class="nk-table table table-striped table-bordered">
+            <table id="materialList" class="nk-table table table-striped table-bordered">
                 <thead>
                 <th>Name</th>
                 <th style="width: 35%">Description</th>
@@ -45,6 +41,11 @@
         </div>
 </div>
 <script type="text/javascript">
+    $(document).ready(function() {
+        $('#materialList').dataTable({
+            "sPaginationType": "bootstrap"
+        });
+    });
     $("#material-name").autocomplete({
         source:function (request, response) {
             $.getJSON("<%=request.getContextPath()%>/bar/material/search", {
