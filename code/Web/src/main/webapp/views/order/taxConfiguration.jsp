@@ -32,7 +32,7 @@
         <div class="span8 nk-form-section">
             <nk:security operations="tax-save">
                 <button type="submit" class="btn btn-primary"><i class = 'icon-ok'></i> &nbsp Save</button>
-                <button type="reset" class="btn btn-warning"><i class = 'icon-refresh'></i> &nbsp Cancel</button>
+                <button type="reset" class="btn btn-warning"><i class = 'icon-refresh'></i> &nbsp Clear</button>
             </nk:security>
         </div>
     </form>

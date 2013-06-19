@@ -4,10 +4,15 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="nk" uri="/WEB-INF/custom-tags.tld" %>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/jquery-ui-1.9.0.custom.css" type="text/css"/>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/extra.css" type="text/css"/>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-ui-1.9.0.custom.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/plugin_paging.js"></script>
 <div class="row well">
     <legend>Account List</legend>
     <c:if test="${fn:length(accountList) > 0}">
-        <table class="nk-table table table-bordered table-striped">
+        <table id="accountList" class="nk-table table table-bordered table-striped">
             <thead>
             <th></th>
             <th>Name</th>
@@ -45,6 +50,11 @@
     <div class="modal-body"></div>
 </div>
 <script type="text/javascript">
+    $(document).ready(function() {
+        $('#accountList').dataTable({
+            "sPaginationType": "bootstrap"
+        });
+    });
     $(function () {
         function showModal(urlToLoad, headerLabel) {
             $.ajax({type:'GET', url:urlToLoad, success:function (data) {
