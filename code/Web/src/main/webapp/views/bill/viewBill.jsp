@@ -76,7 +76,7 @@
                     <c:if test="${bill.billStatus != 'CLOSED'}">
                         <a class="btn btn-primary" href="<%=request.getContextPath()%>/bill/billEdit/${bill.id}"><i class = 'icon-edit'></i> &nbsp Edit</a>
                     </c:if>
-                    <a class="btn btn-success" target="_blank" href="<%=request.getContextPath()%>/member/membership/payment/createForm/${bill.member.personalDetails.id}">
+                    <a class="btn btn-success" target="_blank" href="<%=request.getContextPath()%>/bill/payment/createBillPayment/${bill.member.personalDetails.id}">
                     <i class = 'icon-book'> </i> &nbsp Make Payment</a>
                 </div>
             </div>

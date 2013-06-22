@@ -45,6 +45,7 @@ public class MemberBillServiceImpl implements MemberBillService {
             return orderList;
         } else {
             List<Long> personIds = new ArrayList<Long>();
+            List<Member> memberList = new ArrayList<Member>();
             MemberSearchCriteria memberSearchCriteria = new MemberSearchCriteria(billSearchCriteria.getPhone(), billSearchCriteria.getFirstName(),
                     billSearchCriteria.getLastName());
             if (memberSearchCriteria.hasPhoneCriteria() || memberSearchCriteria.hasNameCriteria()) {
@@ -52,7 +53,9 @@ public class MemberBillServiceImpl implements MemberBillService {
                 // if no customers found - for whom orders need to be looked up
                 if (personIds.isEmpty()) return orderList;
             }
-            List<Member> memberList = new ArrayList<Member>();
+            if (billSearchCriteria.hasMemberId()){
+                personIds.add(billSearchCriteria.getMemberId());
+            }
             for (Long personId : personIds) {
                 memberList.add(memberRepository.get(personId));
             }

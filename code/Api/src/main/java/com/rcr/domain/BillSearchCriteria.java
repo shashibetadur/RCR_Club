@@ -13,6 +13,7 @@ public class BillSearchCriteria {
     private String lastName;
     private Date fromDate;
     private Date toDate;
+    private Long memberId;
     private List<String> billStatusList = new ArrayList<String>();
 
     public BillSearchCriteria() {
@@ -104,5 +105,17 @@ public class BillSearchCriteria {
 
     public boolean hasDateRange() {
         return fromDate != null && toDate != null;
+    }
+
+    public Long getMemberId() {
+        return memberId;
+    }
+
+    public void setMemberId(Long memberId) {
+        this.memberId = memberId;
+    }
+
+    public boolean hasMemberId() {
+        return memberId != null;
     }
 }

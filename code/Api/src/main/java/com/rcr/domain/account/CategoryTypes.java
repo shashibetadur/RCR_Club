@@ -25,11 +25,11 @@ public class CategoryTypes {
     }
 
     class MembershipFees {
-        public static final long MEMBER_ID = 2L;
+        public static final long MEMBER_ID = 1L;
     }
 
     class MemberBill {
-        public static final long MEMBER_ID = 1L;
+        public static final long MEMBER_ID = 2L;
     }
 
     class Expense {

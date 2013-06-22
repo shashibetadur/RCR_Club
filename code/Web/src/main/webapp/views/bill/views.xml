@@ -18,6 +18,14 @@
         <put-attribute name="main-content" value="/views/bill/searchBills.jsp"/>
         <put-attribute name="context-menu" value="/views/bill/contextMenu.jsp"/>
     </definition>
+    <definition name="bill/payment/create" extends="default">
+        <put-attribute name="main-content" value="/views/bill/createMemberBillPaymentForm.jsp"/>
+        <put-attribute name="context-menu" value="/views/bill/contextMenu.jsp"/>
+    </definition>
+    <definition name="bill/payment/edit" extends="default">
+        <put-attribute name="main-content" value="/views/bill/createMemberBillPaymentForm.jsp"/>
+        <put-attribute name="context-menu" value="/views/bill/contextMenu.jsp"/>
+    </definition>
     <definition name="bill/searchResults" extends="ajaxSection">
         <put-attribute name="content" value="/views/bill/searchResults.jsp"/>
     </definition>
