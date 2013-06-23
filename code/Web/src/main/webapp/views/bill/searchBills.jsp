@@ -37,6 +37,7 @@
                     </div>
                 </div>
             </div>
+            <legend></legend>
             <div class="nk-form-section">
                 <div class="span10">
                     <a href="#" class="nk-search-button btn btn-small btn-primary"><i class = 'icon-search'></i> &nbsp Search Bills</a>

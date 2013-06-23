@@ -1,5 +1,6 @@
 package com.rcr.service.member;
 
+import com.rcr.domain.account.MemberBillPayment;
 import com.rcr.domain.account.MembershipPayment;
 import com.rcr.domain.account.Payment;
 import com.rcr.domain.member.MembershipDetail;
@@ -28,4 +29,6 @@ public interface MembershipService {
     Date getRenewalDate(long memberId);
 
     List<MembershipPayment> getMembershipPaymentDetails(long memberId);
+
+    MemberBillPayment getMemberBillLastPaymentDetails(long memberId);
 }

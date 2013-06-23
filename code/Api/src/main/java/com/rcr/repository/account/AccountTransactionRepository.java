@@ -21,4 +21,8 @@ public class AccountTransactionRepository extends BaseRepository<AccountTransact
     public List<AccountTransaction> getMemberPaymentTransactionDetails(long memberId) {
         return getSession().getNamedQuery("findMembershipPaymentDetails").setLong("memberId", memberId).list();
     }
+
+    public List<AccountTransaction> getMemberLastBillPaymentTransactionDetails(long memberId) {
+        return getSession().getNamedQuery("findMemberLastBillPaymentDetails").setLong("memberId", memberId).list();
+    }
 }

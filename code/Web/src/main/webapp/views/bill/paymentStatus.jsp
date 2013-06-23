@@ -14,7 +14,7 @@
         <div class="span10 search-edit-errors"></div>
         <c:choose>
             <c:when test="${fn:length(memberBillList) > 0}">
-                <table id="billList" class="table nk-table table-bordered table-striped">
+                <table class="nk-table table table-bordered table-striped">
                     <thead>
                     <th>Bill Id</th>
                     <th>Amount</th>
@@ -30,14 +30,7 @@
                             <td><label>${order.billStatus}</label></td>
                         </tr>
                     </c:forEach>
-                        <tr>
-                            <td colspan='3'><label>Grace Amount</label></td>
-                            <td colspan='2'><label>${graceAmount}</label></td>
-                        </tr>
-                        <tr>
-                            <td colspan='3'><label>Grand Total</label></td>
-                            <td colspan='2'><label>${totalBillAmount}</label></td>
-                        </tr>
+                        <tr><td colspan='3'><label>Grace Amount</label></td><td colspan='2'><label>${graceAmount}</label></td></tr>
                     </tbody>
                 </table>
                 <br/><br/>
@@ -46,47 +39,22 @@
                 <label>No Bills Found!</label>
             </c:otherwise>
         </c:choose>
-
-    <form method="POST" action="<%=request.getContextPath()%>/bill/payment/save">
-        <legend>Payment Details</legend>
-        <form:hidden path="memberBillPayment.transactionId"/>
-        <form:hidden path="memberBillPayment.memberId"/>
         <div class="nk-form-section">
             <div class="span10">
-                <span class="nk-filed-label"><label for="account">Account</label></span>
-                <span class="nk-filed">
-                    <form:select type="text" id="account" path="memberBillPayment.accountId">
-                        <form:option value="-1" label="--Please Select--"/>
-                        <form:options items="${accounts}" itemValue="id" itemLabel="name"/>
-                    </form:select>
-                </span>
+                <span class="nk-filed-label"><label>Account:</label></span>
+                <span class="nk-filed"><label>${memberBillPayment.accountId}</label></span>
             </div>
         </div>
-        <br/>
-
         <div class="nk-form-section">
             <div class="span10">
-                <span class="nk-filed-label"><label for="amount">Amount</label></span>
-                <span class="nk-filed"><form:input type="text" id="amount" path="memberBillPayment.amount" maxlength="100"/></span>
+                <span class="nk-filed-label"><label>Amount:</label></span>
+                <span class="nk-filed"><label>${memberBillPayment.amount}</label></span>
             </div>
         </div>
-        <br/>
-
         <div class="nk-form-section">
             <div class="span10">
-                <span class="nk-filed-label"><label for="notes">Notes</label></span>
-                <span class="nk-filed"><form:textarea type="text" id="notes" path="memberBillPayment.notes" maxlength="100"/></span>
+                <span class="nk-filed-label"><label>Notes:</label></span>
+                <span class="nk-filed"><label>${memberBillPayment.notes}</label></span>
             </div>
         </div>
-        <br/>
-
-        <div class="span8 nk-form-section">
-            <button type="submit" class="btn btn-primary"><i class = 'icon-ok'></i> &nbsp Save</button>
-            <button type="reset" class="btn btn-warning"><i class = 'icon-refresh'></i> &nbsp Clear</button>
-        </div>
-    </form>
 </div>
-
-
-
-

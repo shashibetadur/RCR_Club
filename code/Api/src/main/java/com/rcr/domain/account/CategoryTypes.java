@@ -30,6 +30,7 @@ public class CategoryTypes {
 
     class MemberBill {
         public static final long MEMBER_ID = 2L;
+        public static final long GRACE_AMOUNT = 7L;
     }
 
     class Expense {

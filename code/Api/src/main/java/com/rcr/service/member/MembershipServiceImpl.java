@@ -1,6 +1,7 @@
 package com.rcr.service.member;
 
 import com.rcr.domain.account.AccountTransaction;
+import com.rcr.domain.account.MemberBillPayment;
 import com.rcr.domain.account.MembershipPayment;
 import com.rcr.domain.member.MembershipDetail;
 import com.rcr.domain.member.MembershipDetails;
@@ -93,5 +94,22 @@ public class MembershipServiceImpl implements MembershipService {
             }
         });
         return membershipPayments;
+    }
+
+    @Override
+    public MemberBillPayment getMemberBillLastPaymentDetails(long memberId) {
+        List<AccountTransaction> paymentTransactionDetails = accountTransactionRepository.getMemberLastBillPaymentTransactionDetails((memberId));
+        final List<MemberBillPayment> memberBillPayments = new ArrayList<MemberBillPayment>();
+        CollectionUtils.forAllDo(paymentTransactionDetails, new Closure() {
+            @Override
+            public void execute(Object input) {
+                AccountTransaction accountTransaction = (AccountTransaction) input;
+                memberBillPayments.add((MemberBillPayment) accountTransaction.buildPayment());
+            }
+        });
+        if(memberBillPayments.size() != 0)
+            return memberBillPayments.get(0);
+        else
+            return null;
     }
 }

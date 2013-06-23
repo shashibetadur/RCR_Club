@@ -19,11 +19,14 @@
         <property name="status" type="string">
             <column name="STATUS"/>
         </property>
-        <property name="guestCount" type="long">
+        <property name="guestCount" type="java.lang.Long">
             <column name="GUEST_COUNT"/>
         </property>
         <property name="deleteFlag" type="java.lang.Character">
             <column name="DELETE_FLAG"/>
+        </property>
+        <property name="transactionId" type="long">
+            <column name="ACCOUNT_TRANSACTION_ID"/>
         </property>
         <bag name="billDetails" cascade="all,delete-orphan" lazy="false">
             <key column="BILL_ID" not-null="true"/>

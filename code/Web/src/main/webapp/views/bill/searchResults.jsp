@@ -31,6 +31,7 @@
                 </c:forEach>
                 </tbody>
             </table>
+            </br><legend></legend>
             <div class="nk-form-section">
                 <div class="span10">
                     <a href="<%=request.getContextPath()%>/bill/billEdit/" class="btn btn-primary edit-bill"><i class = 'icon-edit'></i> &nbsp Edit Bill</a>

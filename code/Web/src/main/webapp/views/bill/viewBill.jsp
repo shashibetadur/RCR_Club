@@ -70,17 +70,18 @@
             </table>
         </div>
     </div>
-        <c:if test="${bill.deleteFlag != 'Y'}">
-            <div class="nk-form-section">
-                <div class="span10">
-                    <c:if test="${bill.billStatus != 'CLOSED'}">
-                        <a class="btn btn-primary" href="<%=request.getContextPath()%>/bill/billEdit/${bill.id}"><i class = 'icon-edit'></i> &nbsp Edit</a>
-                    </c:if>
-                    <a class="btn btn-success" target="_blank" href="<%=request.getContextPath()%>/bill/payment/createBillPayment/${bill.member.personalDetails.id}">
-                    <i class = 'icon-book'> </i> &nbsp Make Payment</a>
-                </div>
+    </br></br><legend></legend>
+    <c:if test="${bill.deleteFlag != 'Y'}">
+        <div class="nk-form-section">
+            <div class="span10">
+                <c:if test="${bill.billStatus != 'CLOSED'}">
+                    <a class="btn btn-primary" href="<%=request.getContextPath()%>/bill/billEdit/${bill.id}"><i class = 'icon-edit'></i> &nbsp Edit</a>
+                </c:if>
+                <a class="btn btn-success" target="_blank" href="<%=request.getContextPath()%>/bill/payment/createBillPayment/${bill.member.personalDetails.id}">
+                <i class = 'icon-book'> </i> &nbsp Make Payment</a>
             </div>
-        </c:if>
+        </div>
+    </c:if>
 </div>
 
 

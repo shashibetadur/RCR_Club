@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
-
+/*
 public class AccountServiceIntTest extends BaseIntTest {
 
     @Autowired
@@ -30,4 +30,4 @@ public class AccountServiceIntTest extends BaseIntTest {
         accountDb = accountService.getAccount(accountDb.getId());
         assertThat(accountDb.getAccountNumber(), is("1000"));
     }
-}
+} */

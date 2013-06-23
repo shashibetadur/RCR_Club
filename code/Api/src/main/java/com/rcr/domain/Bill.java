@@ -23,6 +23,8 @@ public class Bill extends Entity {
 
     private List<BillTaxDetail> billTaxDetails = new ArrayList<BillTaxDetail>();
 
+    private Long transactionId;
+
     public Member getMember() {
         return member;
     }
@@ -87,5 +89,13 @@ public class Bill extends Entity {
         for(BillTaxDetail billTaxDetail: this.getBillTaxDetails()){
             billTaxDetail.setDeleted(true);
         }
+    }
+
+    public Long getTransactionId() {
+        return transactionId;
+    }
+
+    public void setTransactionId(Long transactionId) {
+        this.transactionId = transactionId;
     }
 }

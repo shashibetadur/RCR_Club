@@ -31,6 +31,9 @@
         </bag>
     </class>
     <query name="findMembershipPaymentDetails">
-        <![CDATA[select  at from AccountTransaction at, AccountTransactionDetail atd where at.id = atd.accountTransactionId and atd.categoryAttributeId=2 and atd.value = :memberId]]>
+        <![CDATA[select at from AccountTransaction at, AccountTransactionDetail atd where at.id = atd.accountTransactionId and atd.categoryAttributeId=1 and atd.value = :memberId]]>
+    </query>
+    <query name="findMemberLastBillPaymentDetails">
+        <![CDATA[select at from AccountTransaction at, AccountTransactionDetail atd where at.id = atd.accountTransactionId and atd.categoryAttributeId=2 and atd.value = :memberId order by at.id desc]]>
     </query>
 </hibernate-mapping>
