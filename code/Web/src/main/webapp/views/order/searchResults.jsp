@@ -29,6 +29,7 @@
                 </c:forEach>
                 </tbody>
             </table>
+            <legend/>
             <div class="nk-form-section">
                 <div class="span10">
                     <a href="<%=request.getContextPath()%>/order/orderEditForm/" class="btn btn-primary edit-order"><i class = 'icon-edit'></i> &nbsp Edit Order</a>

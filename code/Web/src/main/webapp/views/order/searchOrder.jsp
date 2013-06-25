@@ -26,12 +26,14 @@
                                    value="${orderState.key}"><label>${orderState.value}</label><br>
                         </c:forEach>
                     </div>
-                    <br/>
                 </div>
             </div>
             <div class="nk-form-section">
+                <legend/>
+            </div>
+            <div class="nk-form-section">
                 <div class="span10">
-                    <a href="#" class="nk-search-button btn btn-small btn-primary"><i class = 'icon-search'></i> &nbsp Search Order</a>
+                    <a href="#" class="nk-search-button btn btn-primary"><i class = 'icon-search'></i> &nbsp Search Order</a>
                 </div>
             </div>
         </form>

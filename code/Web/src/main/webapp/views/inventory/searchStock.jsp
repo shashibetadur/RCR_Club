@@ -27,6 +27,7 @@
                         <span class="nk-filed"><input type="text" id="material-name" maxlength="100"/></span>
                     </div>
                 </div><br/><br/><br/>
+                <legend/>
                 <div class="span8 nk-form-section">
                     <a href="#" class="nk-search-button btn btn-small btn-primary"><i class = 'icon-search'></i> &nbsp Search</a>
                 </div>

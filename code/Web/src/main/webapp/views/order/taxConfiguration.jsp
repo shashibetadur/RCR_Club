@@ -29,6 +29,7 @@
                 </nk:security>
             </div>
         </div>
+        <legend/>
         <div class="span8 nk-form-section">
             <nk:security operations="tax-save">
                 <button type="submit" class="btn btn-primary"><i class = 'icon-ok'></i> &nbsp Save</button>

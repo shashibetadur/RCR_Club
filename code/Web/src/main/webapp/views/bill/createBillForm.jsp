@@ -6,7 +6,7 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/bootstrap-datepicker.js"></script>
 <div class="row well">
     <form id="order-creation-form" method="POST" action="<%=request.getContextPath()%>/bill/saveBill">
-        <legend>Create Bill</legend>
+        <legend>Bill Details</legend>
         <form:hidden path="memberBillForm.id"/>
         <form:hidden path="memberBillForm.member.personalDetails.id"/>
         <div class="span10 order-creation-errors"></div>
@@ -34,6 +34,7 @@
             </div>
         </div>
         <jsp:include page="itemSelection.jsp"/>
+        <legend/>
         <div class="span8 nk-form-section">
             <button type="submit" class="btn btn-primary"><i class = 'icon-ok'></i> &nbsp Save</button>
             <c:if test="${memberBillForm.id > 0}">

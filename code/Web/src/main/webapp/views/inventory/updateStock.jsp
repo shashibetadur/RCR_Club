@@ -36,6 +36,7 @@
                 <div class="menu-location"></div>
             </jq>
         </div>
+        <legend/>
         <div class="span8 nk-form-section">
             <button type="submit" class="btn btn-primary"><i class = 'icon-ok'></i> &nbsp Save</button>
         </div>

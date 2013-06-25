@@ -33,6 +33,7 @@
                 <span class="nk-filed"><form:input type="text" id="item-price" path="item.price" maxlength="100"/></span>
             </div>
         </div>
+        <legend/>
         <div class="span8 nk-form-section">
             <button type="submit" class="btn btn-primary"><i class = 'icon-ok'></i> &nbsp Save</button>
             <button type="reset" class="btn btn-warning"><i class = 'icon-refresh'></i> &nbsp Cancel</button>

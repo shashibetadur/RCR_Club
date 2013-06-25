@@ -57,9 +57,11 @@
                 </c:forEach>
                 </tbody>
             </table>
+            <legend/>
             <div class="btn-group">
-                    <a href="<%=request.getContextPath()%>/bill/createBill" class="btn  create-bill">Create Bill</a>
-                    <a href="<%=request.getContextPath()%>/member/viewForm" class="btn  view-member">View Member Details</a>
+                    <a href="<%=request.getContextPath()%>/bill/createBill" class="btn btn-primary create-bill">Create Bill</a>
+                    <a href="<%=request.getContextPath()%>/member/viewForm" class="btn btn-info view-member">View Member Details</a>
+                    <a href="<%=request.getContextPath()%>/bill/payment/createBillPayment/" class="btn btn-success create-payment">Create Payment</a>
             </div>
             <br/><br/>
         </c:when>
@@ -74,6 +76,12 @@
             event.preventDefault();
             var selectedMember = $('input:radio[name=row]:checked').val();
             if (selectedMember) document.location.href = ($(this).attr('href') + "?memberId=" + selectedMember);
+            else return false;
+        });
+        $('.create-payment').click(function (event) {
+            event.preventDefault();
+            var selectedMember = $('input:radio[name=row]:checked').val();
+            if (selectedMember) document.location.href = ($(this).attr('href') + selectedMember);
             else return false;
         });
         $('.view-member').click(function (event) {
