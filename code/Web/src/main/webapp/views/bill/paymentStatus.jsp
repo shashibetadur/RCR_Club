@@ -23,12 +23,24 @@
                     </thead>
                     <tbody>
                     <c:forEach var="order" items="${memberBillList}">
-                        <tr>
-                            <td><input type='hidden' name='state' value='${order.id}'/><label>${order.id}</label></td>
-                            <td><label>${order.totalAmount}</label></td>
-                            <td><label><fmt:formatDate pattern="dd-MM-yyyy" value="${order.billDate}"/></label></td>
-                            <td><label>${order.billStatus}</label></td>
-                        </tr>
+                        <c:choose>
+                            <c:when test="${order.billStatus != 'PAID'}">
+                                <tr class="error">
+                                    <td><input type='hidden' name='state' value='${order.id}'/><label>${order.id}</label></td>
+                                    <td><label>${order.totalAmount}</label></td>
+                                    <td><label><fmt:formatDate pattern="dd-MM-yyyy" value="${order.billDate}"/></label></td>
+                                    <td><label>${order.billStatus}</label></td>
+                                </tr>
+                            </c:when>
+                            <c:otherwise>
+                                <tr class="success">
+                                    <td><input type='hidden' name='state' value='${order.id}'/><label>${order.id}</label></td>
+                                    <td><label>${order.totalAmount}</label></td>
+                                    <td><label><fmt:formatDate pattern="dd-MM-yyyy" value="${order.billDate}"/></label></td>
+                                    <td><label>${order.billStatus}</label></td>
+                                </tr>
+                            </c:otherwise>
+                        </c:choose>
                     </c:forEach>
                         <tr><td colspan='3'><label>Grace Amount</label></td><td colspan='2'><label>${graceAmount}</label></td></tr>
                     </tbody>

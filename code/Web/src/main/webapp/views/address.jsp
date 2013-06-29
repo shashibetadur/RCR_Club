@@ -204,10 +204,10 @@
         <label>City</label> <input type="text" class="city" maxlength="100"/>
         <label>Pin Code</label> <input type="text" class="pin-code" maxlength="10"/>
         <label>State</label> <input type="text" class="state" maxlength="100"/>
-        <label>Landmark</label> <input type="text" class="landmark" maxlength="200"/>
-        <label>Notes</label> <input type="text" class="notes" maxlength="200"/>
+        <label>Landmark</label> <textarea type="text" class="landmark" maxlength="200"/></textarea>
+        <label>Notes</label> <textarea type="text" class="notes" maxlength="200"/></textarea>
     </div>
     <div class="modal-footer">
-        <a class="save-address btn btn-primary">Ok</a>
+        <a class="save-address btn btn-primary"><i class = 'icon-ok'></i> &nbsp Okay</a>
     </div>
 </div>

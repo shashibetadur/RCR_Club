@@ -28,8 +28,8 @@
                         <tbody></tbody>
                     </table>
                     <nk:security operations="member-visit-edit">
-                        <a class="btn btn-primary save-visits">Save</a>
-                        <a class="btn delete-member-visit">Delete</a>
+                        <a class="btn btn-primary save-visits"><i class = 'icon-ok'></i> &nbsp Save</a>
+                        <a class="btn delete-member-visit"><i class = 'icon-trash'></i> &nbsp Delete</a>
                     </nk:security>
                 </div>
             </form>

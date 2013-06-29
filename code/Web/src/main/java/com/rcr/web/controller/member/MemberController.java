@@ -1,5 +1,6 @@
 package com.rcr.web.controller.member;
 
+import com.rcr.common.DateUtils;
 import com.rcr.domain.*;
 import com.rcr.domain.account.MembershipPayment;
 import com.rcr.domain.account.Payment;
@@ -19,6 +20,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -38,7 +40,7 @@ public class MemberController {
     }
 
     @Autowired
-    public MemberController(MemberService memberService,MembershipService membershipService) {
+    public MemberController(MemberService memberService, MembershipService membershipService) {
         this.memberService = memberService;
         this.membershipService = membershipService;
     }
@@ -75,7 +77,7 @@ public class MemberController {
         Member memberDetails = memberService.getMemberDetails(memberId);
         MembershipDetails membershipDetails = membershipService.getMembershipDetails(memberId);
         List<MembershipPayment> membershipPaymentDetails = (List<MembershipPayment>) membershipService.getMembershipPaymentDetails(memberId);
-        MemberSummary memberSummary = new MemberSummary(memberDetails,membershipDetails,membershipPaymentDetails);
+        MemberSummary memberSummary = new MemberSummary(memberDetails, membershipDetails, membershipPaymentDetails);
 
         ModelAndView modelAndView = new ModelAndView("member/viewForm", "member", memberDetails);
         modelAndView.getModelMap().put("membershipDetails", membershipDetails);
@@ -94,7 +96,33 @@ public class MemberController {
     @Authorize(value = {Operation.MEMBER_SEARCH})
     public ModelAndView memberSearchQuery(MemberSearchCriteria memberSearchCriteria) {
         List<Member> memberList = memberService.search(memberSearchCriteria);
+        for (Member member : memberList) {
+            try {
+                if (DateUtils.getNowDate().after(membershipService.getMembershipDetails(member.getId()).getCurrentMembership().getEndDate())) {
+                    member.setStatus("E");
+                }
+            } catch (Exception e) {
+                member.setStatus("E");
+            }
+
+        }
         return new ModelAndView("member/searchResults", "memberList", memberList);
+    }
+
+    @RequestMapping(value = "/memberList", method = RequestMethod.GET)
+    public ModelAndView listMembers() {
+        List<Member> memberList = memberService.getAllMembers();
+        for (Member member : memberList) {
+            try {
+                if (DateUtils.getNowDate().after(membershipService.getMembershipDetails(member.getId()).getCurrentMembership().getEndDate())) {
+                    member.setStatus("E");
+                }
+            } catch (Exception e) {
+                member.setStatus("E");
+            }
+
+        }
+        return new ModelAndView("member/memberList", "memberList", memberList);
     }
 
     @RequestMapping(value = "/search/name", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)

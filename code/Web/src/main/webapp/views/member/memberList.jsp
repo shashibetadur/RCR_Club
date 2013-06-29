@@ -4,10 +4,14 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="nk" uri="/WEB-INF/custom-tags.tld" %>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/extra.css" type="text/css"/>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/plugin_paging.js"></script>
 <div class="row well">
+    <legend>Member List</legend>
     <c:choose>
         <c:when test="${fn:length(memberList) > 0}">
-            <table class="nk-table table table-bordered table-striped">
+            <table id="memberList" class="nk-table table table-bordered table-striped">
                 <thead>
                 <th></th>
                 <th>First Name</th>
@@ -100,13 +104,9 @@
                 </c:forEach>
                 </tbody>
             </table>
-            <legend/>
             <div class="btn-group">
-                    <a href="<%=request.getContextPath()%>/bill/createBill" class="btn btn-primary create-bill">Create Bill</a>
-                    <a href="<%=request.getContextPath()%>/member/viewForm" class="btn btn-info view-member">View Member Details</a>
-                    <a href="<%=request.getContextPath()%>/bill/payment/createBillPayment/" class="btn btn-success create-payment">Create Payment</a>
+                    <a href="<%=request.getContextPath()%>/member/viewForm" class="btn btn-info view-member"><i class = 'icon-eye-open'> </i> &nbsp View Member Details</a>
             </div>
-            <br/><br/>
         </c:when>
         <c:otherwise>
             <label>Search Results not found!!!</label>
@@ -114,19 +114,12 @@
     </c:choose>
 </div>
 <script type="text/javascript">
+    $(document).ready(function() {
+        $('#memberList').dataTable({
+            "sPaginationType": "bootstrap"
+        });
+    });
     $(function () {
-        $('.create-bill').click(function (event) {
-            event.preventDefault();
-            var selectedMember = $('input:radio[name=row]:checked').val();
-            if (selectedMember) document.location.href = ($(this).attr('href') + "?memberId=" + selectedMember);
-            else return false;
-        });
-        $('.create-payment').click(function (event) {
-            event.preventDefault();
-            var selectedMember = $('input:radio[name=row]:checked').val();
-            if (selectedMember) document.location.href = ($(this).attr('href') + selectedMember);
-            else return false;
-        });
         $('.view-member').click(function (event) {
             event.preventDefault();
             var selectedMember = $('input:radio[name=row]:checked').val();
@@ -135,6 +128,3 @@
         });
     });
 </script>
-
-
-

@@ -14,4 +14,6 @@ public interface MemberService {
     Member getMemberDetails(long memberId);
 
     List<Member> search(MemberSearchCriteria memberSearchCriteria);
+
+    List<Member> getAllMembers();
 }

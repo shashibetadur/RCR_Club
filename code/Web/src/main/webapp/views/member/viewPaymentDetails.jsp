@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt"%>
 <c:choose>
     <c:when test="${fn:length(membershipPayments) > 0}">
         <div class="nk-form-section">
@@ -20,7 +21,7 @@
                         <tr>
                             <td><input type="radio" name="row-membership-payment" value="${membershipPayment.transactionId}"/></td>
                             <td><label>${membershipPayment.amount}</label></td>
-                            <td><label>${membershipPayment.date}</label></td>
+                            <td><label><fmt:formatDate pattern="dd-MM-yyyy" value="${membershipPayment.date}"/></label></td>
                             <td><label>${membershipPayment.accountName}</label></td>
                             <td><label>${membershipPayment.notes}</label></td>
                         </tr>
@@ -35,8 +36,8 @@
                 <span class="nk-filed-label">
                     <div class="btn-group">
                         <a class="btn edit-membership-payment"
-                           href="<%=request.getContextPath()%>/member/membership/payment/editForm">Edit</a>
-                        <a class="btn delete-membership-payment" href="#">Delete</a>
+                           href="<%=request.getContextPath()%>/member/membership/payment/editForm"><i class = 'icon-edit'></i> &nbsp Edit</a>
+                        <a class="btn delete-membership-payment" href="#"><i class = 'icon-trash'></i> &nbsp Delete</a>
                     </div>
                     <br/>
                 </span>

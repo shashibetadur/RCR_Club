@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt"%>
 <c:choose>
     <c:when test="${fn:length(membershipDetails.membershipDetailList) > 0}">
         <div class="nk-form-section">
@@ -21,8 +22,8 @@
                         <tr>
                             <td><input type="radio" name="row-membership-detail" value="${membershipDetail.id}"/></td>
                             <td><label>${membershipDetail.membershipType.name}</label></td>
-                            <td><label>${membershipDetail.startDate}</label></td>
-                            <td><label>${membershipDetail.endDate}</label></td>
+                            <td><label><fmt:formatDate pattern="dd-MM-yyyy" value="${membershipDetail.startDate}"/></label></td>
+                            <td><label><fmt:formatDate pattern="dd-MM-yyyy" value="${membershipDetail.endDate}"/></label></td>
                             <td><label>${membershipDetail.enrollmentFees}</label></td>
                             <td><label>${membershipDetail.fees}</label></td>
                         </tr>
@@ -37,9 +38,8 @@
                 <span class="nk-filed-label">
                     <div class="btn-group">
                         <a class="btn edit-membership"
-                           href="<%=request.getContextPath()%>/member/membership/edit">Edit</a>
-                        <a class="btn delete-membership"
-                           href="#">Delete</a>
+                           href="<%=request.getContextPath()%>/member/membership/edit"><i class = 'icon-edit'></i> &nbsp Edit</a>
+                        <a class="btn delete-membership" href="#"><i class = 'icon-trash'></i> &nbsp Delete</a>
                     </div>
                     <br/>
                 </span>

@@ -60,8 +60,8 @@
         <br/>
 
         <div class="span8 nk-form-section">
-            <button type="submit" class="btn btn-primary">Save changes</button>
-            <button type="reset" class="btn">Cancel</button>
+            <button type="submit" class="btn btn-primary"><i class = 'icon-ok'></i> &nbspSave Changes</button>
+            <button type="reset" class="btn btn-warning"><i class = 'icon-refresh'></i> &nbsp Clear</button>
         </div>
     </form>
 </div>

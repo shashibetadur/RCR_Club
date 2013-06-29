@@ -48,7 +48,7 @@
     <div class="span10">
         <span class="nk-filed-label">
             <nk:security operations="member-edit">
-                <a href="<%=request.getContextPath()%>/member/editForm/${member.id}" class="btn">Edit</a><br/><br/>
+                <a href="<%=request.getContextPath()%>/member/editForm/${member.id}" class="btn"><i class = 'icon-edit'></i> &nbsp Edit</a><br/><br/>
             </nk:security>
         </span>
     </div>

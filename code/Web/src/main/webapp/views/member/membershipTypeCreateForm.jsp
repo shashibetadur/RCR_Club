@@ -11,8 +11,10 @@
         <label for="validity">Validity In Month(s)</label><form:input type="text" id="validity" path="memberType.validity" maxlength="100"/>
         <label for="fees">Fees</label><form:input type="text" id="fees" path="memberType.fees" maxlength="100"/>
     </div>
+    <legend/>
     <div>
-        <a href="#" class="btn btn-small btn-primary submit">Save changes</a>
+        <a href="#" class="btn btn-primary submit"><i class = 'icon-ok'></i> &nbsp Save Changes</a>
+        <button type="reset" class="btn btn-warning"><i class = 'icon-refresh'></i> &nbsp Clear</button>
     </div>
 </form>
 <script type="text/javascript">

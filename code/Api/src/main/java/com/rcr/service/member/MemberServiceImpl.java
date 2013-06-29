@@ -40,4 +40,9 @@ public class MemberServiceImpl implements MemberService {
     public List<Member> search(MemberSearchCriteria memberSearchCriteria) {
         return memberRepository.findBy(memberSearchCriteria);
     }
+
+    @Override
+    public List<Member> getAllMembers() {
+        return memberRepository.getAll();
+    }
 }

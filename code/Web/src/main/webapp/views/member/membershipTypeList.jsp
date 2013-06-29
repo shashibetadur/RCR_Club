@@ -11,9 +11,9 @@
             <thead>
             <th></th>
             <th>Name</th>
-            <th>Validity</th>
-            <th>Enrollment Fess</th>
-            <th>Fess</th>
+            <th>Validity(Months)</th>
+            <th>Enrollment Fees</th>
+            <th>Fees</th>
             </thead>
             <tbody>
             <c:forEach var="memberType" items="${memberTypeList}">
@@ -30,13 +30,13 @@
     </c:if>
     <div class="btn-group">
         <nk:security operations="member-type-create">
-            <a href="<%=request.getContextPath()%>/member/type/createForm" class="btn  add-member-type">Add New</a>
+            <a href="<%=request.getContextPath()%>/member/type/createForm" class="btn  add-member-type"><i class = 'icon-plus'></i> &nbsp Add New</a>
         </nk:security>
         <nk:security operations="member-type-edit">
-            <a href="<%=request.getContextPath()%>/member/type/editForm" class="btn  edit-member-type">Edit</a>
+            <a href="<%=request.getContextPath()%>/member/type/editForm" class="btn  edit-member-type"><i class = 'icon-edit'></i> &nbsp Edit</a>
         </nk:security>
         <nk:security operations="member-type-delete">
-            <a href="<%=request.getContextPath()%>/member/type/deleteForm" class="btn  delete-member-type">Delete</a>
+            <a href="<%=request.getContextPath()%>/member/type/deleteForm" class="btn  delete-member-type"><i class = 'icon-trash'></i> &nbsp Delete</a>
         </nk:security>
     </div>
     <br/><br/>

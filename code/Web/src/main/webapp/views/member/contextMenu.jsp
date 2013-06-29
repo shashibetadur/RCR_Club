@@ -12,7 +12,10 @@
         <li class="nk-side-menu-sep"><a href="<%=request.getContextPath()%>/member/creationForm">Create Member</a></li>
     </nk:security>
     <nk:security operations="member-search">
-        <li class="nk-side-menu-sep"><a href="<%=request.getContextPath()%>/member/searchForm">Members</a></li>
+        <li class="nk-side-menu-sep"><a href="<%=request.getContextPath()%>/member/searchForm">Search Members</a></li>
+    </nk:security>
+    <nk:security operations="member-search">
+        <li class="nk-side-menu-sep"><a href="<%=request.getContextPath()%>/member/memberList">Member List</a></li>
     </nk:security>
     <nk:security operations="member-visit-view">
         <li class="nk-side-menu-sep"><a href="<%=request.getContextPath()%>/member/visit">Members Visit</a></li>

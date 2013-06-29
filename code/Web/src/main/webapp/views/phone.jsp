@@ -123,6 +123,6 @@
         <label>Number</label> <input type="text" id="phone-number" class="phone-number" maxlength="15"/>
     </div>
     <div class="modal-footer">
-        <a class="save-phone btn btn-primary">Ok</a>
+        <a class="save-phone btn btn-primary"><i class = 'icon-ok'></i> &nbsp Okay</a>
     </div>
 </div>

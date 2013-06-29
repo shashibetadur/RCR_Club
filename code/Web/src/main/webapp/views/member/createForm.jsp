@@ -31,7 +31,6 @@
             </div>
         </div>
         <br/>
-
         <div class="nk-phone-list nk-form-section span4">
             <h4>Phone List</h4>
 
@@ -48,9 +47,9 @@
             </div>
 
             <div class="phone-buttons btn-group">
-                <a class="btn add">Add</a>
-                <a class="btn  edit">Edit</a>
-                <a class="btn  delete">Delete</a>
+                <a class="btn add"><i class = 'icon-plus'></i> &nbsp Add</a>
+                <a class="btn edit"><i class = 'icon-edit'></i> &nbsp Edit</a>
+                <a class="btn delete"><i class = 'icon-trash'></i> &nbsp Delete</a>
             </div>
         </div>
         <div class="nk-address-list nk-form-section span10">
@@ -76,16 +75,15 @@
             </div>
 
             <div class="address-buttons btn-group">
-                <a class="btn add">Add</a>
-                <a class="btn  edit">Edit</a>
-                <a class="btn  delete">Delete</a>
+                <a class="btn add"><i class = 'icon-plus'></i> &nbsp Add</a>
+                <a class="btn edit"><i class = 'icon-edit'></i> &nbsp Edit</a>
+                <a class="btn delete"><i class = 'icon-trash'></i> &nbsp Delete</a>
             </div>
         </div>
         <br/>
-
         <div class="span8 nk-form-section">
-            <button type="submit" class="btn btn-primary">Save changes</button>
-            <button type="reset" class="btn">Cancel</button>
+            <button type="submit" class="btn btn-primary"><i class = 'icon-ok'></i> &nbsp Save Changes</button>
+            <button type="reset" class="btn btn-warning"><i class = 'icon-refresh'></i> &nbsp Clear</button>
         </div>
     </form>
 </div>
