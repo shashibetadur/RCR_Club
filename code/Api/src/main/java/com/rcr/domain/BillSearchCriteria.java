@@ -8,6 +8,7 @@ import static org.apache.commons.lang.StringUtils.isEmpty;
 
 public class BillSearchCriteria {
     private String billId;
+    private String searchMemberId;
     private String phone;
     private String firstName;
     private String lastName;
@@ -99,6 +100,14 @@ public class BillSearchCriteria {
         }
     }
 
+    public boolean hasSearchMemberId() {
+        try {
+            return Long.parseLong(searchMemberId) > 0;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
     private boolean has(String value) {
         return !isEmpty(value);
     }
@@ -117,5 +126,13 @@ public class BillSearchCriteria {
 
     public boolean hasMemberId() {
         return memberId != null;
+    }
+
+    public void setSearchMemberId(String searchMemberId) {
+        this.searchMemberId = searchMemberId;
+    }
+
+    public String getSearchMemberId() {
+        return searchMemberId;
     }
 }

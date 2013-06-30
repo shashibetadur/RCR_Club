@@ -77,7 +77,7 @@ public class BillController {
         Bill bill = memberBillService.retrieveOrder(billId);
         bill.prepareForDeletion();
         memberBillService.saveOrder(bill);
-        return "redirect:/bill/searchBill";
+        return "redirect:/bill/viewBill/" + billId;
     }
 
     @RequestMapping(value = "/searchBill", method = RequestMethod.GET)
@@ -87,6 +87,10 @@ public class BillController {
 
     @RequestMapping(value = "/searchBill", method = RequestMethod.POST)
     public ModelAndView billSearchQuery(BillSearchCriteria billSearchCriteria) {
+        if(billSearchCriteria.hasSearchMemberId()){
+            billSearchCriteria.setMemberId(Long.valueOf(billSearchCriteria.getSearchMemberId()));
+        }
+
         List<Bill> billList = memberBillService.search(billSearchCriteria);
         List<MemberBillForm> memberBillList = new ArrayList<MemberBillForm>();
         for (Bill bill : billList) {
@@ -100,5 +104,10 @@ public class BillController {
     @ModelAttribute("billStates")
     public List<String> billStates() {
         return Arrays.asList("NEW", "CLOSED");
+    }
+
+    @ModelAttribute("billStatesSearch")
+    public List<String> billStatesSearch() {
+        return Arrays.asList("NEW", "CLOSED", "PAID");
     }
 }

@@ -10,6 +10,7 @@ import com.rcr.repository.member.MembershipTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -38,6 +39,12 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public List<Member> search(MemberSearchCriteria memberSearchCriteria) {
+        List<Member> memberList = new ArrayList<Member>();
+        if(memberSearchCriteria.hasMemberId()){
+            Member member = memberRepository.get(Long.valueOf(memberSearchCriteria.getMemberId()));
+            if(member != null) memberList.add(member);
+            return memberList;
+        }
         return memberRepository.findBy(memberSearchCriteria);
     }
 

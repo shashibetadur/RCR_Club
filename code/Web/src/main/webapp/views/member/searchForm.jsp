@@ -4,7 +4,10 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <div>
     <div class="row well">
+    <legend>Search Members</legend>
         <form class="nk-search-form form-inline">
+            <div class="search-criterion-errors"></div>
+            <input type="text" class="member-id input-large" name="memberId" placeholder="Member Id" maxlength="15"/><br/><br/>
             <input type="text" class="phone input-large" name="phone" placeholder="Mobile" maxlength="15"/>
             <label class="condition">OR</label>
             <input type="text" class="first-name input-large" name="firstName" placeholder="First Name"
@@ -21,6 +24,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $('.nk-search-button').click(function () {
+            if (!validateSearchCriterion()) return false;
             var formData = $('form').serialize();
             $.ajax({
                 type:'POST',
@@ -41,6 +45,20 @@
     $("input[type='text']").blur(function () {
         $(this).val($(this).val().trim());
     });
+
+    function validateSearchCriterion(){
+        var errors = "";
+        var errorMessageTemplate = "<label class='label label-important'>:message</label>"
+        $(".search-criterion-errors").html("");
+        if (isEmpty(jqVal(".member-id")) &&  isEmpty(jqVal(".phone")) && isEmpty(jqVal(".first-name")) && isEmpty(jqVal(".last-name"))) {
+            errors += errorMessageTemplate.replace(/:message/g, "Please enter search criteria")
+        }
+        if (errors) {
+            $(".search-criterion-errors").html(errors + "<br/>");
+            return false;
+        }
+        return true;
+    }
 </script>
 
 

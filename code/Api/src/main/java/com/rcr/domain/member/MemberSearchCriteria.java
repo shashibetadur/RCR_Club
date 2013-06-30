@@ -3,6 +3,7 @@ package com.rcr.domain.member;
 import static org.apache.commons.lang.StringUtils.isEmpty;
 
 public class MemberSearchCriteria {
+    private String memberId;
     private String phone;
     private String firstName;
     private String lastName;
@@ -58,5 +59,21 @@ public class MemberSearchCriteria {
 
     private boolean has(String value) {
         return !isEmpty(value);
+    }
+
+    public String getMemberId() {
+        return memberId;
+    }
+
+    public void setMemberId(String memberId) {
+        this.memberId = memberId;
+    }
+
+    public boolean hasMemberId() {
+        try {
+            return Long.parseLong(memberId) > 0;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 }

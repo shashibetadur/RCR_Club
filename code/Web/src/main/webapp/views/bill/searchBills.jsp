@@ -6,11 +6,13 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/bootstrap-datepicker.js"></script>
 <div class="order-search-form">
     <div class="row well">
+      <legend>Search Bills</legend>
         <form class="nk-search-form form-inline">
-        <legend>Search Bills</legend>
-            <input type="text" class="order-id input-large" name="billId" placeholder="Bill Id" maxlength="15"/>
+        <div class="search-criterion-errors"></div>
+            <input type="text" class="bill-id input-large" name="billId" placeholder="Bill Id" maxlength="15"/>
             <br/>
             <br/>
+            <input type="text" class="member-id input-large" name="searchMemberId" placeholder="Member Id" maxlength="15"/><br/><br/>
             <input type="text" class="phone input-large" name="phone" placeholder="Customer Phone Number"
                    maxlength="15"/>
             <label class="condition">OR</label>
@@ -30,7 +32,7 @@
                     <label>Bill Status</label>
                     <br/>
                     <div class="list well">
-                        <c:forEach var="billState" items="${billStates}">
+                        <c:forEach var="billState" items="${billStatesSearch}">
                             <input class="order-status" type="checkbox" name="billStatusList"
                                 value="${billState}"><label>${billState}</label><br>
                         </c:forEach>
@@ -58,7 +60,7 @@
             format:"dd-mm-yyyy"
         });
         $('.nk-search-button').click(function () {
-
+            if (!validateSearchCriterion()) return false;
             var formData = $('form').serialize();
             $.ajax({
                 type:'POST',
@@ -76,9 +78,26 @@
             });
         });
     });
+
     $("input[type='text']").blur(function () {
         $(this).val(specialTrim($(this).val()));
     });
+
+    function validateSearchCriterion(){
+        var fields = $("input[name='billStatusList']").serializeArray();
+        var errors = "";
+        var errorMessageTemplate = "<label class='label label-important'>:message</label>"
+        $(".search-criterion-errors").html("");
+        if (isEmpty(jqVal(".bill-id")) && isEmpty(jqVal(".member-id")) &&  isEmpty(jqVal(".phone")) && isEmpty(jqVal(".first-name"))
+            && isEmpty(jqVal(".last-name")) && fields.length == 0 && isEmpty(jqVal(".from-date")) &&  isEmpty(jqVal(".to-date"))) {
+            errors += errorMessageTemplate.replace(/:message/g, "Please enter search criteria")
+        }
+        if (errors) {
+            $(".search-criterion-errors").html(errors + "<br/>");
+            return false;
+        }
+        return true;
+    }
 </script>
 
 

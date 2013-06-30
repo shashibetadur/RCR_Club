@@ -78,7 +78,7 @@ public class OrderController {
         PurchaseOrder purchaseOrder = purchaseOrderService.retrieveOrder(orderId);
         purchaseOrder.prepareForDeletion();
         purchaseOrderService.saveOrder(purchaseOrder);
-        return "redirect:/order/searchOrder";
+        return "redirect:/order/viewOrder/" + orderId;
     }
 
     @RequestMapping(value = "/saveOrder", method = RequestMethod.POST)

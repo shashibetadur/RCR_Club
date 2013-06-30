@@ -56,8 +56,8 @@
                     var errors = "";
                     var errorMessageTemplate = "<label class='label label-important'>:message</label>"
                     $(".search-edit-errors").html("");
-                    if(selectedBillStatus == "CLOSED"){
-                        errors += errorMessageTemplate.replace(/:message/g, "Closed Bill Cannot be Edited");
+                    if(selectedBillStatus == "CLOSED" || selectedBillStatus == "PAID" ){
+                        errors += errorMessageTemplate.replace(/:message/g, "Closed/Paid Bills Cannot be Edited");
                     }
                     if (errors) {
                         $(".search-edit-errors").html(errors + "<br/><br/>");

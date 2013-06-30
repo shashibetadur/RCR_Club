@@ -8,6 +8,7 @@
     <div class="row well">
         <legend>Search Purchase Order</legend>
         <form class="nk-search-form form-inline">
+        <div class="search-criterion-errors"></div>
             <input type="text" class="order-id input-large" name="orderId" placeholder="Order Id" maxlength="15"/>
             <br/>
             <br/>
@@ -51,6 +52,7 @@
             format:"dd-mm-yyyy"
         });
         $('.nk-search-button').click(function () {
+            if (!validateSearchCriterion()) return false;
             var formData = $('form').serialize();
             $.ajax({
                 type:'POST',
@@ -68,7 +70,23 @@
             });
         });
     });
+
     $("input[type='text']").blur(function () {
         $(this).val(specialTrim($(this).val()));
     });
+
+    function validateSearchCriterion(){
+        var fields = $("input[name='orderStatusList']").serializeArray();
+        var errors = "";
+        var errorMessageTemplate = "<label class='label label-important'>:message</label>"
+        $(".search-criterion-errors").html("");
+        if (isEmpty(jqVal(".order-id")) && isEmpty(jqVal(".from-date")) &&  isEmpty(jqVal(".to-date")) && fields.length == 0) {
+            errors += errorMessageTemplate.replace(/:message/g, "Please enter search criteria")
+        }
+        if (errors) {
+            $(".search-criterion-errors").html(errors + "<br/>");
+            return false;
+        }
+        return true;
+    }
 </script>

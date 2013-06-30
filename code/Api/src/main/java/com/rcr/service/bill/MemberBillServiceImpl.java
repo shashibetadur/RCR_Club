@@ -48,6 +48,9 @@ public class MemberBillServiceImpl implements MemberBillService {
             List<Member> memberList = new ArrayList<Member>();
             MemberSearchCriteria memberSearchCriteria = new MemberSearchCriteria(billSearchCriteria.getPhone(), billSearchCriteria.getFirstName(),
                     billSearchCriteria.getLastName());
+            if(billSearchCriteria.hasSearchMemberId()){
+                memberSearchCriteria.setMemberId(billSearchCriteria.getSearchMemberId());
+            }
             if (memberSearchCriteria.hasPhoneCriteria() || memberSearchCriteria.hasNameCriteria()) {
                 personIds = fetchCustomerIdsMatchingCriteria(memberSearchCriteria);
                 // if no customers found - for whom orders need to be looked up
