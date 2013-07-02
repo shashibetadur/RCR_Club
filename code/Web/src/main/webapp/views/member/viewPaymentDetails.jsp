@@ -20,7 +20,8 @@
                     <c:forEach items="${membershipPayments}" var="membershipPayment">
                         <tr>
                             <td><input type="radio" name="row-membership-payment" value="${membershipPayment.transactionId}"/></td>
-                            <td><label>${membershipPayment.amount}</label></td>
+                            <fmt:setLocale value="en_IN" scope="session"/>
+                            <td><label><fmt:formatNumber value="${membershipPayment.amount}" type="currency"/></label></td>
                             <td><label><fmt:formatDate pattern="dd-MM-yyyy" value="${membershipPayment.date}"/></label></td>
                             <td><label>${membershipPayment.accountName}</label></td>
                             <td><label>${membershipPayment.notes}</label></td>

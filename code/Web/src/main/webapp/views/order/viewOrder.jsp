@@ -4,6 +4,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt"%>
 <%@ taglib prefix="nk" uri="/WEB-INF/custom-tags.tld" %>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/accounting.min.js"></script>
 <div class="row well">
     <legend>Order Details</legend>
 
@@ -45,20 +46,21 @@
                 <c:forEach var="orderDetail" items="${order.displayMaterialList}" varStatus="index">
                     <tr>
                         <td>${orderDetail.name}</td>
-                        <td>${orderDetail.price}</td>
+                        <fmt:setLocale value="en_IN" scope="session"/>
+                        <td><fmt:formatNumber value="${orderDetail.price}" type="currency"/></td>
                         <td>${orderDetail.qty}</td>
-                        <td>${orderDetail.total}</td>
+                        <td><fmt:formatNumber value="${orderDetail.total}" type="currency"/></td>
                     </tr>
                 </c:forEach>
                 <c:forEach var="taxDetail" items="${order.orderTaxDetails}" varStatus="index">
                     <tr>
                         <td colspan='3'>${taxDetail.tax.taxType}(${taxDetail.percentage})</td>
-                        <td colspan='2'>${taxDetail.taxAmount}</td>
+                        <td colspan='2'><fmt:formatNumber value="${taxDetail.taxAmount}" type="currency"/></td>
                     </tr>
                 </c:forEach>
                 <tr>
                     <td colspan='3'>Grand Total</td>
-                    <td colspan='2'>${order.totalAmount}</td>
+                    <td colspan='2'><fmt:formatNumber value="${order.totalAmount}" type="currency"/></td>
                 </tr>
                 </tbody>
             </table>

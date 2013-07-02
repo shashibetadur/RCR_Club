@@ -3,6 +3,7 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="nk" uri="/WEB-INF/custom-tags.tld" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt"%>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/jquery-ui-1.9.0.custom.css" type="text/css"/>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/extra.css" type="text/css"/>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-ui-1.9.0.custom.min.js"></script>
@@ -25,7 +26,8 @@
                         <td><label>${item.name}</label></td>
                         <td><label>${item.description}</label></td>
                         <td><label>${item.itemTypeDescription}</label></td>
-                        <td><label>${item.price}</label></td>
+                        <fmt:setLocale value="en_IN" scope="session"/>
+                        <td><label><fmt:formatNumber value="${item.price}" type="currency"/> </label></td>
                         <td>
                             <a target="_blank" href="<%=request.getContextPath()%>/bar/item/editForm/${item.id}"><i class = 'icon-edit'></i></a>&nbsp
                             <a name="item${item.id}"></a>

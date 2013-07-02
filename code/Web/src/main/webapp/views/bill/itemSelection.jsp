@@ -4,6 +4,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/jquery-ui-1.9.0.custom.css" type="text/css"/>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-ui-1.9.0.custom.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/accounting.min.js"></script>
 <div class="item-selection-section">
     <jq>
         <div class="nk-form-section">
@@ -42,13 +43,14 @@
                         + "</td>"
                         + "<td>"
                         + "<input type='hidden' name='displayItemList[:index].price' value=':itemPrice'/>"
-                        + "<label>:itemPrice</label>"
+                        + "<label>:priceString</label>"
                         + "</td>"
                         + "<td>"
                         + "<input class='itemQty:index' onchange='javascript:updateQty(:index)' type='text' name='displayItemList[:index].qty' value=':itemQty'/>"
                         + "</td>"
                         + "<td>"
-                        + "<label class='itemTotal:index'>:itemTotal</label>"
+                        + "<input type='hidden' name='displayItemList[:index].total' class='itemTotal:index' value=':itemTotal'/>"
+                        + "<label>:totalString</label>"
                         + "</td>"
                         + "<td>"
                         + "<a href='javascript:deleteItem(:index)' class='delete-item'><i class = 'icon-trash'></i></a>"
@@ -125,14 +127,18 @@
             var taxTotal = 0;
             $.each(itemBasket, function (index, value) {
                 if (value) {
+                    var price = accounting.formatMoney(value.price, "Rs. ", 2, ",", ".");
+                    var totalAmt = accounting.formatMoney(value.total, "Rs. ", 2, ",", ".");
                     var row = "<tr  class='item-row'>" + itemTemplateRow
                             .replace(/:index/g, index)
                             .replace(/:itemId/g, value.id)
                             .replace(/:orderDetailId/g, value.orderDetailId)
                             .replace(/:itemName/g, value.value)
                             .replace(/:itemPrice/g, value.price)
+                            .replace(/:priceString/g, price)
                             .replace(/:itemQty/g, value.qty)
-                            .replace(/:itemTotal/g, value.total) + "</tr>";
+                            .replace(/:itemTotal/g, value.total)
+                            .replace(/:totalString/g, totalAmt) + "</tr>";
                     rows += row;
                     total += value.total;
                 }
@@ -141,10 +147,11 @@
                 $.each(taxConfigurations, function (index, value) {
                     var taxValue = ((total * value.percentage) / 100);
                     taxValue = Math.round(taxValue * 100) / 100;
+                    var taxValueStr = accounting.formatMoney(taxValue, "Rs. ", 2, ",", ".");
                     var row = "<tr><td colspan='3'>:taxType (:percentage)</td><td colspan='2'>:totalTax</td></tr>"
                             .replace(/:taxType/g, value.taxType)
                             .replace(/:percentage/g, value.percentage)
-                            .replace(/:totalTax/g, taxValue);
+                            .replace(/:totalTax/g, taxValueStr);
                     rows += row;
                     taxTotal += taxValue;
                 });
@@ -154,7 +161,7 @@
                 else
                     taxTotal = Math.floor(taxTotal);
 
-                rows += "<tr><td colspan='3'>Grand Total</td><td colspan='2'>" + (total + taxTotal) + "</td></tr>";
+                rows += "<tr><td colspan='3'>Grand Total</td><td colspan='2'>" + accounting.formatMoney((total + taxTotal), "Rs. ", 2, ",", ".") + "</td></tr>";
             }
             $(".item-list-location table tbody").html(rows);
             $("input[type='text']").blur(function () {

@@ -4,6 +4,7 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="nk" uri="/WEB-INF/custom-tags.tld" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt"%>
 <div class="row well">
     <legend>Membership Type List</legend>
     <c:if test="${fn:length(memberTypeList) > 0}">
@@ -21,8 +22,9 @@
                     <td><input type='radio' name='row' value='${memberType.id}'/></td>
                     <td><label>${memberType.name}</label></td>
                     <td><label>${memberType.validity}</label></td>
-                    <td><label>${memberType.enrollmentFees}</label></td>
-                    <td><label>${memberType.fees}</label></td>
+                    <fmt:setLocale value="en_IN" scope="session"/>
+                    <td><label><fmt:formatNumber value="${memberType.enrollmentFees}" type="currency"/></label></td>
+                    <td><label><fmt:formatNumber value="${memberType.fees}" type="currency"/></label></td>
                 </tr>
             </c:forEach>
             </tbody>

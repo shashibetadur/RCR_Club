@@ -26,7 +26,8 @@
 <div class="nk-form-section">
     <div class="span10">
         <span class="nk-filed-label"><label>Membership Pending Amount:</label></span>
-        <span class="nk-filed"><label>${memberSummary.pendingAmount}</label></span>
+        <fmt:setLocale value="en_IN" scope="session"/>
+        <span class="nk-filed"><label><fmt:formatNumber value="${memberSummary.pendingAmount}" type="currency"/></label></span>
     </div>
 </div>
 <div class="nk-form-section">

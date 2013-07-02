@@ -13,7 +13,7 @@
                     <th></th>
                     <th>Tax Type</th>
                     <th>Order Type</th>
-                    <th>Percentage</th>
+                    <th>Percentage(%)</th>
                     <th>Description</th>
                     </thead>
                     <tbody>
@@ -55,7 +55,7 @@
         <label>Description</label> <input type="text" class="description" maxlength="200"/>
     </div>
     <div class="modal-footer">
-        <a class="save-tax-configuration btn btn-primary">Ok</a>
+        <a class="save-tax-configuration btn btn-primary"><i class = 'icon-ok'></i> &nbspOkay</a>
     </div>
 </div>
 

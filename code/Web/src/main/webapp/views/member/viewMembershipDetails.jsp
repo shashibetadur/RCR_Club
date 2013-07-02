@@ -22,10 +22,11 @@
                         <tr>
                             <td><input type="radio" name="row-membership-detail" value="${membershipDetail.id}"/></td>
                             <td><label>${membershipDetail.membershipType.name}</label></td>
+                            <fmt:setLocale value="en_IN" scope="session"/>
                             <td><label><fmt:formatDate pattern="dd-MM-yyyy" value="${membershipDetail.startDate}"/></label></td>
                             <td><label><fmt:formatDate pattern="dd-MM-yyyy" value="${membershipDetail.endDate}"/></label></td>
-                            <td><label>${membershipDetail.enrollmentFees}</label></td>
-                            <td><label>${membershipDetail.fees}</label></td>
+                            <td><label><fmt:formatNumber value="${membershipDetail.enrollmentFees}" type="currency"/></label></td>
+                            <td><label><fmt:formatNumber value="${membershipDetail.fees}" type="currency"/></label></td>
                         </tr>
                     </c:forEach>
                     </tbody>

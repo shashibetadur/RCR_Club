@@ -51,20 +51,21 @@
                 <c:forEach var="billDetail" items="${bill.displayItemList}" varStatus="index">
                     <tr>
                         <td>${billDetail.value}</td>
-                        <td>${billDetail.price}</td>
+                        <fmt:setLocale value="en_IN" scope="session"/>
+                        <td><fmt:formatNumber value="${billDetail.price}" type="currency"/></td>
                         <td>${billDetail.qty}</td>
-                        <td>${billDetail.total}</td>
+                        <td><fmt:formatNumber value="${billDetail.total}" type="currency"/></td>
                     </tr>
                 </c:forEach>
                 <c:forEach var="taxDetail" items="${bill.billTaxDetails}" varStatus="index">
                     <tr>
                         <td colspan='3'>${taxDetail.tax.taxType}(${taxDetail.percentage})</td>
-                        <td colspan='2'>${taxDetail.taxAmount}</td>
+                        <td colspan='2'><fmt:formatNumber value="${taxDetail.taxAmount}" type="currency"/></td>
                     </tr>
                 </c:forEach>
                 <tr>
                     <td colspan='3'>Grand Total</td>
-                    <td colspan='2'>${bill.totalAmount}</td>
+                    <td colspan='2'><fmt:formatNumber value="${bill.totalAmount}" type="currency"/></td>
                 </tr>
                 </tbody>
             </table>

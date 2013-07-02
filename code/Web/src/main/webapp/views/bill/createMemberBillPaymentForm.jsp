@@ -25,18 +25,19 @@
                     <c:forEach var="order" items="${memberBillList}">
                         <tr>
                             <td><input type='hidden' name='state' value='${order.id}'/><label>${order.id}</label></td>
-                            <td><label>${order.totalAmount}</label></td>
+                            <fmt:setLocale value="en_IN" scope="session"/>
+                            <td><label><fmt:formatNumber value="${order.totalAmount}" type="currency"/></label></td>
                             <td><label><fmt:formatDate pattern="dd-MM-yyyy" value="${order.billDate}"/></label></td>
                             <td><label>${order.billStatus}</label></td>
                         </tr>
                     </c:forEach>
                         <tr>
                             <td colspan='3'><label>Grace Amount</label></td>
-                            <td colspan='2'><label>${graceAmount}</label></td>
+                            <td colspan='2'><label><fmt:formatNumber value="${graceAmount}" type="currency"/></label></td>
                         </tr>
                         <tr>
                             <td colspan='3'><label>Grand Total</label></td>
-                            <td colspan='2'><label>${totalBillAmount}</label></td>
+                            <td colspan='2'><label><fmt:formatNumber value="${totalBillAmount}" type="currency"/></label></td>
                         </tr>
                     </tbody>
                 </table>

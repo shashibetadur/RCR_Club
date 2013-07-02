@@ -27,7 +27,8 @@
                             <c:when test="${order.billStatus != 'PAID'}">
                                 <tr class="error">
                                     <td><input type='hidden' name='state' value='${order.id}'/><label>${order.id}</label></td>
-                                    <td><label>${order.totalAmount}</label></td>
+                                    <fmt:setLocale value="en_IN" scope="session"/>
+                                    <td><label><fmt:formatNumber value="${order.totalAmount}" type="currency"/></label></td>
                                     <td><label><fmt:formatDate pattern="dd-MM-yyyy" value="${order.billDate}"/></label></td>
                                     <td><label>${order.billStatus}</label></td>
                                 </tr>
@@ -35,14 +36,15 @@
                             <c:otherwise>
                                 <tr class="success">
                                     <td><input type='hidden' name='state' value='${order.id}'/><label>${order.id}</label></td>
-                                    <td><label>${order.totalAmount}</label></td>
+                                    <fmt:setLocale value="en_IN" scope="session"/>
+                                    <td><label><fmt:formatNumber value="${order.totalAmount}" type="currency"/></label></td>
                                     <td><label><fmt:formatDate pattern="dd-MM-yyyy" value="${order.billDate}"/></label></td>
                                     <td><label>${order.billStatus}</label></td>
                                 </tr>
                             </c:otherwise>
                         </c:choose>
                     </c:forEach>
-                        <tr><td colspan='3'><label>Grace Amount</label></td><td colspan='2'><label>${graceAmount}</label></td></tr>
+                        <tr><td colspan='3'><label>Grace Amount</label></td><td colspan='2'><label><fmt:formatNumber value="${graceAmount}" type="currency"/></label></td></tr>
                     </tbody>
                 </table>
                 <br/><br/>
@@ -60,7 +62,7 @@
         <div class="nk-form-section">
             <div class="span10">
                 <span class="nk-filed-label"><label>Amount:</label></span>
-                <span class="nk-filed"><label>${memberBillPayment.amount}</label></span>
+                <span class="nk-filed"><label><fmt:formatNumber value="${memberBillPayment.amount}" type="currency"/></label></span>
             </div>
         </div>
         <div class="nk-form-section">

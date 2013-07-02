@@ -3,6 +3,7 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="nk" uri="/WEB-INF/custom-tags.tld" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt"%>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/jquery-ui-1.9.0.custom.css" type="text/css"/>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/extra.css" type="text/css"/>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-ui-1.9.0.custom.min.js"></script>
@@ -27,7 +28,8 @@
                         <td><label>${material.description}</label></td>
                         <td><label>${material.unit}</label></td>
                         <td><label>${material.materialTypeDescription}</label></td>
-                        <td><label>${material.price}</label></td>
+                        <fmt:setLocale value="en_IN" scope="session"/>
+                        <td><label><fmt:formatNumber value="${material.price}" type="currency"/> </label></td>
                         <td>
                             <a target="_blank" href="<%=request.getContextPath()%>/bar/material/convertToItem/${material.id}"><i class = 'icon-wrench'></i></a>
                             <a name="material${material.id}"></a>
