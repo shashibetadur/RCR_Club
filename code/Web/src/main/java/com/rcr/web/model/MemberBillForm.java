@@ -29,6 +29,10 @@ public class MemberBillForm {
 
     private double totalAmount;
 
+    private double grandTotalAmount;
+
+    private double rounding;
+
     private Date billDate;
 
     private Character deleteFlag;
@@ -152,12 +156,15 @@ public class MemberBillForm {
 
         totalAmount += taxAmount;
         totalAmount =  roundTo2Decimals(totalAmount);
+        this.setTotalAmount(totalAmount); //before applying rounding
+        this.setRounding(totalAmount);
         if((totalAmount - Math.floor(totalAmount)) >= .5)
             totalAmount = Math.ceil(totalAmount);
         else
             totalAmount = Math.floor(totalAmount);
 
-        this.setTotalAmount(totalAmount);
+        this.setGrandTotalAmount(totalAmount);
+        this.setRounding(roundTo2Decimals(getGrandTotalAmount() - getRounding()));
         this.setBillTaxDetails(bill.getBillTaxDetails());
         taxListJason = new JsonSerializer().serialize(bill.getBillTaxDetails());
         itemListJason = new JsonSerializer().serialize(displayItemList);
@@ -201,5 +208,21 @@ public class MemberBillForm {
 
     public void setDeleteFlag(Character deleteFlag) {
         this.deleteFlag = deleteFlag;
+    }
+
+    public double getGrandTotalAmount() {
+        return grandTotalAmount;
+    }
+
+    public void setGrandTotalAmount(double grandTotalAmount) {
+        this.grandTotalAmount = grandTotalAmount;
+    }
+
+    public double getRounding() {
+        return rounding;
+    }
+
+    public void setRounding(double rounding) {
+        this.rounding = rounding;
     }
 }

@@ -25,7 +25,7 @@
                         <td><input type='hidden' name='state' value='${order.id}'/><label>${order.id}</label></td>
                         <td><label>${order.member.personalDetails.firstName} &nbsp ${order.member.personalDetails.lastName}</label></td>
                         <fmt:setLocale value="en_IN" scope="session"/>
-                        <td><label><fmt:formatNumber value="${order.totalAmount}" type="currency"/></label></td>
+                        <td><label><fmt:formatNumber value="${order.grandTotalAmount}" type="currency"/></label></td>
                         <td><label><fmt:formatDate pattern="dd-MM-yyyy" value="${order.billDate}"/></label></td>
                         <td><label>${order.billStatus}</label></td>
                     </tr>

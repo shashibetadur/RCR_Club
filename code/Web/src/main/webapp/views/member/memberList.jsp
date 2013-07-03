@@ -11,6 +11,7 @@
     <legend>Member List</legend>
     <c:choose>
         <c:when test="${fn:length(memberList) > 0}">
+          <div class="span10 search-results-errors"></div>
             <table id="memberList" class="nk-table table table-bordered table-striped">
                 <thead>
                 <th></th>
@@ -105,7 +106,7 @@
                 </tbody>
             </table>
             <div class="btn-group">
-                    <a href="<%=request.getContextPath()%>/member/viewForm" class="btn btn-info view-member"><i class = 'icon-eye-open'> </i> &nbsp View Member Details</a>
+                    <a href="<%=request.getContextPath()%>/member/viewForm" class="btn btn-info view-member"><i class = 'icon-eye-open'> </i> &nbsp Member Details</a>
             </div>
         </c:when>
         <c:otherwise>
@@ -124,7 +125,13 @@
             event.preventDefault();
             var selectedMember = $('input:radio[name=row]:checked').val();
             if (selectedMember) document.location.href = $(this).attr('href') + "/" + selectedMember;
-            else return false;
+            else {
+                  var errors = "";
+                  var errorMessageTemplate = "<label class='label label-important'>:message</label>";
+                  errors += errorMessageTemplate.replace(/:message/g, "Please select any Member!");
+                  $(".search-results-errors").html(errors + "<br/>");
+                 return false;
+            }
         });
     });
 </script>

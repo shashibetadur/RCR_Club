@@ -75,7 +75,8 @@
                 $('#fees').val(membershipType.fees);
                 var startDateTokens = $("#start-date").val().split("-");
                 var startDate = new Date(startDateTokens[2],startDateTokens[1]-1,startDateTokens[0]);
-                startDate.setDate(startDate.getDate()+membershipType.validity);
+                startDate.setMonth(startDate.getMonth()+membershipType.validity);
+                startDate.setDate(startDate.getDate() - 1);
                 $("#end-date").val(startDate.getDate()+"-"+(startDate.getMonth()+1)+"-"+startDate.getFullYear());
             });
         }

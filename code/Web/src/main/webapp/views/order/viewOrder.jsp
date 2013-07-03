@@ -54,13 +54,21 @@
                 </c:forEach>
                 <c:forEach var="taxDetail" items="${order.orderTaxDetails}" varStatus="index">
                     <tr>
-                        <td colspan='3'>${taxDetail.tax.taxType}(${taxDetail.percentage})</td>
+                        <td colspan='3'>${taxDetail.tax.taxType}(${taxDetail.percentage}%)</td>
                         <td colspan='2'><fmt:formatNumber value="${taxDetail.taxAmount}" type="currency"/></td>
                     </tr>
                 </c:forEach>
                 <tr>
-                    <td colspan='3'>Grand Total</td>
+                    <td colspan='3'>Total</td>
                     <td colspan='2'><fmt:formatNumber value="${order.totalAmount}" type="currency"/></td>
+                </tr>
+                <tr>
+                    <td colspan='3'>Rounding</td>
+                    <td colspan='2'>${order.rounding}</td>
+                </tr>
+                <tr>
+                    <td colspan='3'>Grand Total</td>
+                    <td colspan='2'><fmt:formatNumber value="${order.grandTotalAmount}" type="currency"/></td>
                 </tr>
                 </tbody>
             </table>

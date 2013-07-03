@@ -28,6 +28,10 @@ public class ProcessOrderForm {
 
     private double totalAmount;
 
+    private double grandTotalAmount;
+
+    private double rounding;
+
     private Date orderDate;
 
     private Character deleteFlag;
@@ -146,12 +150,15 @@ public class ProcessOrderForm {
 
         totalAmount += taxAmount;
         totalAmount =  roundTo2Decimals(totalAmount);
+        this.setTotalAmount(totalAmount); //before applying rounding
+        this.setRounding(totalAmount);
         if((totalAmount - Math.floor(totalAmount)) >= .5)
             totalAmount = Math.ceil(totalAmount);
         else
             totalAmount = Math.floor(totalAmount);
 
-        this.setTotalAmount(totalAmount);
+        this.setGrandTotalAmount(totalAmount);
+        this.setRounding(roundTo2Decimals(getGrandTotalAmount() - getRounding()));
         this.setOrderTaxDetails(purchaseOrder.getOrderTaxDetails());
         taxListJason = new JsonSerializer().serialize(purchaseOrder.getOrderTaxDetails());
         materialListJason = new JsonSerializer().serialize(displayMaterialList);
@@ -203,5 +210,21 @@ public class ProcessOrderForm {
 
     public void setDeleteFlag(Character deleteFlag) {
         this.deleteFlag = deleteFlag;
+    }
+
+    public double getGrandTotalAmount() {
+        return grandTotalAmount;
+    }
+
+    public void setGrandTotalAmount(double grandTotalAmount) {
+        this.grandTotalAmount = grandTotalAmount;
+    }
+
+    public double getRounding() {
+        return rounding;
+    }
+
+    public void setRounding(double rounding) {
+        this.rounding = rounding;
     }
 }

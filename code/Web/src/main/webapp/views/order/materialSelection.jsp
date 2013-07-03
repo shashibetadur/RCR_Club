@@ -149,7 +149,7 @@
                     var taxValue = ((total * value.percentage) / 100);
                     taxValue = Math.round(taxValue * 100) / 100;
                     var taxValueStr = accounting.formatMoney(taxValue, "Rs. ", 2, ",", ".");
-                    var row = "<tr><td colspan='3'>:taxType (:percentage)</td><td colspan='2'>:totalTax</td></tr>"
+                    var row = "<tr><td colspan='3'>:taxType (:percentage%)</td><td colspan='2'>:totalTax</td></tr>"
                             .replace(/:taxType/g, value.taxType)
                             .replace(/:percentage/g, value.percentage)
                             .replace(/:totalTax/g, taxValueStr);
@@ -157,7 +157,14 @@
                     taxTotal += taxValue;
                 });
                 taxTotal = Math.round(taxTotal * 100) / 100;
-                var taxTotalStr = accounting.formatMoney(taxTotal, "Rs. ", 2, ",", ".");
+                var roundingValue = taxTotal + total;
+                if((taxTotal - Math.floor(taxTotal)) >= .5)
+                    taxTotal = Math.ceil(taxTotal);
+                else
+                    taxTotal = Math.floor(taxTotal);
+
+                rows += "<tr><td colspan='3'>Total</td><td colspan='2'>" + accounting.formatMoney(roundingValue, "Rs. ", 2, ",", ".") + "</td></tr>";
+                rows += "<tr><td colspan='3'>Rounding</td><td colspan='2'>" + accounting.formatMoney((total + taxTotal - roundingValue), "", 2, ",", ".") + "</td></tr>";
                 rows += "<tr><td colspan='3'>Grand Total</td><td colspan='2'>" + accounting.formatMoney((total + taxTotal), "Rs. ", 2, ",", ".") + "</td></tr>";
             }
             $(".item-list-location table tbody").html(rows);

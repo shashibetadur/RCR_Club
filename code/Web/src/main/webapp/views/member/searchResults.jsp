@@ -7,6 +7,7 @@
 <div class="row well">
     <c:choose>
         <c:when test="${fn:length(memberList) > 0}">
+          <div class="span10 search-results-errors"></div>
             <table class="nk-table table table-bordered table-striped">
                 <thead>
                 <th></th>
@@ -102,9 +103,9 @@
             </table>
             <legend/>
             <div class="btn-group">
-                    <a href="<%=request.getContextPath()%>/bill/createBill" class="btn btn-primary create-bill">Create Bill</a>
-                    <a href="<%=request.getContextPath()%>/member/viewForm" class="btn btn-info view-member">View Member Details</a>
-                    <a href="<%=request.getContextPath()%>/bill/payment/createBillPayment/" class="btn btn-success create-payment">Create Payment</a>
+                    <a href="<%=request.getContextPath()%>/bill/createBill" class="btn btn-primary create-bill"><i class = 'icon-play'> </i> &nbsp Create Bill</a>
+                    <a href="<%=request.getContextPath()%>/member/viewForm" class="btn btn-info view-member"><i class = 'icon-eye-open'> </i> &nbsp Member Details</a>
+                    <a href="<%=request.getContextPath()%>/bill/payment/createBillPayment/" class="btn btn-success create-payment"><i class = 'icon-book'> </i> &nbsp Create Payment</a>
             </div>
             <br/><br/>
         </c:when>
@@ -119,21 +120,40 @@
             event.preventDefault();
             var selectedMember = $('input:radio[name=row]:checked').val();
             if (selectedMember) document.location.href = ($(this).attr('href') + "?memberId=" + selectedMember);
-            else return false;
+            else{
+                 var errors = "";
+                 var errorMessageTemplate = "<label class='label label-important'>:message</label>";
+                 errors += errorMessageTemplate.replace(/:message/g, "Please select any Member!");
+                 $(".search-results-errors").html(errors + "<br/>");
+                return false;
+            }
         });
         $('.create-payment').click(function (event) {
             event.preventDefault();
             var selectedMember = $('input:radio[name=row]:checked').val();
             if (selectedMember) document.location.href = ($(this).attr('href') + selectedMember);
-            else return false;
+            else{
+                 var errors = "";
+                 var errorMessageTemplate = "<label class='label label-important'>:message</label>";
+                 errors += errorMessageTemplate.replace(/:message/g, "Please select any Member!");
+                 $(".search-results-errors").html(errors + "<br/>");
+                return false;
+            }
         });
         $('.view-member').click(function (event) {
             event.preventDefault();
             var selectedMember = $('input:radio[name=row]:checked').val();
             if (selectedMember) document.location.href = $(this).attr('href') + "/" + selectedMember;
-            else return false;
+            else{
+                 var errors = "";
+                 var errorMessageTemplate = "<label class='label label-important'>:message</label>";
+                 errors += errorMessageTemplate.replace(/:message/g, "Please select any Member!");
+                 $(".search-results-errors").html(errors + "<br/>");
+                return false;
+            }
         });
     });
+
 </script>
 
 
