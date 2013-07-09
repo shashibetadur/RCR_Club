@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -24,5 +25,11 @@ public class AccountTransactionRepository extends BaseRepository<AccountTransact
 
     public List<AccountTransaction> getMemberLastBillPaymentTransactionDetails(long memberId) {
         return getSession().getNamedQuery("findMemberLastBillPaymentDetails").setLong("memberId", memberId).list();
+    }
+
+    public List<AccountTransaction> getMemberBillPayments(long memberId, Date fromDate, Date toDate) {
+        return getSession().getNamedQuery("findMemberBillPayments").setLong("memberId", memberId)
+                .setDate("fromDate", fromDate)
+                .setDate("toDate", toDate).list();
     }
 }

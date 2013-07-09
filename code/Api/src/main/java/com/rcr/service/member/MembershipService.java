@@ -31,4 +31,6 @@ public interface MembershipService {
     List<MembershipPayment> getMembershipPaymentDetails(long memberId);
 
     MemberBillPayment getMemberBillLastPaymentDetails(long memberId);
+
+    List<MemberBillPayment> getMemberBillPayments(long memberId, Date fromDate, Date toDate);
 }

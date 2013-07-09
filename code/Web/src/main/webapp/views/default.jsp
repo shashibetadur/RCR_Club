@@ -61,8 +61,8 @@
                     <nk:security operations="member-search">
                         <li class="nk-side-menu-sep"><a href="<%=request.getContextPath()%>/member/searchForm">Member Dashboard</a></li>
                     </nk:security>
-                    <li class="nk-side-menu-sep"><a href="#">Create Bill</a></li>
-                    <li><a href="#">Update Inventory</a></li>
+                    <li class="nk-side-menu-sep"><a href="<%=request.getContextPath()%>/member/searchForm">Create Bill</a></li>
+                    <li><a href="<%=request.getContextPath()%>/inventory/currentStock">Current Stock</a></li>
                 </ul>
             </div>
             <div class="nk-middle span10">

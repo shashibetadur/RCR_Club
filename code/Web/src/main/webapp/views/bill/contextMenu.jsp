@@ -9,4 +9,5 @@
     <li class="nk-side-menu-sep"><a href="<%=request.getContextPath()%>/bar/item/list">Item List</a></li>
     <li class="nk-side-menu-sep"><a href="<%=request.getContextPath()%>/bar/item/createForm">Create Item</a></li>
     <li class="nk-side-menu-sep"><a href="<%=request.getContextPath()%>/member/searchForm">Create Payment</a></li>
+    <li class="nk-side-menu-sep"><a href="<%=request.getContextPath()%>/member/searchForm">Payment Search</a></li>
 </ul>

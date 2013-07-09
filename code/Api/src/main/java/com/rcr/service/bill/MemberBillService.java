@@ -12,4 +12,6 @@ public interface MemberBillService {
     Bill retrieveOrder(long orderId);
 
     List<Bill> search(BillSearchCriteria billSearchCriteria);
+
+    List<Bill> getBillsByPaymentId(long transactionId);
 }

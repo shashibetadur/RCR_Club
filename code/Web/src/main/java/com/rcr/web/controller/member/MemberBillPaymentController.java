@@ -6,22 +6,22 @@ import com.rcr.domain.BillSearchCriteria;
 import com.rcr.domain.Operation;
 import com.rcr.domain.account.Account;
 import com.rcr.domain.account.MemberBillPayment;
+import com.rcr.domain.member.Member;
 import com.rcr.service.account.AccountService;
 import com.rcr.service.account.AccountTransactionService;
 import com.rcr.service.bill.MemberBillService;
+import com.rcr.service.member.MemberService;
 import com.rcr.service.member.MembershipService;
 import com.rcr.service.member.MembershipServiceImpl;
 import com.rcr.web.model.MemberBillForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -34,13 +34,15 @@ public class MemberBillPaymentController {
 
     private List<MemberBillForm> memberBillList = new ArrayList<MemberBillForm>();
     private MembershipService membershipService;
+    private MemberService memberService;
 
     @Autowired
-    public MemberBillPaymentController(AccountTransactionService accountTransactionService, AccountService accountService, MemberBillService memberBillService, MembershipService membershipService) {
+    public MemberBillPaymentController(AccountTransactionService accountTransactionService, AccountService accountService, MemberBillService memberBillService, MembershipService membershipService, MemberService memberService) {
         this.accountTransactionService = accountTransactionService;
         this.accountService = accountService;
         this.memberBillService = memberBillService;
         this.membershipService = membershipService;
+        this.memberService = memberService;
     }
 
     @RequestMapping(value = "/createBillPayment/{memberId}", method = RequestMethod.GET)
@@ -104,6 +106,30 @@ public class MemberBillPaymentController {
         modelAndView.getModelMap().put("memberBillList", memberBillList);
         modelAndView.getModelMap().put("graceAmount", paymentAmount);
         return modelAndView;
+    }
+
+    @RequestMapping(value = "/searchPayment/{memberId}", method = RequestMethod.GET)
+    public ModelAndView searchPayment(@PathVariable("memberId") long memberId) {
+        Member member = memberService.getMemberDetails(memberId);
+        return new ModelAndView("bill/searchPayment","memberDetails",member);
+    }
+
+    @RequestMapping(value = "/fetchBillsForPayment/{transactionId}", method = RequestMethod.GET)
+    public ModelAndView fetchBillsForPayment(@PathVariable("transactionId") long transactionId) {
+        List<Bill> billList = memberBillService.getBillsByPaymentId(transactionId);
+        List<MemberBillForm> memberBillList = new ArrayList<MemberBillForm>();
+        for (Bill bill : billList) {
+            MemberBillForm memberBillForm = new MemberBillForm();
+            memberBillForm.buildDisplayBill(bill);
+            memberBillList.add(memberBillForm);
+        }
+        return new ModelAndView("bill/searchResultsForPayment", "memberBillList", memberBillList);
+    }
+
+    @RequestMapping(value = "/searchPaymentOfMember/", method = RequestMethod.GET)
+    public ModelAndView searchPaymentOfMember(@RequestParam(value = "fromDate", required = true) Date fromDate, @RequestParam(value = "toDate", required = true) Date toDate,@RequestParam(value = "memberId", required = false) long memberId) {
+        List<MemberBillPayment> memberBillPayments = membershipService.getMemberBillPayments(memberId,fromDate,toDate);
+        return new ModelAndView("bill/paymentResults","memberBillPayments", memberBillPayments);
     }
 
     @RequestMapping(value = "/editForm/{id}", method = RequestMethod.GET)

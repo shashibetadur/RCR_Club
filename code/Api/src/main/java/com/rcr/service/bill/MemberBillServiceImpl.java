@@ -69,6 +69,11 @@ public class MemberBillServiceImpl implements MemberBillService {
         }
     }
 
+    @Override
+    public List<Bill> getBillsByPaymentId(long transactionId) {
+        return billRepository.getBillsByPaymentId(transactionId);
+    }
+
     private List<Long> fetchCustomerIdsMatchingCriteria(MemberSearchCriteria memberSearchCriteria) {
         List<Long> memberIds;
         List<Member> members = memberRepository.findBy(memberSearchCriteria);

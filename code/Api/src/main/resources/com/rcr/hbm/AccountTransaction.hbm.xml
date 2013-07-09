@@ -36,4 +36,7 @@
     <query name="findMemberLastBillPaymentDetails">
         <![CDATA[select at from AccountTransaction at, AccountTransactionDetail atd where at.id = atd.accountTransactionId and atd.categoryAttributeId=2 and atd.value = :memberId order by at.id desc]]>
     </query>
+    <query name="findMemberBillPayments">
+        <![CDATA[select at from AccountTransaction at, AccountTransactionDetail atd where at.id = atd.accountTransactionId and atd.categoryAttributeId=2 and atd.value = :memberId and at.transactionDate between :fromDate and :toDate]]>
+    </query>
 </hibernate-mapping>

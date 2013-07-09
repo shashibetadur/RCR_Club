@@ -46,4 +46,10 @@ public class BillRepository extends BaseRepository {
         criteria.add(or(isNull("deleteFlag"), not(eq("deleteFlag", 'Y'))));
         return criteria.list();
     }
+
+    public List<Bill> getBillsByPaymentId(long transactionId) {
+        Criteria criteria = getSession().createCriteria(Bill.class);
+        criteria.add(Restrictions.eq("transactionId", transactionId));
+        return criteria.list();
+    }
 }

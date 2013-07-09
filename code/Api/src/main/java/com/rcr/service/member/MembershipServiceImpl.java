@@ -112,4 +112,18 @@ public class MembershipServiceImpl implements MembershipService {
         else
             return null;
     }
+
+    @Override
+    public List<MemberBillPayment> getMemberBillPayments(long memberId, Date fromDate, Date toDate) {
+        List<AccountTransaction> paymentTransactionDetails = paymentTransactionDetails = accountTransactionRepository.getMemberBillPayments(memberId, fromDate, toDate);
+        final List<MemberBillPayment> memberBillPayments = new ArrayList<MemberBillPayment>();
+        CollectionUtils.forAllDo(paymentTransactionDetails, new Closure() {
+            @Override
+            public void execute(Object input) {
+                AccountTransaction accountTransaction = (AccountTransaction) input;
+                memberBillPayments.add((MemberBillPayment) accountTransaction.buildPayment());
+            }
+        });
+        return memberBillPayments;
+    }
 }
