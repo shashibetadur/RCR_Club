@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.rcr.domain.Parameters" table="PARAMETERS" catalog="rcr_raichur">
+        <id name="id" type="long">
+            <column name="PARAMETER_ID"/>
+            <generator class="identity"/>
+        </id>
+        <property name="parameterName" type="string">
+            <column name="PARAMETER_NAME"/>
+        </property>
+        <property name="parameterValue" type="string">
+            <column name="PARAMETER_VALUE"/>
+        </property>
+        <property name="deleteFlag" type="java.lang.Character">
+            <column name="DELETE_FLAG"/>
+        </property>
+    </class>
+</hibernate-mapping>
+

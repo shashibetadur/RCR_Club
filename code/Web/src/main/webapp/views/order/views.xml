@@ -25,4 +25,8 @@
         <put-attribute name="main-content" value="/views/order/taxConfiguration.jsp"/>
         <put-attribute name="context-menu" value="/views/order/contextMenu.jsp"/>
     </definition>
+    <definition name="order/parameter/configuration" extends="default">
+        <put-attribute name="main-content" value="/views/order/parameterConfiguration.jsp"/>
+        <put-attribute name="context-menu" value="/views/order/contextMenu.jsp"/>
+    </definition>
 </tiles-definitions>

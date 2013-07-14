@@ -44,7 +44,7 @@
         <h3 id="myModalLabel">Tax Configuration</h3>
     </div>
     <div class="modal-body">
-        <input type="hidden" class="selected-index" value="">
+        <input type="hidden" class="selected-index" value=""/>
 
         <div class="tax-configuration-errors"></div>
         <label>Tax Type</label> <input type="text" id="tax-type" class="tax-type" maxlength="200"/>

@@ -10,4 +10,5 @@
     <li class="nk-side-menu-sep"><a href="<%=request.getContextPath()%>/bar/material/createForm">New Material</a></li>
     <li class="nk-side-menu-sep"><a href="<%=request.getContextPath()%>/bar/material/convertMaterials">Convert Materials</a></li>
     <li class="nk-side-menu-sep"><a href="<%=request.getContextPath()%>/tax/order/configuration">Tax Configuration</a></li>
+    <li class="nk-side-menu-sep"><a href="<%=request.getContextPath()%>/parameter/configuration">Parameters</a></li>
 </ul>

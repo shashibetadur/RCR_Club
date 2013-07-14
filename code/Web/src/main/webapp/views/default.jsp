@@ -62,7 +62,7 @@
                         <li class="nk-side-menu-sep"><a href="<%=request.getContextPath()%>/member/searchForm">Member Dashboard</a></li>
                     </nk:security>
                     <li class="nk-side-menu-sep"><a href="<%=request.getContextPath()%>/member/searchForm">Create Bill</a></li>
-                    <li><a href="<%=request.getContextPath()%>/inventory/currentStock">Current Stock</a></li>
+                    <li><a href="#">Current Stock</a></li>
                 </ul>
             </div>
             <div class="nk-middle span10">
@@ -72,7 +72,19 @@
         </div>
     </div>
     <div class="nk-footer well">
-        <p>this is footer</p>
+            <hr>
+            <div class="row-fluid">
+                <div class="span12">
+                    <div class="span8">
+                        <a href="#">Terms of Service</a>
+                        <a href="#">Privacy</a>
+                        <a href="#">Security</a>
+                    </div>
+                    <div class="span4">
+                        <p class="muted pull-right">© 2013 Company Name. All rights reserved</p>
+                    </div>
+                </div>
+            </div>
     </div>
 </div>
 

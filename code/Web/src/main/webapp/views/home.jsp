@@ -14,7 +14,7 @@
                 <div class="accordion-group">
                     <div class="accordion-heading">
                         <a class="accordion-toggle" data-toggle="collapse" data-parent="new-bills-accordion"
-                           href="#collapse-new-bills"><h5>New Bills</h5></a>
+                           href="#collapse-new-bills"><h4>New Bills</h4></a>
                     </div>
                     <div id="collapse-new-bills" class="accordion-body collapse">
                         <div class="accordion-inner">
@@ -26,7 +26,7 @@
                 <div class="accordion-group">
                     <div class="accordion-heading">
                         <a class="accordion-toggle" data-toggle="collapse" data-parent="pos-accordion"
-                           href="#collapse-pos"><h5>Purchase Orders</h5></a>
+                           href="#collapse-pos"><h4>Purchase Orders</h4></a>
                     </div>
                     <div id="collapse-pos" class="accordion-body collapse">
                         <div class="accordion-inner">

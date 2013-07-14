@@ -25,7 +25,6 @@
         </div>
 
         <jsp:include page="materialSelection.jsp"/>
-        <legend/>
         <div class="span8 nk-form-section">
             <button type="submit" class="btn btn-primary"><i class = 'icon-ok'></i> &nbsp Save</button>
             <c:if test="${processOrderForm.id > 0}">
