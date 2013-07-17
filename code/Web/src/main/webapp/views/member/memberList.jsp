@@ -22,12 +22,18 @@
                 </thead>
                 <tbody>
                 <c:forEach var="member" items="${memberList}">
-                   <c:choose>
-                        <c:when test="${member.status == 'E'}">
-                            <tr class="error">
-                                <td><input type='radio' name='row' value='${member.id}'/></td>
-                                    <td class="success"><label>${member.personalDetails.firstName}</label></td>
-                                    <td class="success"><label>${member.personalDetails.lastName}</label></td>
+                   <tr>
+                           <td><input type='radio' name='row' value='${member.id}'/></td>
+                           <c:choose>
+                                <c:when test="${member.status == 'E'}">
+                                            <td><label class="label label-important">${member.personalDetails.firstName}</label></td>
+                                            <td><label class="label label-important">${member.personalDetails.lastName}</label></td>
+                                </c:when>
+                                <c:otherwise>
+                                            <td><label class="label label-success">${member.personalDetails.firstName}</label></td>
+                                            <td><label class="label label-success">${member.personalDetails.lastName}</label></td>
+                                </c:otherwise>
+                           </c:choose>
                                 <td>
                                     <c:choose>
                                         <c:when test="${fn:length(member.personalDetails.phoneList) > 0}">
@@ -61,47 +67,6 @@
                                     </c:choose>
                                 </td>
                             </tr>
-                        </c:when>
-                        <c:otherwise>
-                             <tr class="success">
-                                 <td><input type='radio' name='row' value='${member.id}'/></td>
-                                     <td class="success"><label>${member.personalDetails.firstName}</label></td>
-                                     <td class="success"><label>${member.personalDetails.lastName}</label></td>
-                                 <td>
-                                     <c:choose>
-                                         <c:when test="${fn:length(member.personalDetails.phoneList) > 0}">
-                                             <c:forEach varStatus="index" var="phone"
-                                                        items="${member.personalDetails.phoneList}">
-                                                 <span class="label">${phone.displayPhone}</span>
-                                                 <c:if test="${!index.last}">
-                                                     <br/><br/>
-                                                 </c:if>
-                                             </c:forEach>
-                                         </c:when>
-                                         <c:otherwise>
-                                             <span class="label">NA</span>
-                                         </c:otherwise>
-                                     </c:choose>
-                                 </td>
-                                 <td>
-                                     <c:choose>
-                                         <c:when test="${fn:length(member.personalDetails.addressList) > 0}">
-                                             <c:forEach varStatus="index" var="address"
-                                                        items="${member.personalDetails.addressList}">
-                                                 <span class="label">${address.displayAddress}</span>
-                                                 <c:if test="${!index.last}">
-                                                     <br/><br/>
-                                                 </c:if>
-                                             </c:forEach>
-                                         </c:when>
-                                         <c:otherwise>
-                                             <span class="label">NA</span>
-                                         </c:otherwise>
-                                     </c:choose>
-                                 </td>
-                             </tr>
-                        </c:otherwise>
-                    </c:choose>
                 </c:forEach>
                 </tbody>
             </table>

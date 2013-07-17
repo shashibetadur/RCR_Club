@@ -37,6 +37,7 @@
                             <li class="divider-vertical"><a href="<%=request.getContextPath()%>/bill/searchBill"><i class = 'icon-arrow-up'></i>&nbsp Sales</a></li>
                             <li class="divider-vertical"><a href="<%=request.getContextPath()%>/inventory/currentStock"><i class = 'icon-glass'></i>&nbsp Bar</a></li>
                             <li class="divider-vertical"><a href="<%=request.getContextPath()%>/account/list"><i class = 'icon-briefcase'></i>&nbsp Accounts</a></li>
+                            <li class="divider-vertical"><a href="<%=request.getContextPath()%>/account/list"><i class = 'icon-list'></i>&nbsp Reports & Charts</a></li>
                             <li class="divider-vertical"><a href="<%=request.getContextPath()%>/bill"><i class = 'icon-th-large'></i>&nbsp Assets</a></li>
                         </ul>
                     </div>

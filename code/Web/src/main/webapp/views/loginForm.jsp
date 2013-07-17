@@ -7,52 +7,40 @@
         <link rel="stylesheet" href="<%=request.getContextPath()%>/css/google-web-fonts.css" type="text/css"/>
         <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap-selected.css" type="text/css"/>
         <link rel="stylesheet" href="<%=request.getContextPath()%>/css/extra.css" type="text/css"/>
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/css/logon.css" type="text/css"/>
         <script type="text/javascript" src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
         <title>RCR Club Dash Board</title>
     </head>
     <body>
-        <div style="margin:220 auto;width:35%;text-align:left">
-            <table>
-                <thead>
-                    <th style="width: 65%"></th>
-                    <th style="width: 35%"></th>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <form action="<%=request.getContextPath()%>/login/check" method="POST">
-                                <div class="row">
-                                    <div class="span5 offset4">
-                                      <div class="well">
-                                        <legend>Sign in to RCR Club</legend>
-                                            <c:if test="${errorMessage != ''}">
-                                                <div class="alert alert-error">
-                                                        <a class="close" data-dismiss="alert" href="${redirectUrl}">x</a>Incorrect Username or Password!
-                                                </div>
-                                            </c:if>
-                                            <label class="control-label" for="username">Username</label>
-                                            <input class="span3" type="text" name="username">
-                                            <label class="control-label" for="password">Password</label>
-                                            <input class="span3" type="password" name="password">
-                                            <legend></legend>
-                                            <div>
-                                                <input type="hidden" name="redirectUrl" value="${redirectUrl}"/>
-                                                <button class="btn btn-primary" type="submit"><i class = 'icon-user'></i> &nbspLogin</button>
-                                                <button type="reset" class="btn btn-warning"><i class = 'icon-refresh'></i> &nbsp Clear</button>
-                                            </div>
-                                      </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </td>
-                        <td>
-                            <div>
-                                <img src="<%=request.getContextPath()%>/img/login_icon.png" class="img-rounded">
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+			<div id="wrapper">
+
+				<form name="login-form" class="login-form" action="<%=request.getContextPath()%>/login/check" method="post">
+				
+					<div class="header">
+					<h1>Sign in to RCR Club</h1>
+					<span>Please enter your user id and password! Or contact the Admin!!</span>
+					</div>
+					<c:if test="${errorMessage != ''}">
+						<div class="alert alert-error">
+								<a class="close" data-dismiss="alert" href="${redirectUrl}">x</a>Incorrect Username or Password!
+						</div>
+					</c:if>	
+					<div class="content">
+					<input name="username" type="text" class="input username" placeholder="Username" />
+					<div class="user-icon"></div>
+					<input name="password" type="password" class="input password" placeholder="Password" />
+					<div class="pass-icon"></div>		
+					</div>
+
+					<div class="footer">
+                        <input type="hidden" name="redirectUrl" value="${redirectUrl}"/>
+                        <button type="submit" name="submit" class="btn btn-large btn-primary"><i class = 'icon-user'></i> &nbsp Login</button>
+                        <button type="reset" name="reset" class="btn btn-large btn-warning"><i class = 'icon-refresh'></i> &nbsp Clear</button>
+					</div>
+				
+				</form>
+
+			</div>
+			<div class="gradient"></div>
     </body>
 </html>
