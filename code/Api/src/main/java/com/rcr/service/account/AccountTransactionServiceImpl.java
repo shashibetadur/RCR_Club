@@ -1,14 +1,17 @@
 package com.rcr.service.account;
 
 
-import com.rcr.domain.account.AccountTransaction;
-import com.rcr.domain.account.AccountTransfer;
-import com.rcr.domain.account.Payment;
+import com.rcr.domain.account.*;
 import com.rcr.repository.account.AccountRepository;
 import com.rcr.repository.account.AccountTransactionRepository;
+import org.apache.commons.collections.Transformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+
+import static org.apache.commons.collections.CollectionUtils.collect;
 
 @Service
 public class AccountTransactionServiceImpl implements AccountTransactionService {
@@ -45,5 +48,17 @@ public class AccountTransactionServiceImpl implements AccountTransactionService 
         AccountTransaction toAccountTransaction = accountTransfer.getToAccountTransaction();
         accountTransactionRepository.save(fromAccountTransaction);
         accountTransactionRepository.save(toAccountTransaction);
+    }
+
+    @Override
+    public List<ExpensePayment> getExpensePaymentDetails(ExpenseSearchCriteria expenseSearchCriteria) {
+        List<AccountTransaction> accountTransactions = accountTransactionRepository.getAllTransactionsFor(expenseSearchCriteria);
+        return (List<ExpensePayment>) collect(accountTransactions, new Transformer() {
+            @Override
+            public Object transform(Object input) {
+                AccountTransaction accountTransaction = (AccountTransaction) input;
+                return accountTransaction.buildPayment();
+            }
+        });
     }
 }

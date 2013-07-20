@@ -1,9 +1,9 @@
 package com.rcr.service.account;
 
 
-import com.rcr.domain.account.AccountTransfer;
-import com.rcr.domain.account.MembershipPayment;
-import com.rcr.domain.account.Payment;
+import com.rcr.domain.account.*;
+
+import java.util.List;
 
 public interface AccountTransactionService {
 
@@ -13,4 +13,5 @@ public interface AccountTransactionService {
 
     public void transferAmount(AccountTransfer accountTransfer);
 
+    List<ExpensePayment> getExpensePaymentDetails(ExpenseSearchCriteria expenseSearchCriteria);
 }

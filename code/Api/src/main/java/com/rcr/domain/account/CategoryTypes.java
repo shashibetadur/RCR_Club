@@ -13,7 +13,7 @@ public class CategoryTypes {
         if (accountTransactionDetail.getCategoryAttributeId().getId() == MemberBill.MEMBER_ID) {
             return MemberBillPayment.class;
         }
-        if (accountTransactionDetail.getCategoryAttributeId().getId() == Expense.EXPENSE_ID) {
+        if (accountTransactionDetail.getCategoryAttributeId().getId() == Expense.EXPENSE_TYPE) {
             return ExpensePayment.class;
         }
         throw new RuntimeException("Invalid category attribute id");
@@ -34,7 +34,7 @@ public class CategoryTypes {
     }
 
     class Expense {
-        public static final long EXPENSE_ID = 4L;
+        public static final long EXPENSE_TYPE = 4L;
     }
 
     class Transfer {

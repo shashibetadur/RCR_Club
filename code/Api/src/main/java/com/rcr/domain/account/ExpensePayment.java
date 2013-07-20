@@ -6,7 +6,7 @@ import java.util.List;
 public class ExpensePayment extends Payment {
 
 
-    private long expenseId;
+    private String expenseType;
 
     public ExpensePayment() {
 
@@ -14,21 +14,21 @@ public class ExpensePayment extends Payment {
 
     public ExpensePayment(AccountTransaction accountTransaction) {
         super(accountTransaction);
-        this.expenseId = Long.parseLong(accountTransaction.getTransactionDetails().get(0).getValue());
+        this.expenseType = accountTransaction.getTransactionDetails().get(0).getValue();
     }
 
-    public long getExpenseId() {
-        return expenseId;
+    public String getExpenseType() {
+        return expenseType;
     }
 
-    public void setExpenseId(long expenseId) {
-        this.expenseId = expenseId;
+    public void setExpenseType(String expenseType) {
+        this.expenseType = expenseType;
     }
 
     @Override
     protected List<AccountTransactionDetail> buildTransactionDetails() {
         ArrayList<AccountTransactionDetail> accountTransactionDetails = new ArrayList<AccountTransactionDetail>();
-        accountTransactionDetails.add(new AccountTransactionDetail(CategoryTypes.Expense.EXPENSE_ID, String.valueOf(getExpenseId())));
+        accountTransactionDetails.add(new AccountTransactionDetail(CategoryTypes.Expense.EXPENSE_TYPE, getExpenseType()));
         return accountTransactionDetails;
     }
 

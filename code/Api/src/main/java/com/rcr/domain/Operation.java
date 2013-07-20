@@ -17,10 +17,16 @@ public enum Operation {
     MEMBERSHIP_RENEW("membership-renew"),
     MEMBER_VISIT_VIEW("member-visit-view"),
     MEMBER_VISIT_EDIT("member-visit-edit"),
+
     ACCOUNT_LIST("account-list"),
     ACCOUNT_CREATE("account-create"),
     ACCOUNT_EDIT("account-edit"),
-    ACCOUNT_DELETE("account-delete");
+    ACCOUNT_DELETE("account-delete"),
+
+    EXPENSE_LIST("expense-list"),
+    EXPENSE_CREATE("expense-create"),
+    EXPENSE_EDIT("expense-edit"),
+    EXPENSE_DELETE("expense-delete");
 
     Operation(String operationName) {
         this.operationName = operationName;

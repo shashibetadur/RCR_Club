@@ -10,7 +10,8 @@ insert into CATEGORY(id,name) values(3,'PURCHASE-ORDER');
 insert into CATEGORY_ATTRIBUTE(id,CATEGORY_ID,name) VALUES(3,3,'PURCHASE_ORDER_ID');
 
 insert into CATEGORY(id,name) values(4,'EXPENSE');
-insert into CATEGORY_ATTRIBUTE(id,CATEGORY_ID,name) VALUES(4,4,'EXPESNE_ID');
+insert into CATEGORY_ATTRIBUTE(id,CATEGORY_ID,name) VALUES(4,4,'EXPESNE_TYPE');
+
 
 insert into CATEGORY(id,name) values(5,'TRANSFER');
 insert into CATEGORY_ATTRIBUTE(id,CATEGORY_ID,name) VALUES(5,5,'FROM-ACCOUNT_ID');

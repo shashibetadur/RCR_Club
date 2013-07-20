@@ -7,5 +7,7 @@
     <li class="nk-side-menu-sep"><a class="btn" href="#">Context Menu</a></li>
     <nk:security operations="account-list">
         <li class="nk-side-menu-sep"><a href="<%=request.getContextPath()%>/account/list">Account List</a></li>
+        <li class="nk-side-menu-sep"><a href="<%=request.getContextPath()%>/account/expense/createForm">Add Expense</a></li>
+        <li class="nk-side-menu-sep"><a href="<%=request.getContextPath()%>/account/expense/searchForm">View Expenses</a></li>
     </nk:security>
 </ul>

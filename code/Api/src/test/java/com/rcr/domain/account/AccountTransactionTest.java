@@ -54,14 +54,14 @@ public class AccountTransactionTest {
         accountTransaction.setCreditDebit(AccountTransaction.DEBIT);
         accountTransaction.setNotes("NA");
         accountTransaction.setTransactionDate(new Date(System.currentTimeMillis()));
-        accountTransaction.getTransactionDetails().add(new AccountTransactionDetail(CategoryTypes.Expense.EXPENSE_ID, "1"));
+        accountTransaction.getTransactionDetails().add(new AccountTransactionDetail(CategoryTypes.Expense.EXPENSE_TYPE, "XYZ"));
         Payment payment = accountTransaction.buildPayment();
         assertThat(payment instanceof ExpensePayment, is(true));
         assertThat(payment.getAccountId(), is(1L));
         assertThat(payment.getAmount(), is(100D));
         assertThat(payment.creditDebitFlag(), is(AccountTransaction.DEBIT));
         assertThat(payment.getNotes(), is("NA"));
-        assertThat(((ExpensePayment) payment).getExpenseId(), is(1L));
+        assertThat(((ExpensePayment) payment).getExpenseType(), is("XYZ"));
     }
 
     @Test
