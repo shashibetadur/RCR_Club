@@ -9,5 +9,6 @@
         <li class="nk-side-menu-sep"><a href="<%=request.getContextPath()%>/account/list">Account List</a></li>
         <li class="nk-side-menu-sep"><a href="<%=request.getContextPath()%>/account/expense/createForm">Add Expense</a></li>
         <li class="nk-side-menu-sep"><a href="<%=request.getContextPath()%>/account/expense/searchForm">View Expenses</a></li>
+        <li class="nk-side-menu-sep"><a href="<%=request.getContextPath()%>/account/transaction/transferForm">Account Transfer</a></li>
     </nk:security>
 </ul>

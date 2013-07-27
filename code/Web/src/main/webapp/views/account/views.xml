@@ -2,7 +2,8 @@
 <!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
         "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
 <tiles-definitions>
-    <!--membership type related-->
+
+    <!--account type related-->
     <definition name="account/createForm" extends="ajaxSection">
         <put-attribute name="content" value="/views/account/accountCreateForm.jsp"/>
     </definition>
@@ -17,9 +18,14 @@
         <put-attribute name="context-menu" value="/views/account/contextMenu.jsp"/>
     </definition>
 
+    <!--account transaction related-->
+    <definition name="account/transaction/transferForm" extends="default">
+        <put-attribute name="main-content" value="/views/account/accountTransferForm.jsp"/>
+        <put-attribute name="context-menu" value="/views/account/contextMenu.jsp"/>
+    </definition>
+
 
     <!-- expense related views-->
-
     <definition name="account/expense/createForm" extends="default">
         <put-attribute name="main-content" value="/views/account/expenseCreateForm.jsp"/>
         <put-attribute name="context-menu" value="/views/account/contextMenu.jsp"/>

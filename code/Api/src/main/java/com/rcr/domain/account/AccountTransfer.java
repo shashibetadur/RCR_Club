@@ -12,22 +12,28 @@ public class AccountTransfer {
 
     private double amount;
 
-    public AccountTransfer(long fromAccountId, long toAccountId, double amount) {
-        this.fromAccountId = fromAccountId;
-        this.toAccountId = toAccountId;
-        this.amount = amount;
-    }
-
     public long getFromAccountId() {
         return fromAccountId;
+    }
+
+    public void setFromAccountId(long fromAccountId) {
+        this.fromAccountId = fromAccountId;
     }
 
     public long getToAccountId() {
         return toAccountId;
     }
 
+    public void setToAccountId(long toAccountId) {
+        this.toAccountId = toAccountId;
+    }
+
     public double getAmount() {
         return amount;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
     }
 
     public AccountTransaction getFromAccountTransaction() {
@@ -47,7 +53,7 @@ public class AccountTransfer {
 
     public AccountTransaction getToAccountTransaction() {
         AccountTransaction accountTransaction = new AccountTransaction();
-        accountTransaction.setAccount(new Account(fromAccountId));
+        accountTransaction.setAccount(new Account(toAccountId));
         accountTransaction.setAmount(amount);
         accountTransaction.setCreditDebit(AccountTransaction.CREDIT);
 
